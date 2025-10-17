@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>České dráhy - Intranet Navigation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Figma Design System Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+    
+    @font-face {
+      font-family: 'CD Fedra Pro';
+      font-weight: 600;
+      font-style: normal;
+      src: local('Arial');
+    }
+    
+    @font-face {
+      font-family: 'CD Fedra Pro';
+      font-weight: 700;
+      font-style: normal;
+      src: local('Arial');
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Mega Menu Animation */
+    .mega-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.2s ease-in-out;
+      pointer-events: none;
+    }
+
+    .mega-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Mobile Menu Animation */
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    /* Hover Effects */
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .menu-item:hover {
+      background-color: #f2fbff;
+      color: #0097cf;
+    }
+
+    .menu-item:hover svg {
+      color: #0097cf;
+    }
+
+    /* Featured Card Hover */
+    .featured-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+      transition: all 0.2s ease-in-out;
+    }
+
+    /* Mobile submenu */
+    .mobile-submenu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+    }
+
+    .mobile-submenu.active {
+      max-height: 2000px;
+    }
+
+    /* Scrollbar styling */
+    .mobile-menu::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .mobile-menu::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    .mobile-menu::-webkit-scrollbar-thumb {
+      background: #009fda;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- Header Container -->
+<header class="w-full shadow-sm relative z-50">
+  
+  <!-- Top Row: Utility Navigation -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-[1280px] mx-auto px-8 py-4">
+      <div class="flex items-center justify-between gap-6">
+        
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 flex-shrink-0">
+          <svg width="49" height="32" viewBox="0 0 50 32" fill="none">
+            <path d="M8.56934 0L0.699219 7.87012L8.56934 15.7402L16.4395 7.87012L8.56934 0Z" fill="#002664"/>
+            <path d="M24.9995 0L17.1294 7.87012L24.9995 15.7402L32.8696 7.87012L24.9995 0Z" fill="#002664"/>
+            <path d="M16.4395 16.2598L8.56934 24.1299L16.4395 32L24.3096 24.1299L16.4395 16.2598Z" fill="#002664"/>
+          </svg>
+          <span class="text-[22px] font-bold text-[#009fda]" style="font-family: 'CD Fedra Pro', Arial, sans-serif;">Intranet</span>
+        </a>
+
+        <!-- Search Bar -->
+        <div class="flex-1 max-w-[400px]">
+          <div class="relative">
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" stroke-width="2"/>
+              <path d="m21 21-4.35-4.35" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input 
+              type="text" 
+              placeholder="Hledejte kolegu, dokument nebo novinku..."
+              class="w-full pl-10 pr-4 py-2 border border-[#d5d7da] rounded focus:outline-none focus:ring-2 focus:ring-[#009fda] text-sm text-[#717680]"
+            />
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-2">
+          <!-- Notification Button -->
+          <button class="relative p-2 rounded-md hover:bg-gray-100 transition-colors">
+            <svg class="w-5 h-5 text-[#535862]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="absolute -top-1 -right-1 bg-[#009fda] text-white text-xs font-medium rounded px-1.5 py-0.5 min-w-[20px] text-center">4</span>
+          </button>
+
+          <!-- User Profile -->
+          <button class="flex items-center gap-3 px-3 py-1 bg-white rounded hover:bg-gray-50 transition-colors">
+            <img src="https://i.pravatar.cc/32?img=12" alt="Avatar" class="w-8 h-8 rounded-full border border-gray-200" />
+            <div class="text-left hidden md:block">
+              <div class="text-sm font-semibold text-[#252b37]">Jan Novotný</div>
+              <div class="text-xs text-[#535862]">Technik kolejových vozidel</div>
+            </div>
+            <svg class="w-4 h-4 text-[#717680]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-md hover:bg-gray-100">
+          <svg class="w-6 h-6 text-[#252b37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Row: Global Navigation -->
+  <nav class="bg-[#009fda] hidden lg:block">
+    <div class="max-w-[1280px] mx-auto px-4">
+      <div class="flex items-center justify-center gap-4">
+        
+        <!-- Nav Item 1: Novinky a média -->
+        <div class="nav-item relative">
+          <button class="nav-link flex items-center gap-1 px-2 py-2 text-white text-base rounded transition-colors">
+            Novinky a média
+            <svg class="w-4 h-4 text-[#a0e1f9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Nav Item 2: Pro zaměstnance -->
+        <div class="nav-item relative">
+          <button class="nav-link flex items-center gap-1 px-2 py-2 text-white text-base rounded transition-colors">
+            Pro zaměstnance
+            <svg class="w-4 h-4 text-[#a0e1f9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Nav Item 3: Naše firma -->
+        <div class="nav-item relative">
+          <button class="nav-link flex items-center gap-1 px-2 py-2 text-white text-base rounded transition-colors">
+            Naše firma
+            <svg class="w-4 h-4 text-[#a0e1f9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Nav Item 4: Dokumenty a předpisy -->
+        <div class="nav-item relative">
+          <button class="nav-link flex items-center gap-1 px-2 py-2 text-white text-base rounded transition-colors">
+            Dokumenty
+            <svg class="w-4 h-4 text-[#a0e1f9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Nav Item 5: Podpora a služby -->
+        <div class="nav-item relative">
+          <button class="nav-link flex items-center gap-1 px-2 py-2 text-white text-base rounded transition-colors">
+            Podpora
+            <svg class="w-4 h-4 text-[#a0e1f9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Nav Item 6: Nástroje a aplikace -->
+        <div class="nav-item relative">
+          <button class="nav-link flex items-center gap-1 px-2 py-2 text-white text-base rounded transition-colors">
+            Nástroje a aplikace
+          </button>
+        </div>
+
+        <!-- Nav Item 7: Kontakty -->
+        <div class="nav-item relative">
+          <button class="nav-link flex items-center gap-1 px-2 py-2 text-white text-base rounded transition-colors">
+            Telefonní seznam
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mega Menu Container -->
+  <div id="mega-menu-container" class="absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-200"></div>
+
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-80 bg-white shadow-2xl z-50 overflow-y-auto lg:hidden">
+  <div class="p-6">
+    
+    <!-- Mobile Menu Header -->
+    <div class="flex items-center justify-between mb-6">
+      <span class="text-xl font-bold text-[#002664]" style="font-family: 'CD Fedra Pro', Arial, sans-serif;">Menu</span>
+      <button id="mobile-menu-close" class="p-2 rounded-md hover:bg-gray-100">
+        <svg class="w-6 h-6 text-[#252b37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Search -->
+    <div class="mb-6">
+      <div class="relative">
+        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" stroke-width="2"/>
+          <path d="m21 21-4.35-4.35" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input 
+          type="text" 
+          placeholder="Hledat..."
+          class="w-full pl-10 pr-4 py-2 border border-[#d5d7da] rounded focus:outline-none focus:ring-2 focus:ring-[#009fda] text-sm"
+        />
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Items -->
+    <div class="space-y-2" id="mobile-nav-items"></div>
+
+  </div>
+</div>
+
+<script>
+  // Mega Menu Data Structure
+  const megaMenus = {
+    0: { // Novinky a média
+      columns: [
+        {
+          title: 'Aktuality',
+          items: [
+            { text: 'Všechny novinky', icon: 'newspaper' },
+            { text: 'Aktuálně z ČD', icon: 'zap' },
+            { text: 'Z regionů', icon: 'map-pin' },
+            { text: 'Příběhy zaměstnanců', icon: 'users' }
+          ]
+        },
+        {
+          title: 'Média a Tipy',
+          items: [
+            { text: 'Magazíny a tisk', icon: 'book-open' },
+            { text: 'Tiskové zprávy', icon: 'rss' },
+            { text: 'Naše tipy', icon: 'lightbulb' },
+            { text: 'Soutěže', icon: 'award' }
+          ]
+        },
+        {
+          title: 'Kalendář akcí',
+          items: [
+            { text: 'Všechny akce', icon: 'calendar' },
+            { text: 'Firemní akce', icon: 'building' },
+            { text: 'Školení a workshopy', icon: 'graduation-cap' }
+          ]
+        },
+        {
+          type: 'featured',
+          title: 'Modernizace flotily pokračuje',
+          description: 'Podívejte se na naše nejnovější vozidla',
+          image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=400&h=250&fit=crop',
+          link: '#'
+        }
+      ]
+    },
+    1: { // Pro zaměstnance
+      columns: [
+        {
+          title: 'Benefity a odměny',
+          items: [
+            { text: 'Přehled všech benefitů', icon: 'star' },
+            { text: 'Režijní jízdenky', icon: 'ticket' },
+            { text: 'Příspěvky a slevy', icon: 'piggy-bank' },
+            { text: 'Mzda a výplatnice', icon: 'wallet' }
+          ]
+        },
+        {
+          title: 'Kariéra a rozvoj',
+          items: [
+            { text: 'Volná místa v ČD', icon: 'briefcase' },
+            { text: 'Vzdělávání a kurzy', icon: 'book' },
+            { text: 'Kariérní cesta a rozvoj', icon: 'trending-up' }
+          ]
+        },
+        {
+          title: 'Praktické informace',
+          items: [
+            { text: 'Zdraví a bezpečnost', icon: 'shield' },
+            { text: 'Pracovní prostředky', icon: 'hard-hat' },
+            { text: 'Pro nové zaměstnance', icon: 'user-plus' }
+          ]
+        }
+      ]
+    },
+    2: { // Naše firma
+      columns: [
+        {
+          title: 'O společnosti',
+          items: [
+            { text: 'Základní informace', icon: 'info' },
+            { text: 'Naše hodnoty a kultura', icon: 'heart' },
+            { text: 'Vedení společnosti', icon: 'landmark' },
+            { text: 'Historie Českých drah', icon: 'clock' }
+          ]
+        },
+        {
+          title: 'Struktura a pravidla',
+          items: [
+            { text: 'Organizační struktura', icon: 'network' },
+            { text: 'Pravidla a etika', icon: 'book-open' },
+            { text: 'Etický kodex', icon: 'scale' }
+          ]
+        },
+        {
+          type: 'promo',
+          title: 'Odbory a jednotky',
+          description: 'Kompletní přehled všech odborů a jednotek společnosti',
+          icon: 'building',
+          link: '#'
+        }
+      ]
+    },
+    3: { // Dokumenty
+      columns: [
+        {
+          title: 'Pravidla a kodexy',
+          items: [
+            { text: 'Etický kodex', icon: 'scale' },
+            { text: 'Bezpečnostní politika', icon: 'shield' },
+            { text: 'Interní směrnice', icon: 'gavel' }
+          ]
+        },
+        {
+          title: 'Provozní dokumentace',
+          items: [
+            { text: 'Technické manuály', icon: 'file-cog' },
+            { text: 'Provozní postupy', icon: 'construction' },
+            { text: 'Checklisty a protokoly', icon: 'list' }
+          ]
+        },
+        {
+          title: 'Šablony a vzory',
+          items: [
+            { text: 'HR formuláře', icon: 'file-text' },
+            { text: 'Šablony prezentací', icon: 'presentation' },
+            { text: 'Žádosti a hlášení', icon: 'file' }
+          ]
+        },
+        {
+          title: 'Rychlé odkazy',
+          items: [
+            { text: 'Nejnověji přidané', icon: 'sparkles' },
+            { text: 'Nejčastěji stahované', icon: 'bar-chart' }
+          ],
+          mainLink: { text: 'Zobrazit všechny dokumenty', href: '#' }
+        }
+      ]
+    },
+    4: { // Podpora
+      columns: [
+        {
+          title: 'IT Podpora',
+          items: [
+            { text: 'Nahlásit IT problém', icon: 'laptop' },
+            { text: 'Žádost o software/hardware', icon: 'mouse-pointer' },
+            { text: 'Návody a znalostní báze', icon: 'help-circle' },
+            { text: 'Kybernetická bezpečnost', icon: 'shield-check' }
+          ]
+        },
+        {
+          title: 'Interní servis a hlášení',
+          items: [
+            { text: 'Řešení problémů (FAQ)', icon: 'life-buoy' },
+            { text: 'Hlášení podvodů', icon: 'eye-off' },
+            { text: 'Telefony a spojení', icon: 'phone' }
+          ]
+        },
+        {
+          type: 'cta',
+          title: 'IT Helpdesk',
+          subtitle: 'Nonstop podpora',
+          phone: '+420 800 123 456',
+          description: 'Volejte kdykoliv při problémech s IT',
+          icon: 'headset'
+        }
+      ]
+    },
+    5: { // Nástroje a aplikace
+      columns: [
+        {
+          title: 'Moje oblíbené nástroje',
+          items: [
+            { text: 'Systém údržby AVIS', icon: 'wrench' },
+            { text: 'E-learningový portál', icon: 'graduation-cap' },
+            { text: 'Rezervace zasedacích místností', icon: 'calendar-check' }
+          ]
+        },
+        {
+          title: 'Klíčové firemní systémy',
+          items: [
+            { text: 'Zaměstnanecký portál (HR)', icon: 'user-cog' },
+            { text: 'IS NORMIS (Technické normy)', icon: 'book-copy' },
+            { text: 'Docházkový systém', icon: 'clock' }
+          ]
+        },
+        {
+          type: 'promo',
+          title: 'Katalog aplikací',
+          description: 'Objevte všechny firemní nástroje a aplikace na jednom místě',
+          icon: 'grid',
+          link: '#'
+        }
+      ]
+    },
+    6: { // Kontakty
+      columns: [
+        {
+          title: 'Rychlý přístup',
+          items: [
+            { text: 'Kontakty mého odboru', icon: 'users' },
+            { text: 'Všechny kontakty (filtrovat)', icon: 'search' }
+          ]
+        },
+        {
+          title: 'Užitečné odkazy',
+          items: [
+            { text: 'Organizační struktura', icon: 'network' },
+            { text: 'Seznam pracovišť', icon: 'building' },
+            { text: 'Důležité linky', icon: 'phone-call' }
+          ]
+        }
+      ]
+    }
+  };
+
+  // Icon SVG paths (simplified Lucide icons)
+  const icons = {
+    'newspaper': '<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'zap': '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'map-pin': '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'users': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'book-open': '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'rss': '<path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="19" r="1"/>',
+    'lightbulb': '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 18h6M10 22h4a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'award': '<circle cx="12" cy="8" r="6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'calendar': '<rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 2v4M8 2v4M3 10h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'building': '<rect x="4" y="2" width="16" height="20" rx="2" ry="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'graduation-cap': '<path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 12v5c3 3 9 3 12 0v-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'star': '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'ticket': '<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 5v2M13 17v2M13 11v2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'piggy-bank': '<path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2h0V5z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="13" r="1"/>',
+    'wallet': '<path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'briefcase': '<rect x="2" y="7" width="20" height="14" rx="2" ry="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'book': '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'trending-up': '<path d="m22 7-8.5 8.5-5-5L2 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 7h6v6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'shield': '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'hard-hat': '<path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15v-3a8 8 0 0 1 16 0v3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'user-plus': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM19 8v6M22 11h-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'info': '<circle cx="12" cy="12" r="10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 16v-4M12 8h.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'heart': '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'landmark': '<path d="m3 21 18 0M6 18l0-12M10 18l0-12M14 18l0-12M18 18l0-12M21 6l-9-4L3 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'clock': '<circle cx="12" cy="12" r="10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6v6l4 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'network': '<rect x="16" y="16" width="6" height="6" rx="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="16" width="6" height="6" rx="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="9" y="2" width="6" height="6" rx="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8v8M15.5 17.5l-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'scale': '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1ZM2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21h10M12 3v18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'gavel': '<path d="M14 13 2.5 1.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 10-7.5 7.5L3 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 1h8v8H8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'file-cog': '<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'construction': '<path d="M2 13v-3h9V3h3v7h9v3H2zM17 17v5h-3v-5H5v-3h14v3h-2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'list': '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'file-text': '<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'presentation': '<rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 21h8M12 17v4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'file': '<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'sparkles': '<path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3ZM5 3v4M3 5h4M19 17v4M17 19h4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'bar-chart': '<path d="M12 20V10M18 20V4M6 20v-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'laptop': '<rect x="2" y="4" width="20" height="12" rx="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 20h20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'mouse-pointer': '<path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'help-circle': '<circle cx="12" cy="12" r="10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'shield-check': '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'life-buoy': '<circle cx="12" cy="12" r="10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="m4.93 4.93 4.24 4.24M14.83 14.83l4.24 4.24M14.83 9.17l4.24-4.24M14.83 9.17l-4.24-4.24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'eye-off': '<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61M2 2l20 20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'phone': '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'wrench': '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'calendar-check': '<rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'user-cog': '<circle cx="18" cy="15" r="3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 22v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2M18 9v2M21 10.5h-2M18 14v2M21 15.5h-2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'book-copy': '<path d="M2 16V4a2 2 0 0 1 2-2h11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 14H4a2 2 0 1 0 0 4h1M22 18H11a2 2 0 1 0 0 4h11V6H11a2 2 0 0 0-2 2v10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'search': '<circle cx="11" cy="11" r="8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="m21 21-4.35-4.35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'phone-call': '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.05 2a9 9 0 0 1 8 7.94M14.05 6A5 5 0 0 1 18 10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'headset': '<path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5ZM21 11h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 16v2a4 4 0 0 1-4 4h-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 11V9a9 9 0 0 1 18 0v2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+    'grid': '<rect x="3" y="3" width="7" height="7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="14" y="3" width="7" height="7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="14" y="14" width="7" height="7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="14" width="7" height="7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+  };
+
+  function getIconSvg(iconName) {
+    return `<svg class="w-5 h-5 text-[#535862] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">${icons[iconName] || icons['file']}</svg>`;
+  }
+
+  function generateMegaMenu(menuData) {
+    let html = '<div class="max-w-[1280px] mx-auto px-8 py-8">';
+    html += '<div class="grid gap-8" style="grid-template-columns: repeat(' + menuData.columns.length + ', 1fr);">';
+    
+    menuData.columns.forEach(column => {
+      html += '<div class="space-y-4">';
+      
+      if (column.type === 'featured') {
+        // Featured content card
+        html += `
+          <a href="${column.link}" class="featured-card block rounded-lg overflow-hidden border border-gray-200 bg-white transition-all">
+            <img src="${column.image}" alt="${column.title}" class="w-full h-40 object-cover" />
+            <div class="p-4">
+              <h3 class="font-semibold text-[#002664] text-base mb-2" style="font-family: 'CD Fedra Pro', Arial, sans-serif;">${column.title}</h3>
+              <p class="text-sm text-[#535862] mb-3">${column.description}</p>
+              <span class="inline-flex items-center gap-1 text-[#0097cf] text-sm font-medium">
+                Číst více
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        `;
+      } else if (column.type === 'promo') {
+        // Promo block
+        html += `
+          <a href="${column.link}" class="featured-card block p-6 rounded-lg border border-[#009fda] bg-[#e3f7ff] transition-all">
+            <div class="flex items-start gap-4">
+              <div class="p-3 bg-white rounded-lg">
+                ${getIconSvg(column.icon)}
+              </div>
+              <div class="flex-1">
+                <h3 class="font-semibold text-[#002664] text-base mb-2" style="font-family: 'CD Fedra Pro', Arial, sans-serif;">${column.title}</h3>
+                <p class="text-sm text-[#535862] mb-3">${column.description}</p>
+                <span class="inline-flex items-center gap-1 text-[#0097cf] text-sm font-medium">
+                  Přejít
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        `;
+      } else if (column.type === 'cta') {
+        // CTA block (for IT Helpdesk)
+        html += `
+          <div class="p-6 rounded-lg border-2 border-[#00af3f] bg-gradient-to-br from-[#00af3f] to-[#009436] text-white">
+            <div class="flex items-center gap-3 mb-4">
+              ${getIconSvg(column.icon).replace('text-[#535862]', 'text-white')}
+              <h3 class="font-semibold text-lg" style="font-family: 'CD Fedra Pro', Arial, sans-serif;">${column.title}</h3>
+            </div>
+            <p class="text-sm mb-2 opacity-90">${column.subtitle}</p>
+            <p class="text-2xl font-bold mb-3">${column.phone}</p>
+            <p class="text-sm opacity-90">${column.description}</p>
+          </div>
+        `;
+      } else {
+        // Standard column with items
+        if (column.title) {
+          html += `<h3 class="font-semibold text-[#002664] text-base mb-3" style="font-family: 'CD Fedra Pro', Arial, sans-serif;">${column.title}</h3>`;
+        }
+        html += '<ul class="space-y-1">';
+        column.items.forEach(item => {
+          html += `
+            <li>
+              <a href="#" class="menu-item flex items-center gap-3 p-3 rounded-md transition-colors">
+                ${getIconSvg(item.icon)}
+                <span class="text-sm text-[#252b37]">${item.text}</span>
+              </a>
+            </li>
+          `;
+        });
+        html += '</ul>';
+        
+        if (column.mainLink) {
+          html += `
+            <a href="${column.mainLink.href}" class="inline-flex items-center gap-2 text-[#0097cf] text-sm font-medium mt-4 hover:underline">
+              ${column.mainLink.text}
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          `;
+        }
+      }
+      
+      html += '</div>';
+    });
+    
+    html += '</div></div>';
+    return html;
+  }
+
+  // Desktop mega menu logic
+  const navItems = document.querySelectorAll('.nav-item');
+  const megaMenuContainer = document.getElementById('mega-menu-container');
+  let currentOpenMenu = null;
+  let menuTimeout = null;
+
+  navItems.forEach((item, index) => {
+    const button = item.querySelector('.nav-link');
+    
+    item.addEventListener('mouseenter', () => {
+      clearTimeout(menuTimeout);
+      
+      if (megaMenus[index]) {
+        const menuHtml = generateMegaMenu(megaMenus[index]);
+        megaMenuContainer.innerHTML = `<div class="mega-menu">${menuHtml}</div>`;
+        
+        setTimeout(() => {
+          const menu = megaMenuContainer.querySelector('.mega-menu');
+          if (menu) menu.classList.add('active');
+        }, 10);
+        
+        currentOpenMenu = index;
+      }
+    });
+    
+    item.addEventListener('mouseleave', () => {
+      menuTimeout = setTimeout(() => {
+        const menu = megaMenuContainer.querySelector('.mega-menu');
+        if (menu) {
+          menu.classList.remove('active');
+          setTimeout(() => {
+            megaMenuContainer.innerHTML = '';
+          }, 200);
+        }
+        currentOpenMenu = null;
+      }, 100);
+    });
+  });
+
+  megaMenuContainer.addEventListener('mouseenter', () => {
+    clearTimeout(menuTimeout);
+  });
+
+  megaMenuContainer.addEventListener('mouseleave', () => {
+    const menu = megaMenuContainer.querySelector('.mega-menu');
+    if (menu) {
+      menu.classList.remove('active');
+      setTimeout(() => {
+        megaMenuContainer.innerHTML = '';
+      }, 200);
+    }
+    currentOpenMenu = null;
+  });
+
+  // Mobile menu logic
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileOverlay = document.getElementById('mobile-overlay');
+  const mobileNavItems = document.getElementById('mobile-nav-items');
+
+  function generateMobileMenu() {
+    const navLabels = ['Novinky a média', 'Pro zaměstnance', 'Naše firma', 'Dokumenty', 'Podpora', 'Nástroje a aplikace', 'Telefonní seznam'];
+    
+    let html = '';
+    navLabels.forEach((label, index) => {
+      const hasSubmenu = megaMenus[index];
+      
+      html += `
+        <div class="mobile-nav-item border-b border-gray-200">
+          <button class="mobile-nav-button w-full flex items-center justify-between p-3 text-left text-[#252b37] font-medium hover:bg-gray-50 transition-colors" data-index="${index}">
+            <span>${label}</span>
+            ${hasSubmenu ? '<svg class="mobile-nav-chevron w-5 h-5 text-[#717680] transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : ''}
+          </button>
+      `;
+      
+      if (hasSubmenu) {
+        html += '<div class="mobile-submenu bg-gray-50 px-4">';
+        megaMenus[index].columns.forEach(column => {
+          if (column.items) {
+            if (column.title) {
+              html += `<div class="py-3 font-semibold text-sm text-[#002664]" style="font-family: 'CD Fedra Pro', Arial, sans-serif;">${column.title}</div>`;
+            }
+            column.items.forEach(item => {
+              html += `
+                <a href="#" class="flex items-center gap-3 py-2.5 text-sm text-[#535862] hover:text-[#0097cf]">
+                  ${getIconSvg(item.icon).replace('w-5 h-5', 'w-4 h-4')}
+                  <span>${item.text}</span>
+                </a>
+              `;
+            });
+          }
+        });
+        html += '</div>';
+      }
+      
+      html += '</div>';
+    });
+    
+    mobileNavItems.innerHTML = html;
+    
+    // Add click handlers for mobile submenu toggles
+    document.querySelectorAll('.mobile-nav-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const submenu = button.nextElementSibling;
+        const chevron = button.querySelector('.mobile-nav-chevron');
+        
+        if (submenu && submenu.classList.contains('mobile-submenu')) {
+          submenu.classList.toggle('active');
+          if (chevron) {
+            chevron.style.transform = submenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+          }
+        }
+      });
+    });
+  }
+
+  function openMobileMenu() {
+    mobileMenu.classList.add('active');
+    mobileOverlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('active');
+    mobileOverlay.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  mobileMenuToggle.addEventListener('click', openMobileMenu);
+  mobileMenuClose.addEventListener('click', closeMobileMenu);
+  mobileOverlay.addEventListener('click', closeMobileMenu);
+
+  // Generate mobile menu on load
+  generateMobileMenu();
+
+  // Close mobile menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeMobileMenu();
+    }
+  });
+</script>
+
+<!-- Demo Content (Remove this in production) -->
+<div class="max-w-[1280px] mx-auto px-8 py-16">
+  <div class="text-center">
+    <h1 class="text-4xl font-bold text-[#002664] mb-4" style="font-family: 'CD Fedra Pro', Arial, sans-serif;">
+      České dráhy Intranet
+    </h1>
+    <p class="text-lg text-[#535862] mb-8">
+      Hover over the navigation items to see the mega menus in action
+    </p>
+    <div class="bg-[#f2fbff] rounded-lg p-12 border border-[#009fda]">
+      <svg class="mx-auto w-24 h-24 text-[#009fda] mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="text-[#535862]">Interactive Navigation Header Component</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

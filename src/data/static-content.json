@@ -1,0 +1,446 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-10-13",
+    "language": "cs",
+    "description": "Statický text pro UI prvky intranetu Českých drah"
+  },
+  "common": {
+    "buttons": {
+      "viewAll": "Zobrazit všechny",
+      "readMore": "Číst více",
+      "save": "Uložit",
+      "cancel": "Zrušit",
+      "close": "Zavřít",
+      "submit": "Odeslat",
+      "edit": "Upravit",
+      "delete": "Smazat",
+      "confirm": "Potvrdit",
+      "back": "Zpět",
+      "next": "Další",
+      "previous": "Předchozí",
+      "search": "Hledat",
+      "filter": "Filtrovat",
+      "sort": "Seřadit",
+      "export": "Exportovat",
+      "import": "Importovat",
+      "download": "Stáhnout",
+      "upload": "Nahrát",
+      "print": "Tisk"
+    },
+    "labels": {
+      "loading": "Načítání...",
+      "noResults": "Žádné výsledky",
+      "error": "Chyba",
+      "success": "Úspěch",
+      "warning": "Varování",
+      "info": "Informace",
+      "required": "Povinné",
+      "optional": "Volitelné",
+      "all": "Vše",
+      "none": "Žádný",
+      "other": "Jiné",
+      "more": "Více",
+      "less": "Méně",
+      "new": "Nový",
+      "draft": "Koncept",
+      "published": "Zveřejněno"
+    },
+    "time": {
+      "today": "Dnes",
+      "yesterday": "Včera",
+      "tomorrow": "Zítra",
+      "thisWeek": "Tento týden",
+      "thisMonth": "Tento měsíc",
+      "thisYear": "Tento rok",
+      "minutes": "minut",
+      "hours": "hodin",
+      "days": "dní",
+      "weeks": "týdnů",
+      "months": "měsíců",
+      "years": "let",
+      "ago": "před",
+      "in": "za"
+    },
+    "validation": {
+      "required": "Toto pole je povinné",
+      "invalidEmail": "Neplatná e-mailová adresa",
+      "invalidPhone": "Neplatné telefonní číslo",
+      "tooShort": "Hodnota je příliš krátká",
+      "tooLong": "Hodnota je příliš dlouhá",
+      "invalidFormat": "Neplatný formát",
+      "passwordMismatch": "Hesla se neshodují",
+      "minLength": "Minimální délka: {length} znaků",
+      "maxLength": "Maximální délka: {length} znaků"
+    }
+  },
+  "header": {
+    "navigation": {
+      "home": "Úvod",
+      "newsAndMedia": "Novinky a média",
+      "forEmployees": "Pro zaměstnance",
+      "ourCompany": "Naše firma",
+      "documents": "Dokumenty",
+      "support": "Podpora",
+      "toolsAndApps": "Nástroje a aplikace",
+      "contacts": "Kontakty"
+    },
+    "search": {
+      "placeholder": "Hledat v intranetu...",
+      "noResults": "Nebyly nalezeny žádné výsledky pro \"{query}\"",
+      "suggestions": "Návrhy",
+      "recentSearches": "Nedávná vyhledávání",
+      "popularSearches": "Populární vyhledávání"
+    },
+    "userMenu": {
+      "profile": "Můj profil",
+      "settings": "Nastavení",
+      "notifications": "Oznámení",
+      "messages": "Zprávy",
+      "help": "Nápověda",
+      "logout": "Odhlásit se",
+      "greeting": "Dobrý den",
+      "myAccount": "Můj účet",
+      "preferences": "Předvolby",
+      "security": "Zabezpečení"
+    },
+    "notifications": {
+      "title": "Oznámení",
+      "markAsRead": "Označit jako přečtené",
+      "markAllAsRead": "Označit vše jako přečtené",
+      "clearAll": "Vymazat vše",
+      "viewAll": "Zobrazit všechna oznámení",
+      "noNotifications": "Žádná nová oznámení",
+      "unreadCount": "{count} nepřečtených"
+    },
+    "quickLinks": {
+      "title": "Rychlé odkazy",
+      "vacation": "Dovolená a absence",
+      "scheduling": "Plánování služeb",
+      "documents": "Katalog dokumentů",
+      "phoneBook": "Telefonní seznam",
+      "benefits": "Benefity",
+      "training": "Školení",
+      "payroll": "Mzdy a odměny",
+      "it-support": "IT podpora"
+    }
+  },
+  "footer": {
+    "sections": {
+      "company": {
+        "title": "České dráhy",
+        "about": "O společnosti",
+        "history": "Historie",
+        "management": "Vedení společnosti",
+        "structure": "Organizační struktura",
+        "careers": "Kariéra",
+        "press": "Pro média"
+      },
+      "forEmployees": {
+        "title": "Pro zaměstnance",
+        "intranet": "Intranet",
+        "email": "Firemní e-mail",
+        "benefits": "Benefity",
+        "training": "Vzdělávání",
+        "union": "Odborová organizace",
+        "safety": "BOZP"
+      },
+      "documents": {
+        "title": "Dokumenty",
+        "regulations": "Předpisy",
+        "forms": "Formuláře",
+        "manuals": "Příručky",
+        "procedures": "Postupy",
+        "policies": "Zásady",
+        "gdpr": "GDPR"
+      },
+      "support": {
+        "title": "Podpora",
+        "helpDesk": "HelpDesk",
+        "faq": "Často kladené otázky",
+        "technicalSupport": "Technická podpora",
+        "feedback": "Zpětná vazba",
+        "reportProblem": "Nahlásit problém",
+        "contact": "Kontakt"
+      }
+    },
+    "legal": {
+      "copyright": "© 2025 České dráhy, a.s. Všechna práva vyhrazena.",
+      "privacyPolicy": "Ochrana osobních údajů",
+      "termsOfUse": "Podmínky použití",
+      "accessibility": "Přístupnost",
+      "cookies": "Soubory cookie"
+    },
+    "contact": {
+      "phone": "Telefon",
+      "email": "E-mail",
+      "address": "Adresa",
+      "headquarters": "Ústředí společnosti"
+    }
+  },
+  "navigation": {
+    "megaMenu": {
+      "newsAndMedia": {
+        "title": "Novinky a média",
+        "news": "Novinky",
+        "videos": "Videa",
+        "gallery": "Fotogalerie",
+        "events": "Události",
+        "newsletter": "Newsletter",
+        "blog": "Blog",
+        "pressReleases": "Tiskové zprávy"
+      },
+      "forEmployees": {
+        "title": "Pro zaměstnance",
+        "benefits": "Benefity",
+        "vacation": "Dovolená",
+        "training": "Školení a vzdělávání",
+        "healthAndSafety": "BOZP",
+        "union": "Odborová organizace",
+        "cafeteria": "Cafeteria systém",
+        "sports": "Sport a volný čas",
+        "discounts": "Slevy a výhody"
+      },
+      "ourCompany": {
+        "title": "Naše firma",
+        "about": "O společnosti",
+        "management": "Vedení",
+        "structure": "Organizační struktura",
+        "strategy": "Strategie",
+        "values": "Hodnoty",
+        "sustainability": "Udržitelnost",
+        "innovation": "Inovace",
+        "quality": "Kvalita"
+      },
+      "documents": {
+        "title": "Dokumenty",
+        "regulations": "Předpisy",
+        "forms": "Formuláře",
+        "templates": "Šablony",
+        "procedures": "Postupy",
+        "manuals": "Příručky",
+        "policies": "Zásady",
+        "archive": "Archiv"
+      },
+      "support": {
+        "title": "Podpora",
+        "helpDesk": "HelpDesk",
+        "itSupport": "IT podpora",
+        "faq": "FAQ",
+        "tutorials": "Návody",
+        "feedback": "Zpětná vazba",
+        "reportIssue": "Nahlásit problém",
+        "contact": "Kontakt"
+      },
+      "toolsAndApps": {
+        "title": "Nástroje a aplikace",
+        "email": "Firemní e-mail",
+        "calendar": "Kalendář",
+        "drive": "Úložiště",
+        "chat": "Chat",
+        "videoConference": "Videokonference",
+        "taskManager": "Správa úkolů",
+        "timeTracking": "Evidence času",
+        "expenses": "Cestovní příkazy"
+      },
+      "contacts": {
+        "title": "Kontakty",
+        "phoneBook": "Telefonní seznam",
+        "departments": "Odbory",
+        "locations": "Pracoviště",
+        "management": "Vedení",
+        "hr": "Personální oddělení",
+        "it": "IT oddělení",
+        "emergency": "Krizová linka"
+      }
+    },
+    "breadcrumbs": {
+      "home": "Úvod",
+      "separator": "/"
+    },
+    "pagination": {
+      "previous": "Předchozí",
+      "next": "Další",
+      "first": "První",
+      "last": "Poslední",
+      "page": "Strana",
+      "of": "z",
+      "itemsPerPage": "Položek na stránku"
+    }
+  },
+  "sections": {
+    "news": {
+      "title": "Doporučené novinky",
+      "tabs": {
+        "all": "Všechny",
+        "department": "Z mého odboru",
+        "region": "Z mého regionu"
+      },
+      "categories": {
+        "fromCD": "Aktuálně z ČD",
+        "fromRegions": "Z regionů",
+        "ourTips": "Naše tipy",
+        "employeeStories": "Příběhy zaměstnanců"
+      },
+      "noArticles": "Žádné články k zobrazení",
+      "loadMore": "Načíst další",
+      "viewAll": "Zobrazit všechny"
+    },
+    "events": {
+      "title": "Nadcházející události",
+      "noEvents": "Žádné nadcházející události",
+      "viewAll": "Zobrazit všechny",
+      "addToCalendar": "Přidat do kalendáře",
+      "register": "Registrovat se",
+      "moreInfo": "Více informací",
+      "location": "Místo konání",
+      "time": "Čas",
+      "organizer": "Pořadatel",
+      "capacity": "Kapacita",
+      "registered": "Registrováno"
+    },
+    "videos": {
+      "title": "Poslední videa",
+      "noVideos": "Žádná videa k zobrazení",
+      "viewAll": "Zobrazit všechny",
+      "watchNow": "Přehrát",
+      "duration": "Délka",
+      "views": "Zhlédnutí",
+      "published": "Zveřejněno"
+    },
+    "banner": {
+      "previous": "Předchozí",
+      "next": "Další",
+      "pause": "Pozastavit",
+      "play": "Přehrát",
+      "slideOf": "Snímek {current} z {total}"
+    },
+    "notifications": {
+      "title": "Oznámení",
+      "noNotifications": "Žádná oznámení",
+      "markAsRead": "Označit jako přečtené",
+      "dismiss": "Zavřít"
+    },
+    "quickAccess": {
+      "title": "Rychlý přístup",
+      "customize": "Přizpůsobit"
+    }
+  },
+  "forms": {
+    "search": {
+      "placeholder": "Hledat...",
+      "submit": "Hledat",
+      "clear": "Vymazat",
+      "filters": "Filtry",
+      "sortBy": "Seřadit podle",
+      "showResults": "Zobrazit výsledky"
+    },
+    "contact": {
+      "title": "Kontaktní formulář",
+      "name": "Jméno a příjmení",
+      "email": "E-mail",
+      "phone": "Telefon",
+      "subject": "Předmět",
+      "message": "Zpráva",
+      "send": "Odeslat",
+      "success": "Vaše zpráva byla odeslána",
+      "error": "Nepodařilo se odeslat zprávu"
+    },
+    "login": {
+      "title": "Přihlášení",
+      "username": "Uživatelské jméno",
+      "password": "Heslo",
+      "rememberMe": "Zapamatovat si mě",
+      "forgotPassword": "Zapomenuté heslo?",
+      "login": "Přihlásit se",
+      "logout": "Odhlásit se"
+    },
+    "profile": {
+      "title": "Můj profil",
+      "personalInfo": "Osobní údaje",
+      "contactInfo": "Kontaktní údaje",
+      "jobInfo": "Pracovní údaje",
+      "firstName": "Jméno",
+      "lastName": "Příjmení",
+      "email": "E-mail",
+      "phone": "Telefon",
+      "position": "Pozice",
+      "department": "Odbor",
+      "workplace": "Pracoviště",
+      "manager": "Nadřízený",
+      "employeeId": "Číslo zaměstnance",
+      "startDate": "Datum nástupu"
+    },
+    "feedback": {
+      "title": "Zpětná vazba",
+      "rating": "Hodnocení",
+      "comment": "Komentář",
+      "submit": "Odeslat zpětnou vazbu",
+      "thankYou": "Děkujeme za vaši zpětnou vazbu"
+    }
+  },
+  "accessibility": {
+    "aria": {
+      "mainNavigation": "Hlavní navigace",
+      "userMenu": "Uživatelské menu",
+      "searchForm": "Vyhledávací formulář",
+      "carousel": "Karusel bannerů",
+      "previousSlide": "Předchozí snímek",
+      "nextSlide": "Další snímek",
+      "pauseCarousel": "Pozastavit karusel",
+      "playCarousel": "Přehrát karusel",
+      "goToSlide": "Přejít na snímek {number}",
+      "openMenu": "Otevřít menu",
+      "closeMenu": "Zavřít menu",
+      "toggleMenu": "Přepnout menu",
+      "openNotifications": "Otevřít oznámení",
+      "closeDialog": "Zavřít dialog",
+      "loading": "Načítání",
+      "newWindow": "Otevře se v novém okně",
+      "externalLink": "Externí odkaz",
+      "currentPage": "Aktuální stránka",
+      "pageOf": "Stránka {current} z {total}"
+    },
+    "screenReader": {
+      "skipToContent": "Přeskočit na obsah",
+      "skipToNavigation": "Přeskočit na navigaci",
+      "skipToFooter": "Přeskočit na patičku"
+    }
+  },
+  "errors": {
+    "general": {
+      "title": "Došlo k chybě",
+      "message": "Omlouváme se, něco se pokazilo.",
+      "retry": "Zkusit znovu",
+      "goHome": "Přejít na úvod"
+    },
+    "404": {
+      "title": "Stránka nenalezena",
+      "message": "Stránka, kterou hledáte, neexistuje.",
+      "goHome": "Přejít na úvod"
+    },
+    "403": {
+      "title": "Přístup odepřen",
+      "message": "Nemáte oprávnění k zobrazení této stránky.",
+      "goHome": "Přejít na úvod"
+    },
+    "500": {
+      "title": "Chyba serveru",
+      "message": "Omlouváme se, došlo k chybě serveru.",
+      "retry": "Zkusit znovu"
+    },
+    "network": {
+      "title": "Problém se síťovým připojením",
+      "message": "Zkontrolujte prosím své připojení k internetu.",
+      "retry": "Zkusit znovu"
+    }
+  },
+  "pageHeader": {
+    "greeting": "Dobrý den",
+    "dateFormat": "dddd, D. MMMM YYYY"
+  },
+  "carousel": {
+    "autoPlayInterval": 5000,
+    "transitionDuration": 700
+  }
+}

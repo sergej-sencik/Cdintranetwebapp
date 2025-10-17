@@ -1,0 +1,36 @@
+:root {
+  /* ===== BREAKPOINTS ===== */
+  --breakpoint-mobile: 767px;
+  --breakpoint-tablet: 1023px;
+  --breakpoint-desktop: 1024px;
+  
+  /* ===== FLUID SPACING ===== */
+  --space-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+  --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 1rem + 2.5vw, 3rem);
+  --space-xl: clamp(2rem, 1.5rem + 2.5vw, 4rem);
+  --space-2xl: clamp(3rem, 2rem + 5vw, 6rem);
+  
+  /* ===== FLUID TYPOGRAPHY ===== */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  
+  /* ===== CONTAINER ===== */
+  --container-max-width: 1280px;
+  --container-padding-mobile: 1rem;
+  --container-padding-tablet: 1.5rem;
+  --container-padding-desktop: 2rem;
+  
+  /* ===== NAVIGATION ===== */
+  --nav-height-mobile: 56px;
+  --nav-height-tablet: 64px;
+  --nav-height-desktop: 72px;
+  
+  /* ===== TOUCH TARGETS ===== */
+  --touch-target-min: 44px;
+}

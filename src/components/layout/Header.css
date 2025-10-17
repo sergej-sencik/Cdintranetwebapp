@@ -1,0 +1,12 @@
+/* ============================================
+   HEADER COMPONENT STYLES
+   ============================================ */
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: var(--z-sticky);
+  background: var(--background);
+  box-shadow: var(--elevation-sm);
+}

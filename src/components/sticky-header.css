@@ -1,0 +1,88 @@
+/* Sticky Header Styles */
+
+.home-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.sticky-header-container {
+  position: relative;
+}
+
+/* Make header sections full width */
+.sticky-header-container [data-name="Header navigation / Main"],
+.sticky-header-container [data-name="Header navigation"] {
+  width: 100% !important;
+  max-width: 100vw !important;
+}
+
+/* Top header with logo - fixed, shows/hides on scroll */
+.sticky-header-container [data-name="Header navigation / Main"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Hide top header when scrolling down */
+.sticky-header-container.top-header-hidden [data-name="Header navigation / Main"] {
+  transform: translateY(-100%);
+}
+
+/* Bottom navigation - always visible, sticky */
+.sticky-header-container [data-name="Header navigation"] {
+  position: fixed;
+  top: 72px; /* Height of top header */
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #009fda;
+}
+
+/* Move navigation to top when top header is hidden */
+.sticky-header-container.top-header-hidden [data-name="Header navigation"] {
+  top: 0;
+}
+
+/* Add padding to body content to account for fixed headers */
+.sticky-header-container > div {
+  padding-top: 120px; /* 72px top header + 48px navigation */
+}
+
+/* Adjust padding when top header is hidden */
+.sticky-header-container.top-header-hidden > div {
+  padding-top: 48px; /* Just navigation height */
+}
+
+/* Ensure container contents are centered */
+.sticky-header-container [data-name="Container"] {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Make Footer full width */
+.sticky-header-container [data-name="Footer"] {
+  width: 100% !important;
+  max-width: 100vw !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .sticky-header-container [data-name="Header navigation / Main"] {
+    height: auto;
+  }
+  
+  .sticky-header-container [data-name="Header navigation"] {
+    top: auto; /* Let it calculate based on top header */
+  }
+  
+  .sticky-header-container > div {
+    padding-top: 140px; /* Adjusted for mobile */
+  }
+}

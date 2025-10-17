@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+}
+
+.container--fluid {
+  max-width: 100%;
+}
+
+/* Mobile specific */
+@media (max-width: 767px) {
+  .container {
+    padding-inline: var(--container-padding-mobile);
+  }
+}
+
+/* Tablet specific */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    padding-inline: var(--container-padding-tablet);
+  }
+}
+
+/* Desktop specific */
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: var(--container-padding-desktop);
+  }
+}

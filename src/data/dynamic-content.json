@@ -1,0 +1,294 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-10-13",
+    "language": "cs",
+    "description": "Dynamický obsah úvodní stránky intranetu Českých drah"
+  },
+  "user": {
+    "firstName": "Jan",
+    "lastName": "Novotný",
+    "fullName": "Jan Novotný",
+    "position": "Technik kolejových vozidel",
+    "department": "Odbor údržby a oprav",
+    "workplace": "Depo kolejových vozidel Plzeň",
+    "region": "Plzeň",
+    "avatar": "figma:asset/6bfd89ee2dda2c5201ce92bce759705f5ff2b894.png"
+  },
+  "banners": [
+    {
+      "id": "banner-1",
+      "image": "figma:asset/ff9a737687b20c904b6f07bea2ba2278fb1a04dc.png",
+      "title": "Hlavní banner České dráhy",
+      "description": null,
+      "link": null,
+      "order": 1
+    },
+    {
+      "id": "banner-2",
+      "image": "https://images.unsplash.com/photo-1654686473635-2d3d7ab0ac46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "title": "Moderní železniční stanice",
+      "description": null,
+      "link": null,
+      "order": 2
+    },
+    {
+      "id": "banner-3",
+      "image": "https://images.unsplash.com/photo-1631491705485-2cefece38770?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "title": "Lokomotiva České dráhy",
+      "description": null,
+      "link": null,
+      "order": 3
+    },
+    {
+      "id": "banner-4",
+      "image": "https://images.unsplash.com/photo-1759895504394-b075516a67ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "title": "Moderní interiér vlaku",
+      "description": null,
+      "link": null,
+      "order": 4
+    }
+  ],
+  "news": {
+    "all": [
+      {
+        "id": "news-all-1",
+        "image": "https://images.unsplash.com/photo-1721815487168-622699845b9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "20. září 2025",
+        "category": "Aktuálně z ČD",
+        "title": "Startuje kampaň \"Vidět a být viděn\" pro práci v kolejišti",
+        "description": "Nová celofiremní kampaň se zaměřuje na důležitost používání reflexních prvků a správných postupů při pohybu na všech pracovištích v blízkosti kolejí.",
+        "badge": {
+          "text": "Bezpečnost",
+          "variant": "blue"
+        },
+        "href": "#"
+      },
+      {
+        "id": "news-all-2",
+        "image": "https://images.unsplash.com/photo-1758685848208-e108b6af94cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "19. září 2025",
+        "category": "Naše tipy",
+        "title": "Nový týden, nová soutěž! Tentokrát o vstupenky na MS Supermoto národů 2025",
+        "description": "Nejlepší supermoto týmy planety zamíří v září 2025 do Vysokého Mýta, aby zde bojovaly o prestižní titul mistrů světa družstev.",
+        "badge": null,
+        "href": "#"
+      },
+      {
+        "id": "news-all-3",
+        "image": "https://images.unsplash.com/photo-1659136021008-1ed2f7ddfe60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "19. září 2025",
+        "category": "Z regionů",
+        "title": "Naše depo v Plzni získalo ocenění za bezpečnost práce",
+        "description": "Depo kolejových vozidel Plzeň bylo oceněno za vynikající výsledky v oblasti BOZP a za zavedení nových preventivních opatření.",
+        "badge": {
+          "text": "Plzeň",
+          "variant": "orange"
+        },
+        "href": "#"
+      },
+      {
+        "id": "news-all-4",
+        "image": "https://images.unsplash.com/photo-1643798878303-d439b48bbc69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "18. září 2025",
+        "category": "Naše tipy",
+        "title": "Vyzkoušejte virtuální kartu MultiSport zdarma",
+        "description": null,
+        "badge": {
+          "text": "Benefity",
+          "variant": "blue"
+        },
+        "href": "#"
+      }
+    ],
+    "department": [
+      {
+        "id": "news-dept-1",
+        "image": "https://images.unsplash.com/photo-1643798878303-d439b48bbc69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "20. září 2025",
+        "category": "Aktuálně z ČD",
+        "title": "Nové diagnostické zařízení pro kontrolu brzdových systémů v provozu",
+        "description": "Od příštího měsíce budou všechna depa vybavena moderním diagnostickým nástrojem pro rychlou kontrolu stavu brzdových systémů. Školení pro techniky proběhne v říjnu.",
+        "badge": {
+          "text": "Údržba a opravy",
+          "variant": "green"
+        },
+        "href": "#"
+      },
+      {
+        "id": "news-dept-2",
+        "image": "https://images.unsplash.com/photo-1676018367194-64a85fde3389?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "18. září 2025",
+        "category": "Aktuálně z ČD",
+        "title": "Aktualizace postupů pro údržbu klimatizačních jednotek",
+        "description": "S příchodem nové generace vlaků RegioPanter přichází i aktualizované postupy pro údržbu klimatizačních systémů. Všechny technické manuály jsou k dispozici v intranetu.",
+        "badge": {
+          "text": "Údržba a opravy",
+          "variant": "green"
+        },
+        "href": "#"
+      },
+      {
+        "id": "news-dept-3",
+        "image": "https://images.unsplash.com/photo-1633805085907-3942402fff77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "17. září 2025",
+        "category": "Příběhy zaměstnanců",
+        "title": "Úspěšně dokončena revize všech elektrických jednotek 471 na depu",
+        "description": "Tým techniků dokončil komplexní revizi všech jednotek řady 471. Vozidla jsou připravena na zimní provoz a splňují všechny bezpečnostní normy.",
+        "badge": {
+          "text": "Údržba a opravy",
+          "variant": "green"
+        },
+        "href": "#"
+      },
+      {
+        "id": "news-dept-4",
+        "image": "https://images.unsplash.com/photo-1758685848208-e108b6af94cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "15. září 2025",
+        "category": "Naše tipy",
+        "title": "Zápis z odborné konference o údržbě kolejových vozidel 2025",
+        "description": "V Praze se konala každoroční konference zaměřená na moderní trendy v údržbě a opravách. Hlavním tématem byly prediktivní diagnostické metody a využití AI v údržbě.",
+        "badge": {
+          "text": "Údržba a opravy",
+          "variant": "green"
+        },
+        "href": "#"
+      }
+    ],
+    "region": [
+      {
+        "id": "news-region-1",
+        "image": "https://images.unsplash.com/photo-1659136021008-1ed2f7ddfe60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "20. září 2025",
+        "category": "Z regionů",
+        "title": "Depo kolejových vozidel Plzeň slaví 50 let provozu",
+        "description": "Naše depo letos oslaví významné výročí - 50 let od svého založení. Pro zaměstnance připravujeme speciální den otevřených dveří pro rodiny a slavnostní večer.",
+        "badge": {
+          "text": "Plzeň",
+          "variant": "orange"
+        },
+        "href": "#"
+      },
+      {
+        "id": "news-region-2",
+        "image": "https://images.unsplash.com/photo-1633805085907-3942402fff77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "19. září 2025",
+        "category": "Z regionů",
+        "title": "Nové parkovací místa pro zaměstnance u depa v Plzni",
+        "description": "Díky spolupráci s městem Plzeň se podařilo vybudovat 40 nových parkovacích míst v bezprostřední blízkosti depa. Místa budou k dispozici od 1. října.",
+        "badge": {
+          "text": "Plzeň",
+          "variant": "orange"
+        },
+        "href": "#"
+      },
+      {
+        "id": "news-region-3",
+        "image": "https://images.unsplash.com/photo-1643798878303-d439b48bbc69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "18. září 2025",
+        "category": "Z regionů",
+        "title": "Plzeňské depo získalo ocenění za bezpečnost práce 2025",
+        "description": "Díky systematickému přístupu k BOZP a pravidelným školením se naše depo stalo nejbezpečnějším pracovištěm v kategorii údržby kolejových vozidel v celé ČR.",
+        "badge": {
+          "text": "Plzeň",
+          "variant": "orange"
+        },
+        "href": "#"
+      },
+      {
+        "id": "news-region-4",
+        "image": "https://images.unsplash.com/photo-1758685848208-e108b6af94cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+        "date": "16. září 2025",
+        "category": "Z regionů",
+        "title": "Rozšíření kapacity školícího střediska v Plzni",
+        "description": "Díky rostoucímu zájmu o technická školení jsme rozšířili kapacitu našeho školícího střediska. Nové učebny umožní školit až 30 techniků současně.",
+        "badge": {
+          "text": "Plzeň",
+          "variant": "orange"
+        },
+        "href": "#"
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "event-1",
+      "dateDay": "28.",
+      "dateMonth": "Září",
+      "title": "Celostátní konference o bezpečnosti na železnici",
+      "time": "9:00 - 16:00",
+      "location": "Kongresové centrum Olomouc",
+      "badge": null,
+      "href": "#"
+    },
+    {
+      "id": "event-2",
+      "dateDay": "25.",
+      "dateMonth": "Říjen",
+      "title": "Den Českých drah pro veřejnost",
+      "time": "10:00 - 17:00",
+      "location": "Masarykovo nádraží, Praha",
+      "badge": null,
+      "href": "#"
+    },
+    {
+      "id": "event-3",
+      "dateDay": "18.",
+      "dateMonth": "Listopad",
+      "title": "Technické školení nových brzdových systémů",
+      "time": "8:00 - 15:30",
+      "location": "Školící centrum DKV Plzeň",
+      "badge": {
+        "text": "Odbor údržby a oprav",
+        "bgColor": "#ecfdf3",
+        "textColor": "#067647",
+        "borderColor": "#abefc6"
+      },
+      "href": "#"
+    }
+  ],
+  "videos": [
+    {
+      "id": "video-1",
+      "image": "figma:asset/729cf44d64ef21a30d4d968925b14dc07b1798e1.png",
+      "date": "19. září 2025",
+      "title": "Modrá linka s ředitelem IT Janem Hazlbauerem",
+      "description": "Co si představíte pod pojmem IT? Někdo z vás možná zapomenutá hesla nebo zaseknuté tiskárny. Pozvali jsme si hosta, který má úplně jinou představu o IT.",
+      "duration": null,
+      "href": "#"
+    },
+    {
+      "id": "video-2",
+      "image": "figma:asset/dbf351eaaff8f6770bdd423c9ddd9d26f51953e9.png",
+      "date": "6. září 2025",
+      "title": "DVI slaví 20 let od založení",
+      "description": "Dopravní vzdělávací institut je nedílnou součástí Skupiny ČD a věnuje se vzdělávání železničářů po celé republice. Jak hodnotí bývalí předsedové a předsedkyně představenstva svá působení a jak na ně vzpomínají? Dozvíte se ve videu.",
+      "duration": null,
+      "href": "#"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif-1",
+      "type": "alert",
+      "icon": "alert",
+      "title": "Přerušení dodávky elektrické energie v budově A",
+      "description": "20. září 2025 od 8:00 do 12:00 nebude v budově A k dispozici elektrická energie z důvodu plánované údržby. Děkujeme za pochopení.",
+      "date": "2025-09-19",
+      "priority": "high",
+      "read": false,
+      "href": "#"
+    },
+    {
+      "id": "notif-2",
+      "type": "info",
+      "icon": "info",
+      "title": "Nová verze intranetu je dostupná",
+      "description": "Právě jste se přihlásili do nové verze našeho intranetu. Objevte nové funkce a vylepšené rozhraní.",
+      "date": "2025-09-18",
+      "priority": "medium",
+      "read": false,
+      "href": "#"
+    }
+  ]
+}

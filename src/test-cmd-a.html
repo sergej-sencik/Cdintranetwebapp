@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cmd+A Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    
+    .test-section {
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+    }
+    
+    h2 {
+      margin-top: 0;
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #D5D7DA;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      border: 1px solid #009FDA;
+      box-shadow: inset 0 0 0 1px #009FDA, 0 0 0 3px rgba(0,159,218,0.15);
+    }
+    
+    .result {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cmd+A (Select All) Test</h1>
+  
+  <div class="test-section">
+    <h2>Test 1: Basic Input</h2>
+    <input id="test1" type="text" value="Hello World - Try Cmd+A or Ctrl+A" />
+    <div class="result" id="result1">Status: Waiting for selection...</div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Test 2: Textarea</h2>
+    <textarea id="test2" rows="4">Try selecting all this text using Cmd+A (Mac) or Ctrl+A (Windows).
+This is line 2.
+This is line 3.
+All lines should be selected!</textarea>
+    <div class="result" id="result2">Status: Waiting for selection...</div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Test 3: Input with Global Keyboard Handler</h2>
+    <p>This test has a global keyboard handler (like your sidebar Cmd+B)</p>
+    <input id="test3" type="text" value="Test with global handler - Try Cmd+A" />
+    <div class="result" id="result3">Status: Waiting for selection...</div>
+    <div class="result" id="global-keys">Global keys pressed: None</div>
+  </div>
+  
+  <script>
+    // Test 1
+    document.getElementById('test1').addEventListener('select', function() {
+      const input = this;
+      const start = input.selectionStart;
+      const end = input.selectionEnd;
+      const selected = input.value.substring(start, end);
+      document.getElementById('result1').textContent = `✅ Selected ${end - start} characters: "${selected}"`;
+    });
+    
+    // Test 2
+    document.getElementById('test2').addEventListener('select', function() {
+      const textarea = this;
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selected = textarea.value.substring(start, end);
+      document.getElementById('result2').textContent = `✅ Selected ${end - start} characters`;
+    });
+    
+    // Test 3 with global handler (simulating sidebar)
+    const SIDEBAR_KEY = 'b';
+    
+    window.addEventListener('keydown', function(event) {
+      // Log all Cmd/Ctrl keys
+      if (event.metaKey || event.ctrlKey) {
+        document.getElementById('global-keys').textContent = 
+          `Global keys pressed: Cmd/Ctrl + ${event.key}`;
+      }
+      
+      // Sidebar shortcut handler (Cmd+B / Ctrl+B)
+      if (event.key === SIDEBAR_KEY && (event.metaKey || event.ctrlKey)) {
+        const target = event.target;
+        
+        // Check if user is typing in an input
+        if (
+          target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.isContentEditable
+        ) {
+          // Don't prevent default - let browser handle Cmd+A, Cmd+C, etc.
+          document.getElementById('result3').textContent = 
+            '✅ Cmd+B ignored (user is typing in input)';
+          return;
+        }
+        
+        // Only prevent default if NOT in an input
+        event.preventDefault();
+        document.getElementById('result3').textContent = 
+          '🔄 Sidebar toggled (Cmd+B pressed outside input)';
+      }
+    });
+    
+    document.getElementById('test3').addEventListener('select', function() {
+      const input = this;
+      const start = input.selectionStart;
+      const end = input.selectionEnd;
+      const selected = input.value.substring(start, end);
+      document.getElementById('result3').textContent = 
+        `✅ Selected ${end - start} characters: "${selected}"`;
+    });
+    
+    // Test Cmd+A specifically
+    window.addEventListener('keydown', function(event) {
+      if (event.key === 'a' && (event.metaKey || event.ctrlKey)) {
+        const target = event.target;
+        if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+          console.log('✅ Cmd+A detected in input - browser will handle it');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
