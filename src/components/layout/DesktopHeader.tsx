@@ -11,15 +11,18 @@ import imgAvatar from 'figma:asset/6bfd89ee2dda2c5201ce92bce759705f5ff2b894.png'
 import './DesktopHeader.css';
 
 /**
- * Scroll behavior hook - shows header on scroll up, hides on scroll down
+ * Enhanced scroll behavior hook with smooth show/hide transitions
  */
 function useShowOnScrollUp() {
   const [show, setShow] = React.useState(true);
   const lastScrollRef = React.useRef(0);
   const tickingRef = React.useRef(false);
+  const directionRef = React.useRef<'up' | 'down'>('up');
 
   React.useEffect(() => {
-    const threshold = 8; // small jitter filter
+    const threshold = 12; // Increased for better scroll detection
+    const topZone = 20; // Show header when near top
+    
     const onScroll = () => {
       if (tickingRef.current) return;
       tickingRef.current = true;
@@ -27,19 +30,27 @@ function useShowOnScrollUp() {
       requestAnimationFrame(() => {
         const current = window.scrollY || 0;
         const delta = current - lastScrollRef.current;
+        const newDirection = delta > 0 ? 'down' : 'up';
 
-        // Near top -> always show
-        if (current < 16) {
+        // Always show when near top of page
+        if (current < topZone) {
           setShow(true);
-        } else if (Math.abs(delta) > threshold) {
-          // Down -> hide; Up -> show
-          setShow(delta < 0);
+        } 
+        // Only change state when scroll direction changes significantly
+        else if (Math.abs(delta) > threshold && newDirection !== directionRef.current) {
+          setShow(newDirection === 'up');
+          directionRef.current = newDirection;
         }
 
         lastScrollRef.current = current;
         tickingRef.current = false;
       });
     };
+
+    // Initial scroll position check
+    if (window.scrollY < topZone) {
+      setShow(true);
+    }
 
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);

@@ -29,13 +29,14 @@
 }
 
 /* ============================================
-   DESKTOP: Correct spacing for sticky header - FIXED
+   DESKTOP: Account for dynamic header behavior
    ============================================ */
 
 @media (min-width: 1024px) {
   .sticky-header-container [data-section="notifications"] {
-    padding-top: 24px !important;
-    /* ONLY 24px gap as requested - header is handled by sticky positioning */
+    /* Always account for blue bar height + gap, since it's always visible */
+    padding-top: calc(46px + 24px) !important;
+    /* = 70px total: blue bar (46px) + content gap (24px) */
   }
 }
 

@@ -9,7 +9,10 @@
   left: 0;
   right: 0;
   transform: translateY(0);
-  transition: transform 220ms cubic-bezier(0.2, 0, 0, 1);
+  transform-origin: top center;
+  transition: 
+    transform 220ms cubic-bezier(0.2, 0, 0, 1),
+    opacity 180ms ease-out;
   will-change: transform;
   /* preserves current z-index via class z-[10] */
 }
@@ -17,27 +20,62 @@
 /* State classes set on <html> by the hook */
 html.cd-topbar-hidden .cd-topbar {
   transform: translateY(-100%);
+  opacity: 0.95;
 }
 
 html.cd-topbar-visible .cd-topbar {
   transform: translateY(0);
+  opacity: 1;
 }
 
-/* Push the blue bar down so it sits under the white bar on desktop */
+/* ============================================
+   BLUE BAR POSITIONING - DYNAMIC BEHAVIOR
+   ============================================ */
+
+/* Blue bar base styles with smooth transitions */
+.cd-bluebar-fixed {
+  transition: 
+    top 220ms cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 180ms ease-out;
+  will-change: top;
+}
+
 @media (min-width: 1024px) {
-  /* White bar height is 72px per your layout */
+  /* Blue bar follows white bar state */
   .cd-bluebar-fixed {
     position: fixed;
-    top: 72px;
+    top: 72px; /* Default position below white bar */
     left: 0;
     right: 0;
     z-index: 9;
   }
+  
+  /* When white bar is hidden, blue bar moves to top */
+  html.cd-topbar-hidden .cd-bluebar-fixed {
+    top: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  html.cd-topbar-visible .cd-bluebar-fixed {
+    top: 72px;
+    box-shadow: none;
+  }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+.cd-topbar,
+.cd-bluebar-fixed {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .cd-topbar {
+  .cd-topbar,
+  .cd-bluebar-fixed {
     transition: none;
   }
 }
