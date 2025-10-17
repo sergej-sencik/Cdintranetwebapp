@@ -1,5 +1,5 @@
 /* ============================================
-   STICKY HEADER LAYOUT SYSTEM - HIGH SPECIFICITY
+   STICKY HEADER LAYOUT SYSTEM - TARGETED FIX
    ============================================ */
 
 .home-wrapper {
@@ -18,64 +18,58 @@
 }
 
 /* ============================================
-   CONTENT OFFSET - MOBILE/TABLET (< 1024px)
+   TARGET SPECIFIC MAIN WITH NOTIFICATIONS
    ============================================
-   CRITICAL: Multiple selectors with maximum specificity
-   MobileHeader height: 56px + 24px gap = 80px
+   The Main component that contains Notifications
+   is the FIRST Main element in the DOM tree.
    ============================================ */
 
+/* MOBILE/TABLET: 56px + 24px = 80px */
 @media (max-width: 1023px) {
-  /* Target all possible Main element variations */
-  .sticky-header-container [data-name="Home"] > [data-name="Main"],
-  .sticky-header-container [data-name="Main"],
-  .home-wrapper .sticky-header-container [data-name="Main"],
-  .home-wrapper .sticky-header-container [data-name="Home"] > [data-name="Main"] {
+  /* Target the FIRST Main element that contains Notifications */
+  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-child,
+  .sticky-header-container [data-name="Home"] > div:first-of-type[data-name="Main"] {
     padding-top: 80px !important;
     margin-top: 0 !important;
   }
   
-  /* Override any Tailwind classes */
-  .sticky-header-container [data-name="Main"][class*="pt-"],
-  .sticky-header-container [data-name="Home"] > [data-name="Main"][class*="pt-"] {
+  /* Alternative: Target Main with z-index 4 (from the component) */
+  .sticky-header-container [data-name="Main"][class*="z-[4]"] {
     padding-top: 80px !important;
   }
   
-  /* Mobile header adjustments */
-  .sticky-header-container [data-name="Header navigation / Main"] {
-    height: auto;
-    position: static !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    z-index: auto !important;
-    transform: none !important;
-    transition: none !important;
+  /* Alternative: Target Main that directly contains Notifications */
+  .sticky-header-container [data-name="Main"]:has([data-name="Notifications"]) {
+    padding-top: 80px !important;
   }
-  
+
+  /* Disable legacy headers on mobile */
+  .sticky-header-container [data-name="Header navigation / Main"],
   .sticky-header-container [data-name="Header navigation"] {
     position: static !important;
     top: auto !important;
-    left: auto !important;
-    right: auto !important;
     z-index: auto !important;
     transform: none !important;
     transition: none !important;
   }
 }
 
-/* ============================================
-   CONTENT OFFSET - DESKTOP (>= 1024px) 
-   ============================================
-   DesktopHeader height: 118px + 24px gap = 142px
-   ============================================ */
-
+/* DESKTOP: 118px + 24px = 142px */
 @media (min-width: 1024px) {
-  .sticky-header-container [data-name="Home"] > [data-name="Main"],
-  .sticky-header-container [data-name="Main"],
-  .home-wrapper .sticky-header-container [data-name="Main"],
-  .home-wrapper .sticky-header-container [data-name="Home"] > [data-name="Main"] {
+  /* Target the FIRST Main element that contains Notifications */
+  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-child,
+  .sticky-header-container [data-name="Home"] > div:first-of-type[data-name="Main"] {
     padding-top: 142px !important;
     margin-top: 0 !important;
+  }
+  
+  /* Alternative selectors */
+  .sticky-header-container [data-name="Main"][class*="z-[4]"] {
+    padding-top: 142px !important;
+  }
+  
+  .sticky-header-container [data-name="Main"]:has([data-name="Notifications"]) {
+    padding-top: 142px !important;
   }
 
   /* Desktop legacy header system */
@@ -89,6 +83,8 @@
     background: white;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     height: 72px;
+    width: 100% !important;
+    max-width: 100vw !important;
   }
 
   .sticky-header-container.top-header-hidden [data-name="Header navigation / Main"] {
@@ -104,6 +100,8 @@
     transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: #009fda;
     height: 46px;
+    width: 100% !important;
+    max-width: 100vw !important;
   }
 
   .sticky-header-container.top-header-hidden [data-name="Header navigation"] {
@@ -112,42 +110,43 @@
 }
 
 /* ============================================
-   UNIVERSAL OVERRIDES
+   PREVENT SECOND MAIN FROM GETTING STYLES
    ============================================ */
 
-/* Make header sections full width */
-.sticky-header-container [data-name="Header navigation / Main"],
-.sticky-header-container [data-name="Header navigation"] {
-  width: 100% !important;
-  max-width: 100vw !important;
+/* Explicitly reset the second Main element */
+.sticky-header-container [data-name="Main"][class*="z-[2]"] {
+  padding-top: 80px !important; /* Keep original padding */
 }
 
-/* Ensure container contents are centered */
+/* Universal container fixes */
 .sticky-header-container [data-name="Container"] {
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
-/* Make Footer full width */
 .sticky-header-container [data-name="Footer"] {
   width: 100% !important;
   max-width: 100vw !important;
 }
 
 /* ============================================
-   DEBUGGING - REMOVE AFTER FIXING
+   DEBUGGING - VISUAL INDICATORS
    ============================================ */
 
-/* Visual indicator for mobile/tablet */
+/* Target ONLY the first Main (notifications) */
 @media (max-width: 1023px) {
-  .sticky-header-container [data-name="Main"] {
-    border-top: 3px solid red !important; /* Temporary visual indicator */
+  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-child {
+    border-top: 3px solid lime !important; /* Green = correct target */
   }
 }
 
-/* Visual indicator for desktop */
 @media (min-width: 1024px) {
-  .sticky-header-container [data-name="Main"] {
-    border-top: 3px solid blue !important; /* Temporary visual indicator */
+  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-child {
+    border-top: 3px solid lime !important; /* Green = correct target */
   }
+}
+
+/* Visual indicator for wrong element (should stay red if still targeted) */
+.sticky-header-container [data-name="Main"][class*="z-[2]"] {
+  border-top: 3px solid orange !important; /* Orange = second main (ignore this) */
 }

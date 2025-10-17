@@ -8,15 +8,15 @@ export default function HomePage() {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    // Force correct padding on Main elements
+    // Force correct padding ONLY on Main with notifications
     const applyCorrectPadding = () => {
-      const mainElements = document.querySelectorAll('[data-name="Main"]');
+      const mainElement = document.querySelector('[data-section="notifications"]');
       const isDesktop = window.innerWidth >= 1024;
       const correctPadding = isDesktop ? '142px' : '80px';
       
-      mainElements.forEach(element => {
-        (element as HTMLElement).style.paddingTop = correctPadding;
-      });
+      if (mainElement) {
+        (mainElement as HTMLElement).style.paddingTop = correctPadding;
+      }
     };
 
     // Apply on load and resize
