@@ -1,35 +1,68 @@
 /* ============================================
-   HEADER COMPONENT - SIMPLIFIED
+   HEADER WRAPPER - GLOBAL STICKY CONTAINER
    ============================================ */
 
-.header {
-  position: relative;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  z-index: 1000;
-  background: white;
-}
-
-/* MOBILE/TABLET: Fixed positioning */
+/* MOBILE: Fixed header with controlled height */
 @media (max-width: 1023px) {
   .header {
-    position: fixed !important;
+    position: fixed;
+    position: -webkit-sticky;
     top: 0;
     left: 0;
     right: 0;
-    height: 56px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    z-index: var(--z-sticky);
+    width: 100%;
+    /* Mobile header height variables set in MobileHeader.css */
   }
 }
 
-/* DESKTOP: Sticky positioning */
+/* ============================================
+   DESKTOP: Sticky wrapper whose height adapts to white-bar visibility
+   ============================================ */
+
 @media (min-width: 1024px) {
   .header {
     position: sticky;
     position: -webkit-sticky;
     top: 0;
-    height: 118px; /* 72px + 46px for both header sections */
+    left: 0;
+    right: 0;
+    z-index: var(--z-sticky);
+    /* Default height when both bars are visible (white 72px + blue 46px) */
+    height: 118px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    transition: height 220ms cubic-bezier(0.2, 0, 0, 1);
+    will-change: height;
+  }
+
+  /* When the white bar is hidden, wrapper height collapses to blue bar only */
+  html.cd-topbar-hidden .header {
+    height: 46px;
+  }
+
+  /* When the white bar is visible, wrapper height expands back to full */
+  html.cd-topbar-visible .header {
+    height: 118px;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY - REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .header {
+    transition: none;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .header {
+    position: static;
+    box-shadow: none;
   }
 }
