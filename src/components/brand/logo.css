@@ -1,0 +1,11 @@
+:root {
+  --logo-gap: 8px;
+  --logo-blue: #002664;
+}
+
+/* Example hook classes if needed later */
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--logo-gap);
+}

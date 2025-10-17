@@ -10,10 +10,9 @@
   right: 0;
   transform: translateY(0);
   transform-origin: top center;
-  transition: 
-    transform 220ms cubic-bezier(0.2, 0, 0, 1),
-    opacity 180ms ease-out;
+  transition: transform 200ms cubic-bezier(0.2, 0, 0, 1), opacity 180ms ease-out;
   will-change: transform;
+  border: none;
   /* preserves current z-index via class z-[10] */
 }
 
@@ -29,35 +28,32 @@ html.cd-topbar-visible .cd-topbar {
 }
 
 /* ============================================
-   BLUE BAR POSITIONING - DYNAMIC BEHAVIOR
+   BLUE BAR POSITIONING - TRANSFORM-ONLY
    ============================================ */
 
-/* Blue bar base styles with smooth transitions */
-.cd-bluebar-fixed {
-  transition: 
-    top 220ms cubic-bezier(0.2, 0, 0, 1),
-    box-shadow 180ms ease-out;
-  will-change: top;
-}
-
 @media (min-width: 1024px) {
-  /* Blue bar follows white bar state */
   .cd-bluebar-fixed {
     position: fixed;
-    top: 72px; /* Default position below white bar */
     left: 0;
     right: 0;
+    top: 0; /* anchor at 0; we move it with transform */
     z-index: 9;
+
+    /* Sit under white bar when visible */
+    transform: translateY(72px);
+    transition: transform 200ms cubic-bezier(0.2, 0, 0, 1);
+    will-change: transform;
+    border: none;
   }
-  
-  /* When white bar is hidden, blue bar moves to top */
+
+  /* When white bar hides, move blue bar up in the same frame */
   html.cd-topbar-hidden .cd-bluebar-fixed {
-    top: 0;
+    transform: translateY(0);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
-  
+
   html.cd-topbar-visible .cd-bluebar-fixed {
-    top: 72px;
+    transform: translateY(72px);
     box-shadow: none;
   }
 }
@@ -70,12 +66,15 @@ html.cd-topbar-visible .cd-topbar {
 .cd-bluebar-fixed {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  /* Remove any borders that could render seams during motion */
+  border: none;
 }
 
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .cd-topbar,
-  .cd-bluebar-fixed {
+  .cd-bluebar-fixed,
+  .header {
     transition: none;
   }
 }

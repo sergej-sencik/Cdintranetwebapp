@@ -1,41 +1,11 @@
 import * as React from 'react';
 import svgPaths from '../../imports/svg-sjo69dtk3d';
+import { Logo as BrandLogo } from '../brand/Logo';
 
-// Logo Components
-function Logomark() {
-  return (
-    <div className="h-[32px] relative shrink-0 w-[49.245px]" data-name="Logomark">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 50 32">
-        <g id="Logomark">
-          <g id="Union">
-            <path d={svgPaths.p227b9a00} fill="var(--fill-0, #002664)" />
-            <path d={svgPaths.p373e43f0} fill="var(--fill-0, #002664)" />
-            <path d={svgPaths.p20376e00} fill="var(--fill-0, #002664)" />
-          </g>
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Frame1() {
-  return (
-    <div className="content-stretch flex gap-[8.812px] h-full items-center justify-center relative shrink-0">
-      <div className="flex flex-col font-['CD_Fedra_Pro',_sans-serif] font-medium justify-end leading-[0] not-italic relative shrink-0 text-[color:var(--color-blue-500)] text-[22.031px] text-nowrap">
-        <p className="leading-[normal] whitespace-pre">Intranet</p>
-      </div>
-    </div>
-  );
-}
-
+// Logo Component
 function Logo2() {
   return (
-    <a href="/" className="content-stretch flex gap-[8.812px] items-center relative shrink-0 w-full cursor-pointer hover:opacity-80 transition-opacity" data-name="Logo">
-      <Logomark />
-      <div className="flex flex-row items-center self-stretch">
-        <Frame1 />
-      </div>
-    </a>
+    <BrandLogo as="a" href="/" variant="full" height={29} className="relative shrink-0 w-full" />
   );
 }
 

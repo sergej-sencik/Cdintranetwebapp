@@ -5,27 +5,13 @@ import { UserNavButton } from '../ui/user-nav-button';
 import { SearchInput } from '../ui/search-input';
 import { SearchSuggestionsDropdown } from '../ui/search-suggestions-dropdown';
 import { MobileMenu } from './MobileMenu';
+import { Logo as BrandLogo } from '../brand/Logo';
 import './MobileHeader.css';
 
-// Logo Component (matching desktop version exactly)
+// Logo Component
 function Logo() {
   return (
-    <a href="/" className="mobile-header__logo" aria-label="Home">
-      <div className="mobile-header__logo-mark">
-        <svg className="mobile-header__logo-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 50 32">
-          <g id="Logomark">
-            <g id="Union">
-              <path d={svgPaths.p227b9a00} fill="var(--fill-0, #002664)" />
-              <path d={svgPaths.p373e43f0} fill="var(--fill-0, #002664)" />
-              <path d={svgPaths.p20376e00} fill="var(--fill-0, #002664)" />
-            </g>
-          </g>
-        </svg>
-      </div>
-      <div className="mobile-header__logo-text">
-        Intranet
-      </div>
-    </a>
+    <BrandLogo as="a" href="/" variant="full" height={28} className="mobile-header__logo" />
   );
 }
 

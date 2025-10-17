@@ -7,6 +7,7 @@ import { MegaMenuContainer, type MegaMenuData } from '../ui/mega-menu';
 import { NotificationBadge } from '../NotificationBadge';
 import { SearchInput } from '../ui/search-input';
 import { SearchSuggestionsDropdown } from '../ui/search-suggestions-dropdown';
+import { Logo as BrandLogo } from '../brand/Logo';
 import imgAvatar from 'figma:asset/6bfd89ee2dda2c5201ce92bce759705f5ff2b894.png';
 import './DesktopHeader.css';
 
@@ -20,8 +21,8 @@ function useShowOnScrollUp() {
   const directionRef = React.useRef<'up' | 'down'>('up');
 
   React.useEffect(() => {
-    const threshold = 12; // Increased for better scroll detection
-    const topZone = 20; // Show header when near top
+    const threshold = 14;  // fewer flips on fast flicks
+    const topZone = 20;    // always show near top
     
     const onScroll = () => {
       if (tickingRef.current) return;
@@ -30,16 +31,13 @@ function useShowOnScrollUp() {
       requestAnimationFrame(() => {
         const current = window.scrollY || 0;
         const delta = current - lastScrollRef.current;
-        const newDirection = delta > 0 ? 'down' : 'up';
+        const newDir = delta > 0 ? 'down' : 'up';
 
-        // Always show when near top of page
         if (current < topZone) {
           setShow(true);
-        } 
-        // Only change state when scroll direction changes significantly
-        else if (Math.abs(delta) > threshold && newDirection !== directionRef.current) {
-          setShow(newDirection === 'up');
-          directionRef.current = newDirection;
+        } else if (Math.abs(delta) > threshold && newDir !== directionRef.current) {
+          setShow(newDir === 'up');
+          directionRef.current = newDir;
         }
 
         lastScrollRef.current = current;
@@ -47,10 +45,8 @@ function useShowOnScrollUp() {
       });
     };
 
-    // Initial scroll position check
-    if (window.scrollY < topZone) {
-      setShow(true);
-    }
+    // Initialize state near top
+    if (window.scrollY < topZone) setShow(true);
 
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -60,40 +56,9 @@ function useShowOnScrollUp() {
 }
 
 // Logo Component
-function Logomark() {
-  return (
-    <div className="h-[32px] relative shrink-0 w-[49.245px]" data-name="Logomark">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 50 32">
-        <g id="Logomark">
-          <g id="Union">
-            <path d={svgPaths.p227b9a00} fill="var(--fill-0, #002664)" />
-            <path d={svgPaths.p373e43f0} fill="var(--fill-0, #002664)" />
-            <path d={svgPaths.p20376e00} fill="var(--fill-0, #002664)" />
-          </g>
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Frame1() {
-  return (
-    <div className="content-stretch flex gap-[8.812px] h-full items-center justify-center relative shrink-0">
-      <div className="flex flex-col font-['CD_Fedra_Pro',_sans-serif] font-medium justify-end leading-[0] not-italic relative shrink-0 text-[color:var(--color-blue-500)] text-[22.031px] text-nowrap">
-        <p className="leading-[normal] whitespace-pre">Intranet</p>
-      </div>
-    </div>
-  );
-}
-
 function Logo() {
   return (
-    <a href="/" className="content-stretch flex gap-[8.812px] items-center relative shrink-0 cursor-pointer hover:opacity-80 transition-opacity" data-name="Logo">
-      <Logomark />
-      <div className="flex flex-row items-center self-stretch">
-        <Frame1 />
-      </div>
-    </a>
+    <BrandLogo as="a" href="/" variant="full" height={32} className="relative shrink-0" />
   );
 }
 
