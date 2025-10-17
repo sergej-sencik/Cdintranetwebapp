@@ -1,26 +1,18 @@
 /* ============================================
-   STICKY HEADER LAYOUT SYSTEM
+   STICKY HEADER LAYOUT SYSTEM - CORRECTED
    ============================================
    
-   This file manages the layout integration between
-   the sticky header and page content.
+   This system manages BOTH the legacy Figma headers
+   AND the spacing for the GlobalHeader component.
    
    BREAKPOINT STRATEGY:
-   - Mobile/Tablet: < 1024px    (uses MobileHeader)
-   - Desktop:       >= 1024px   (uses DesktopHeader)
+   - Mobile/Tablet: < 1024px (MobileHeader: 56px)
+   - Desktop: >= 1024px (Legacy Figma system + DesktopHeader: 118px total)
    
-   STICKY POSITIONING:
-   The GlobalHeader component uses position:sticky
-   (configured in Header.css) and works on all breakpoints.
-   
-   SPACING STRATEGY:
-   Content needs padding-top = header height + desired gap
-   to prevent overlap with sticky header.
-   
-   CALCULATED OFFSETS:
-   - Mobile/Tablet: 80px  (56px MobileHeader + 24px gap)
-   - Desktop:       142px (118px DesktopHeader + 24px gap)
-   
+   DESKTOP HEADER STRUCTURE:
+   - HeaderNavigationMain: 72px (show/hide on scroll)
+   - HeaderNavigation: 46px (always sticky)
+   - Total: 118px when both visible
    ============================================ */
 
 /* ============================================
@@ -30,7 +22,7 @@
 .home-wrapper {
   width: 100%;
   min-height: 100vh;
-  overflow: visible; /* Changed: allow sticky to work */
+  overflow: visible;
   margin: 0;
   padding: 0;
 }
@@ -39,60 +31,137 @@
   position: relative;
   margin: 0;
   padding: 0;
-  /* Ensure sticky positioning works properly */
   overflow: visible;
 }
 
 /* ============================================
    CONTENT OFFSET - MOBILE/TABLET (< 1024px)
+   ============================================
+   MobileHeader height: 56px
+   Desired gap: 24px
+   Total offset: 80px
    ============================================ */
+
 @media (max-width: 1023px) {
-  /* Use multiple selectors to ensure coverage */
-  .sticky-header-container [data-name="Main"]:first-child,
-  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-of-type {
+  .sticky-header-container [data-name="Home"] > [data-name="Main"] {
     padding-top: 80px !important;
+  }
+  
+  .sticky-header-container [data-name="Main"] {
+    padding-top: 80px !important;
+  }
+  
+  /* Mobile header adjustments */
+  .sticky-header-container [data-name="Header navigation / Main"] {
+    height: auto;
+  }
+  
+  .sticky-header-container [data-name="Header navigation"] {
+    top: auto;
   }
 }
 
 /* ============================================
-   CONTENT OFFSET - DESKTOP (>= 1024px)
+   CONTENT OFFSET - DESKTOP (>= 1024px) 
+   ============================================
+   DesktopHeader height: 118px (72px + 46px)
+   Desired gap: 24px
+   Total offset: 142px
    ============================================ */
+
 @media (min-width: 1024px) {
-  /* Use multiple selectors to ensure coverage */
-  .sticky-header-container [data-name="Main"]:first-child,
-  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-of-type {
+  .sticky-header-container [data-name="Home"] > [data-name="Main"] {
+    padding-top: 142px !important;
+  }
+  
+  .sticky-header-container [data-name="Main"] {
     padding-top: 142px !important;
   }
 }
 
 /* ============================================
-   LEGACY HEADER CLEANUP - HIDE OLD HEADERS
+   DESKTOP LEGACY HEADER SYSTEM (>= 1024px)
    ============================================
-   The old Figma import headers must be hidden
-   as they conflict with the new GlobalHeader
+   Restore the scroll behavior for desktop headers
    ============================================ */
 
-/* Hide ONLY standalone old headers, NOT those inside .header */
-.sticky-header-container > [data-name="Home"] > [data-name="Header navigation / Main"],
-.sticky-header-container > [data-name="Home"] > [data-name="Header navigation"] {
-  display: none !important;
+/* Make header sections full width */
+.sticky-header-container [data-name="Header navigation / Main"],
+.sticky-header-container [data-name="Header navigation"] {
+  width: 100% !important;
+  max-width: 100vw !important;
 }
 
-/* Keep footer and container rules */
+/* Top header with logo - fixed, shows/hides on scroll */
+.sticky-header-container [data-name="Header navigation / Main"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  height: 72px;
+}
+
+/* Hide top header when scrolling down */
+.sticky-header-container.top-header-hidden [data-name="Header navigation / Main"] {
+  transform: translateY(-100%);
+}
+
+/* Bottom navigation - always visible, sticky */
+.sticky-header-container [data-name="Header navigation"] {
+  position: fixed;
+  top: 72px; /* Height of top header */
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #009fda;
+  height: 46px;
+}
+
+/* Move navigation to top when top header is hidden */
+.sticky-header-container.top-header-hidden [data-name="Header navigation"] {
+  top: 0;
+}
+
+/* Ensure container contents are centered */
 .sticky-header-container [data-name="Container"] {
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
+/* Make Footer full width */
 .sticky-header-container [data-name="Footer"] {
   width: 100% !important;
   max-width: 100vw !important;
 }
 
 /* ============================================
+   MOBILE LEGACY HEADER CLEANUP (< 1024px)
+   ============================================
+   On mobile, disable the legacy desktop headers
+   ============================================ */
+
+@media (max-width: 1023px) {
+  .sticky-header-container [data-name="Header navigation / Main"],
+  .sticky-header-container [data-name="Header navigation"] {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: auto !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================
    GLOBAL HEADER INTEGRATION
    ============================================
-   The new GlobalHeader component uses position:
-   sticky and is managed by Header.css. Padding is
-   controlled by the media queries above.
+   The new GlobalHeader component works alongside
+   the legacy system. On desktop, both systems
+   are active. On mobile, only GlobalHeader is used.
    ============================================ */
