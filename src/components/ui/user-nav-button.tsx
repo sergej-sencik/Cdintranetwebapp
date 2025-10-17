@@ -14,6 +14,7 @@
  * - Dropdown menu on hover (150ms delay on leave)
  * - Automatic close when mouse leaves
  * - Keyboard navigation (Escape to close)
+ * - Mobile variant (avatar only)
  * - Uses global styles and design tokens
  * - Content from static JSON
  */
@@ -38,6 +39,8 @@ export interface UserNavButtonProps {
   onLogout?: () => void;
   /** Additional CSS classes */
   className?: string;
+  /** Mobile variant - shows only avatar */
+  variant?: 'default' | 'mobile';
 }
 
 function ChevronDown() {
@@ -72,7 +75,7 @@ function Avatar({ src, name }: { src?: string; name?: string }) {
   );
 }
 
-export function UserNavButton({
+export function UserNavButton({ 
   name = 'Jan Novotný',
   role = 'Technik kolejových vozidel',
   avatarSrc,
@@ -80,6 +83,7 @@ export function UserNavButton({
   onSettings,
   onLogout,
   className = '',
+  variant = 'default'
 }: UserNavButtonProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [hoverTimeout, setHoverTimeout] = React.useState<NodeJS.Timeout | null>(null);
@@ -136,6 +140,17 @@ export function UserNavButton({
     callback?.();
   };
 
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      setIsOpen(!isOpen);
+    }
+  };
+
   return (
     <div 
       className={`relative ${className}`} 
@@ -143,14 +158,16 @@ export function UserNavButton({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* User Button */}
+      {/* User Button - Mobile vs Desktop */}
       <div
         ref={buttonRef}
-        className="
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        className={`
           group
           bg-white box-border content-stretch flex gap-[8px] items-center 
-          overflow-clip px-[12px] py-[8px] relative rounded-[var(--radius-sm)] 
-          shrink-0 w-[244px] cursor-pointer
+          overflow-clip relative rounded-[var(--radius-sm)] 
+          shrink-0 cursor-pointer
           transition-shadow duration-300
           hover:shadow-[var(--elevation-sm)]
           active:shadow-[var(--elevation-xs)]
@@ -158,28 +175,31 @@ export function UserNavButton({
           focus-visible:ring-2
           focus-visible:ring-[var(--ring)]
           focus-visible:ring-offset-2
-        "
+          ${variant === 'mobile' ? 'w-[40px] h-[40px] p-1 justify-center' : 'w-[244px] px-[12px] py-[8px]'}
+        `}
         data-state={isOpen ? 'open' : 'closed'}
         role="button"
         aria-haspopup="menu"
         aria-expanded={isOpen}
         tabIndex={0}
       >
-        {/* User Info */}
+        {/* User Info - Hide text on mobile */}
         <div className="basis-0 content-stretch flex gap-[12px] grow items-center min-h-px min-w-px relative shrink-0">
           <Avatar src={avatarSrc} name={name} />
-          <div className="basis-0 content-stretch flex flex-col gap-[2px] grow items-start justify-center min-h-px min-w-px relative shrink-0 text-[var(--foreground)]">
-            <p className="font-['Roboto',_sans-serif] font-semibold leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap whitespace-pre">
-              {name}
-            </p>
-            <p className="font-['Roboto',_sans-serif] font-normal leading-[14px] min-w-full relative shrink-0 text-[12px] w-[min-content] text-[var(--foreground-muted)]" style={{ fontVariationSettings: "'wdth' 100" }}>
-              {role}
-            </p>
-          </div>
+          {variant !== 'mobile' && (
+            <div className="basis-0 content-stretch flex flex-col gap-[2px] grow items-start justify-center min-h-px min-w-px relative shrink-0 text-[var(--foreground)]">
+              <p className="font-['Roboto',_sans-serif] font-semibold leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap whitespace-pre">
+                {name}
+              </p>
+              <p className="font-['Roboto',_sans-serif] font-normal leading-[14px] min-w-full relative shrink-0 text-[12px] w-[min-content] text-[var(--foreground-muted)]" style={{ fontVariationSettings: "'wdth' 100" }}>
+                {role}
+              </p>
+            </div>
+          )}
         </div>
 
-        {/* Chevron Icon */}
-        <ChevronDown />
+        {/* Chevron Icon - Hide on mobile */}
+        {variant !== 'mobile' && <ChevronDown />}
 
         {/* Border - only visible on hover */}
         <div 
@@ -238,5 +258,3 @@ export function UserNavButton({
     </div>
   );
 }
-
-export default UserNavButton;

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import svgPaths from '../../imports/svg-sjo69dtk3d';
 import { NotificationBadge } from '../NotificationBadge';
+import { UserNavButton } from '../ui/user-nav-button';
 import { SearchInput } from '../ui/search-input';
 import { SearchSuggestionsDropdown } from '../ui/search-suggestions-dropdown';
 import { MobileMenu } from './MobileMenu';
-import imgAvatar from 'figma:asset/6bfd89ee2dda2c5201ce92bce759705f5ff2b894.png';
 import './MobileHeader.css';
 
-// Logo Component (full version with text for mobile)
+// Logo Component (matching desktop version exactly)
 function Logo() {
   return (
     <a href="/" className="mobile-header__logo" aria-label="Home">
@@ -26,15 +26,6 @@ function Logo() {
         Intranet
       </div>
     </a>
-  );
-}
-
-// User Avatar
-function Avatar({ imageSrc }: { imageSrc?: string }) {
-  return (
-    <div className="mobile-header__avatar">
-      <img alt="User profile" src={imageSrc || imgAvatar} />
-    </div>
   );
 }
 
@@ -123,12 +114,19 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
           </button>
           
           <div className="mobile-header__notification">
-            <NotificationBadge />
+            <NotificationBadge count={notificationCount} />
           </div>
 
-          <button className="mobile-header__avatar-button" aria-label="User menu">
-            <Avatar imageSrc={userProfile?.avatarSrc} />
-          </button>
+          <UserNavButton
+            name={userProfile?.name}
+            role={userProfile?.role}
+            avatarSrc={userProfile?.avatarSrc}
+            onEditProfile={() => console.log('Edit profile')}
+            onSettings={() => console.log('Settings')}
+            onLogout={() => console.log('Logout')}
+            variant="mobile"
+            className="flex-shrink-0"
+          />
         </div>
       </div>
 

@@ -46,13 +46,18 @@
 }
 
 /* ============================================
-   ACTIONS SECTION
+   ACTIONS GROUP (Search, Notification, Avatar) - ENHANCED
    ============================================ */
 
 .mobile-header__actions {
-  display: flex;
+  display: flex !important;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
+  position: relative;
+  overflow: visible;
+  visibility: visible;
+  opacity: 1;
+  flex-shrink: 0;
 }
 
 /* ============================================
@@ -73,29 +78,72 @@
   display: flex;
 }
 
+/* Search Toggle Button */
+.mobile-header__search-toggle {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground-muted, #6B7280);
+  transition: color var(--transition-base) var(--ease-in-out);
+  visibility: visible;
+  opacity: 1;
+}
+
+.mobile-header__search-toggle:hover {
+  color: var(--primary, #0066CC);
+  opacity: 0.8;
+}
+
 /* ============================================
    MOBILE MENU BUTTON
    ============================================ */
 
-.mobile-menu-button {
-  display: flex;
+/* Hamburger Menu Button - ENSURE VISIBILITY */
+.mobile-header__menu-button {
+  display: flex !important;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  min-width: 40px;
+  min-height: 40px;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  border-radius: var(--radius-sm);
-  transition: background-color var(--transition-base);
+  transition: opacity var(--transition-base) var(--ease-in-out);
+  visibility: visible;
+  opacity: 1;
+  flex-shrink: 0;
 }
 
-.mobile-menu-button:hover {
-  background-color: var(--muted);
+.mobile-header__menu-button:hover {
+  opacity: 0.7;
 }
 
-.mobile-menu-button:active {
-  background-color: var(--border);
+.mobile-header__menu-button:active {
+  opacity: 0.5;
+}
+
+.hamburger-line {
+  display: block !important;
+  width: 20px;
+  height: 2px;
+  background-color: var(--foreground, #1F2937);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  border-radius: 2px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.mobile-header__menu-button:hover .hamburger-line {
+  background-color: var(--primary, #0066CC);
 }
 
 /* ============================================
