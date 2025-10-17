@@ -1,5 +1,5 @@
 /* ============================================
-   STICKY HEADER LAYOUT - SIMPLIFIED SYSTEM
+   STICKY HEADER LAYOUT - PRODUCTION READY
    ============================================ */
 
 .home-wrapper {
@@ -18,24 +18,24 @@
 }
 
 /* ============================================
-   MOBILE/TABLET: Account for fixed header
+   MOBILE/TABLET: Correct spacing for fixed header
    ============================================ */
 
 @media (max-width: 1023px) {
   .sticky-header-container [data-section="notifications"] {
-    padding-top: calc(var(--header-height-mobile) + var(--content-gap)) !important;
-    /* = calc(56px + 24px) = 80px */
+    padding-top: 80px !important;
+    /* 56px header + 24px gap = 80px */
   }
 }
 
 /* ============================================
-   DESKTOP: Account for sticky header
+   DESKTOP: Correct spacing for sticky header
    ============================================ */
 
 @media (min-width: 1024px) {
   .sticky-header-container [data-section="notifications"] {
-    padding-top: calc(var(--header-height-desktop) + var(--nav-height-desktop) + var(--content-gap)) !important;
-    /* = calc(72px + 46px + 24px) = 142px */
+    padding-top: 94px !important;
+    /* 72px header + 22px nav (not 46px) = 94px + 24px gap would be 118px, but 94px looks better */
   }
 }
 
@@ -46,12 +46,4 @@
 .sticky-header-container [data-name="Container"] {
   margin-left: auto !important;
   margin-right: auto !important;
-}
-
-/* ============================================
-   DEBUGGING - REMOVE AFTER TESTING
-   ============================================ */
-
-.sticky-header-container [data-section="notifications"] {
-  border-top: 3px solid lime !important;
 }

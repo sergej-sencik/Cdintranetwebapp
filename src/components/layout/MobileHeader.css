@@ -180,3 +180,26 @@
     display: none;
   }
 }
+
+/* ============================================
+   AVATAR STYLING
+   ============================================ */
+
+.mobile-header__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.mobile-header__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

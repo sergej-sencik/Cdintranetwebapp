@@ -1,64 +1,35 @@
 /* ============================================
-   HEADER COMPONENT - CORRECTED VARIABLES
+   HEADER COMPONENT - SIMPLIFIED
    ============================================ */
 
-:root {
-  --header-height-mobile: 56px; /* Correct mobile header height */
-  --nav-height-mobile: 0px; /* No separate nav on mobile */
-  --header-height-desktop: 72px; /* Desktop top header */
-  --nav-height-desktop: 46px; /* Desktop navigation bar */
-  --content-gap: 24px; /* Gap between header and content */
-  --z-sticky: 1000;
-  --background: white;
-  --elevation-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+.header {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1000;
+  background: white;
 }
 
-/* ============================================
-   MOBILE/TABLET: Fixed positioning
-   ============================================ */
-
+/* MOBILE/TABLET: Fixed positioning */
 @media (max-width: 1023px) {
   .header {
     position: fixed !important;
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    height: var(--header-height-mobile);
-    z-index: var(--z-sticky);
-    background: var(--background);
-    box-shadow: var(--elevation-sm);
-    margin: 0;
-    padding: 0;
+    height: 56px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   }
 }
 
-/* ============================================
-   DESKTOP: Sticky positioning
-   ============================================ */
-
+/* DESKTOP: Sticky positioning */
 @media (min-width: 1024px) {
   .header {
     position: sticky;
     position: -webkit-sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: calc(var(--header-height-desktop) + var(--nav-height-desktop));
-    z-index: var(--z-sticky);
-    background: var(--background);
-    margin: 0;
-    padding: 0;
+    height: 118px; /* 72px + 46px for both header sections */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   }
-}
-
-/* Smooth transitions */
-.header > * {
-  animation: fadeIn 0.2s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
