@@ -5,8 +5,26 @@
 .header {
   position: sticky;
   top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   z-index: var(--z-sticky);
   background: var(--background);
   box-shadow: var(--elevation-sm);
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth fade transition when switching between mobile and desktop headers */
+.header > * {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

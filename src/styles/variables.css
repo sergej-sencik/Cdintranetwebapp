@@ -1,6 +1,6 @@
 :root {
   /* ===== BREAKPOINTS ===== */
-  --breakpoint-mobile: 767px;
+  --breakpoint-mobile: 900px;
   --breakpoint-tablet: 1023px;
   --breakpoint-desktop: 1024px;
   
@@ -30,6 +30,16 @@
   --nav-height-mobile: 56px;
   --nav-height-tablet: 64px;
   --nav-height-desktop: 72px;
+  
+  /* ===== HEADER LAYOUT OFFSETS ===== */
+  /* These variables control the spacing between the sticky header and page content */
+  /* All breakpoints maintain exactly 24px gap between header and content */
+  
+  /* Mobile/Tablet (< 1024px): 56px MobileHeader + 24px gap */
+  --header-offset-mobile: 80px;
+  
+  /* Desktop (>= 1024px): 120px DesktopHeader (72px top + 48px nav) + 24px gap */
+  --header-offset-desktop: 144px;
   
   /* ===== TOUCH TARGETS ===== */
   --touch-target-min: 44px;

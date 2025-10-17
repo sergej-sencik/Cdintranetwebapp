@@ -1,14 +1,84 @@
-/* Sticky Header Styles */
+/* ============================================
+   STICKY HEADER LAYOUT SYSTEM
+   ============================================
+   
+   This file manages the layout integration between
+   the sticky header and page content with proper
+   responsive offsets.
+   
+   BREAKPOINT STRATEGY:
+   - Mobile/Tablet: < 1024px    (uses MobileHeader)
+   - Desktop:       >= 1024px   (uses DesktopHeader)
+   
+   CSS VARIABLES USED (all maintain 24px gap):
+   - --header-offset-mobile:  80px  (56px MobileHeader + 24px)
+   - --header-offset-desktop: 144px (120px DesktopHeader + 24px)
+   
+   ============================================ */
+
+/* ============================================
+   BASE CONTAINER STYLES
+   ============================================ */
 
 .home-wrapper {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .sticky-header-container {
   position: relative;
+  margin: 0;
+  padding: 0;
 }
+
+/* ============================================
+   SMOOTH TRANSITION FOR PADDING CHANGES
+   ============================================ */
+
+.sticky-header-container [data-name="Home"] > [data-name="Main"]:first-of-type {
+  transition: padding-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   CONTENT OFFSET - MOBILE/TABLET (< 1024px)
+   ============================================ */
+
+@media (max-width: 1023px) {
+  /* Apply mobile header offset to first content section */
+  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-of-type {
+    padding-top: var(--header-offset-mobile, 80px);
+  }
+  
+  /* Mobile-specific header adjustments */
+  .sticky-header-container [data-name="Header navigation / Main"] {
+    height: auto;
+  }
+  
+  .sticky-header-container [data-name="Header navigation"] {
+    top: auto;
+  }
+}
+
+/* ============================================
+   CONTENT OFFSET - DESKTOP (>= 1024px)
+   ============================================ */
+
+@media (min-width: 1024px) {
+  /* Apply desktop header offset to first content section */
+  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-of-type {
+    padding-top: var(--header-offset-desktop, 144px);
+  }
+}
+
+/* ============================================
+   LEGACY HEADER SECTIONS (OLD FIGMA IMPORT)
+   These rules support the old fixed header system
+   from the original Figma import. They do not
+   interfere with the new GlobalHeader component.
+   ============================================ */
 
 /* Make header sections full width */
 .sticky-header-container [data-name="Header navigation / Main"],
@@ -50,16 +120,6 @@
   top: 0;
 }
 
-/* Add padding to body content to account for fixed headers */
-.sticky-header-container > div {
-  padding-top: 120px; /* 72px top header + 48px navigation */
-}
-
-/* Adjust padding when top header is hidden */
-.sticky-header-container.top-header-hidden > div {
-  padding-top: 48px; /* Just navigation height */
-}
-
 /* Ensure container contents are centered */
 .sticky-header-container [data-name="Container"] {
   margin-left: auto !important;
@@ -72,17 +132,18 @@
   max-width: 100vw !important;
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .sticky-header-container [data-name="Header navigation / Main"] {
-    height: auto;
-  }
-  
-  .sticky-header-container [data-name="Header navigation"] {
-    top: auto; /* Let it calculate based on top header */
-  }
-  
-  .sticky-header-container > div {
-    padding-top: 140px; /* Adjusted for mobile */
-  }
+/* ============================================
+   GLOBAL HEADER INTEGRATION
+   ============================================
+   The new GlobalHeader component uses position:
+   sticky and is managed by Header.css. No additional
+   padding needed on the container itself.
+   ============================================ */
+
+.sticky-header-container > div {
+  padding-top: 0;
+}
+
+.sticky-header-container.top-header-hidden > div {
+  padding-top: 0;
 }

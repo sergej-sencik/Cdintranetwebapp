@@ -1,5 +1,5 @@
 export const BREAKPOINTS = {
-  mobile: 767,
+  mobile: 900, // Mobile menu appears earlier to prevent overflow
   tablet: 1023,
   desktop: 1024,
 } as const;

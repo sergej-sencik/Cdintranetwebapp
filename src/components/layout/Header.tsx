@@ -24,17 +24,17 @@ export const Header: React.FC<GlobalHeaderProps> = ({
   userProfile, 
   navItems 
 }) => {
-  const { isMobile, isTablet, isDesktop } = useBreakpoint();
+  const { isDesktop } = useBreakpoint();
   
   return (
     <header className="header">
-      {isMobile && (
+      {!isDesktop && (
         <MobileHeader 
           notificationCount={notificationCount}
           userProfile={userProfile}
         />
       )}
-      {(isTablet || isDesktop) && (
+      {isDesktop && (
         <DesktopHeader 
           notificationCount={notificationCount}
           userProfile={userProfile}

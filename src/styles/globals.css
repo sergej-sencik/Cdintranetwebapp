@@ -504,11 +504,21 @@
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-family-body);
     font-size: var(--font-size-base);
+    margin: 0;
+    padding: 0;
   }
   
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Ensure root container has no spacing */
+  #root {
+    margin: 0;
+    padding: 0;
   }
   
   /* Focus visible styles */
@@ -790,9 +800,9 @@
    ============================================ */
 
 /* ============================================
-   MOBILE-ONLY UTILITIES (max-width: 767px)
+   MOBILE-ONLY UTILITIES (max-width: 900px)
    ============================================ */
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .mobile\:hidden { display: none !important; }
   .mobile\:block { display: block !important; }
   .mobile\:flex { display: flex !important; }

@@ -2,4 +2,259 @@
    DESKTOP HEADER COMPONENT STYLES
    ============================================ */
 
-/* No additional styles needed - uses global typography and component styles */
+/* ============================================
+   TOP HEADER SECTION (Logo + Search + User Profile)
+   ============================================ */
+
+.desktop-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  height: var(--nav-height-desktop);
+  padding: 0 2rem;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+
+.desktop-header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.desktop-header__logo img,
+.desktop-header__logo svg {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.desktop-header__logo:hover {
+  opacity: 0.8;
+  transition: opacity var(--transition-base) var(--ease-in-out);
+}
+
+/* ============================================
+   SEARCH SECTION
+   ============================================ */
+
+.desktop-header__search {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   NAVIGATION MENU (Bottom Section)
+   ============================================ */
+
+.desktop-header__nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  height: var(--nav-height-tablet);
+  padding: 0 2rem;
+  background-color: var(--color-brand-secondary);
+}
+
+.desktop-header__nav a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-family: var(--font-family-body);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-base) var(--ease-in-out),
+              color var(--transition-base) var(--ease-in-out);
+}
+
+.desktop-header__nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+}
+
+.desktop-header__nav a:active {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   ACTIONS SECTION (Notifications + User Profile)
+   ============================================ */
+
+.desktop-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS - DESKTOP ONLY
+   Desktop header is only used at >= 1024px
+   No tablet-specific rules needed
+   ============================================ */
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS - DESKTOP (1024px+)
+   ============================================ */
+
+@media (min-width: 1024px) {
+  .desktop-header {
+    height: var(--nav-height-desktop);
+  }
+  
+  .desktop-header__search {
+    max-width: 600px;
+  }
+  
+  .desktop-header__nav {
+    gap: 1.5rem;
+  }
+}
+
+/* ============================================
+   DESKTOP LARGE (1280px+)
+   ============================================ */
+
+@media (min-width: 1280px) {
+  .desktop-header {
+    padding: 0 2rem;
+  }
+  
+  .desktop-header__search {
+    max-width: 700px;
+  }
+  
+  .desktop-header__nav {
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+  
+  .desktop-header__nav a {
+    font-size: 0.9375rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY ENHANCEMENTS
+   ============================================ */
+
+/* Focus visible for keyboard navigation */
+.desktop-header__nav a:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.desktop-header__logo:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .desktop-header__nav,
+  .desktop-header__actions {
+    display: none;
+  }
+  
+  .desktop-header {
+    border-bottom: 2px solid #000;
+  }
+}
+
+/* ============================================
+   HIGH CONTRAST MODE
+   ============================================ */
+
+@media (prefers-contrast: high) {
+  .desktop-header {
+    border-bottom: 2px solid var(--border-strong);
+  }
+  
+  .desktop-header__nav {
+    background-color: #001840;
+  }
+  
+  .desktop-header__nav a:focus-visible {
+    outline-width: 3px;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop-header__logo,
+  .desktop-header__nav a {
+    transition: none;
+  }
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================ */
+
+.dark .desktop-header {
+  background-color: var(--color-gray-900);
+  border-bottom-color: var(--color-gray-700);
+}
+
+.dark .desktop-header__nav {
+  background-color: var(--color-gray-800);
+}
+
+.dark .desktop-header__nav a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   CONTAINER MAX-WIDTH CONSTRAINT
+   ============================================ */
+
+.desktop-header-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ============================================
+   STICKY HEADER VARIANT (optional)
+   ============================================ */
+
+.desktop-header--sticky {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  box-shadow: var(--elevation-sm);
+}
+
+.desktop-header--sticky.is-scrolled {
+  box-shadow: var(--elevation-md);
+}
+
+/* ============================================
+   UTILITY CLASSES FOR HEADER LAYOUT
+   ============================================ */
+
+.desktop-header__section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.desktop-header__divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--border-muted);
+}

@@ -1,0 +1,343 @@
+/* ============================================
+   MOBILE MENU COMPONENT STYLES
+   Slide-in navigation menu with accordion for mobile devices
+   ============================================ */
+
+/* ============================================
+   OVERLAY (Backdrop)
+   ============================================ */
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-modal-backdrop);
+  animation: fadeIn var(--transition-slow) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================
+   MOBILE MENU (Slide-in Panel)
+   ============================================ */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 85%;
+  max-width: 320px;
+  background-color: var(--background);
+  z-index: var(--z-modal);
+  overflow-y: auto;
+  animation: slideIn var(--transition-slow) var(--ease-out);
+  box-shadow: var(--elevation-xl);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================
+   MENU HEADER
+   ============================================ */
+
+.mobile-menu__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--background);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mobile-menu__header h2 {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--text-h4);
+  font-weight: var(--font-weight-medium);
+  color: var(--foreground);
+}
+
+/* Close Button */
+.mobile-menu__close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--foreground-muted);
+  transition: color var(--transition-base) var(--ease-in-out);
+  border-radius: var(--radius-sm);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu__close:hover {
+  color: var(--foreground);
+  background-color: var(--muted);
+}
+
+.mobile-menu__close:active {
+  background-color: var(--background-muted);
+}
+
+/* ============================================
+   MENU LIST (Accordion)
+   ============================================ */
+
+.mobile-menu__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu__item {
+  border-bottom: 1px solid var(--border-muted);
+}
+
+.mobile-menu__item:last-child {
+  border-bottom: none;
+}
+
+/* Main Item Button (for items with subitems) */
+.mobile-menu__item-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+  background: none;
+  border: none;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--foreground);
+  text-align: left;
+  min-height: var(--touch-target-min);
+  cursor: pointer;
+  transition: background-color var(--transition-fast) var(--ease-in-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu__item-button:hover {
+  background-color: var(--muted);
+}
+
+.mobile-menu__item-button:active {
+  background-color: var(--background-muted);
+}
+
+/* Main Item Link (for items without subitems) */
+.mobile-menu__item-link {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: var(--foreground);
+  text-decoration: none;
+  min-height: var(--touch-target-min);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  transition: background-color var(--transition-fast) var(--ease-in-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu__item-link:hover {
+  background-color: var(--muted);
+}
+
+.mobile-menu__item-link:active {
+  background-color: var(--background-muted);
+}
+
+/* Chevron Icon */
+.mobile-menu__chevron {
+  transition: transform var(--transition-base) var(--ease-in-out);
+  color: var(--foreground-muted);
+  flex-shrink: 0;
+}
+
+.mobile-menu__chevron--expanded {
+  transform: rotate(180deg);
+}
+
+/* ============================================
+   SUBITEMS (Accordion Content)
+   ============================================ */
+
+.mobile-menu__subitems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: var(--background-subtle);
+  border-top: 1px solid var(--border-muted);
+  animation: slideDown var(--transition-base) var(--ease-out);
+}
+
+.mobile-menu__subitem-link {
+  display: block;
+  padding: 0.75rem 1rem 0.75rem 2rem;
+  color: var(--foreground-muted);
+  text-decoration: none;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  transition: background-color var(--transition-fast) var(--ease-in-out),
+              color var(--transition-fast) var(--ease-in-out);
+  -webkit-tap-highlight-color: transparent;
+  min-height: var(--touch-target-min);
+  display: flex;
+  align-items: center;
+}
+
+.mobile-menu__subitem-link:hover {
+  background-color: var(--muted);
+  color: var(--foreground);
+}
+
+.mobile-menu__subitem-link:active {
+  background-color: var(--background-muted);
+}
+
+/* Focus visible for keyboard navigation */
+.mobile-menu__item-button:focus-visible,
+.mobile-menu__item-link:focus-visible,
+.mobile-menu__subitem-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+  background-color: var(--muted);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+/* For very small screens */
+@media (max-width: 374px) {
+  .mobile-menu {
+    width: 90%;
+  }
+  
+  .mobile-menu__header {
+    padding: 0.75rem;
+  }
+  
+  .mobile-menu__item-button,
+  .mobile-menu__item-link {
+    padding: 0.875rem 0.75rem;
+    font-size: var(--font-size-sm);
+  }
+  
+  .mobile-menu__subitem-link {
+    padding: 0.625rem 0.75rem 0.625rem 1.5rem;
+  }
+}
+
+/* For larger mobile screens */
+@media (min-width: 375px) and (max-width: 900px) {
+  .mobile-menu {
+    max-width: 300px;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY ENHANCEMENTS
+   ============================================ */
+
+/* Ensure touch targets meet WCAG guidelines */
+@media (hover: none) and (pointer: coarse) {
+  .mobile-menu__close,
+  .mobile-menu__item-button,
+  .mobile-menu__item-link,
+  .mobile-menu__subitem-link {
+    min-height: var(--touch-target-min);
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu-overlay,
+  .mobile-menu,
+  .mobile-menu__subitems {
+    animation-duration: 0.01ms;
+  }
+  
+  .mobile-menu__chevron {
+    transition: none;
+  }
+  
+  .mobile-menu__item-button,
+  .mobile-menu__item-link,
+  .mobile-menu__subitem-link {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .mobile-menu {
+    border-right: 2px solid var(--border-strong);
+  }
+  
+  .mobile-menu__item-button:focus-visible,
+  .mobile-menu__item-link:focus-visible,
+  .mobile-menu__subitem-link:focus-visible {
+    outline-width: 3px;
+  }
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================ */
+
+.dark .mobile-menu-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dark .mobile-menu {
+  box-shadow: 2px 0 16px rgba(0, 0, 0, 0.5);
+}
+
+.dark .mobile-menu__subitems {
+  background-color: var(--background-muted);
+}

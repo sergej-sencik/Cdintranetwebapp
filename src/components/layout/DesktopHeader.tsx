@@ -125,7 +125,10 @@ function Input() {
           size="md"
           className="border-0"
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => {
+            const value = typeof e === 'string' ? e : e.target.value;
+            setSearchQuery(value);
+          }}
           onFocus={() => setIsDropdownOpen(true)}
         />
       </div>
