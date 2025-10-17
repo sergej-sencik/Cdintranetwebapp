@@ -38,8 +38,8 @@
   /* Mobile/Tablet (< 1024px): 56px MobileHeader + 24px gap */
   --header-offset-mobile: 80px;
   
-  /* Desktop (>= 1024px): 120px DesktopHeader (72px top + 48px nav) + 24px gap */
-  --header-offset-desktop: 144px;
+  /* Desktop (>= 1024px): 118px DesktopHeader (72px top + 46px nav) + 24px gap */
+  --header-offset-desktop: 142px;
   
   /* ===== TOUCH TARGETS ===== */
   --touch-target-min: 44px;

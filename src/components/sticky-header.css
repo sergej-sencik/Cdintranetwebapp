@@ -3,16 +3,23 @@
    ============================================
    
    This file manages the layout integration between
-   the sticky header and page content with proper
-   responsive offsets.
+   the sticky header and page content.
    
    BREAKPOINT STRATEGY:
    - Mobile/Tablet: < 1024px    (uses MobileHeader)
    - Desktop:       >= 1024px   (uses DesktopHeader)
    
-   CSS VARIABLES USED (all maintain 24px gap):
-   - --header-offset-mobile:  80px  (56px MobileHeader + 24px)
-   - --header-offset-desktop: 144px (120px DesktopHeader + 24px)
+   STICKY POSITIONING:
+   The GlobalHeader component uses position:sticky
+   (configured in Header.css) and works on all breakpoints.
+   
+   SPACING STRATEGY:
+   Content needs padding-top = header height + desired gap
+   to prevent overlap with sticky header.
+   
+   CALCULATED OFFSETS:
+   - Mobile/Tablet: 80px  (56px MobileHeader + 24px gap)
+   - Desktop:       142px (118px DesktopHeader + 24px gap)
    
    ============================================ */
 
@@ -23,7 +30,7 @@
 .home-wrapper {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow: visible; /* Changed: allow sticky to work */
   margin: 0;
   padding: 0;
 }
@@ -32,27 +39,24 @@
   position: relative;
   margin: 0;
   padding: 0;
-}
-
-/* ============================================
-   SMOOTH TRANSITION FOR PADDING CHANGES
-   ============================================ */
-
-.sticky-header-container [data-name="Home"] > [data-name="Main"]:first-of-type {
-  transition: padding-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Ensure sticky positioning works properly */
+  overflow: visible;
 }
 
 /* ============================================
    CONTENT OFFSET - MOBILE/TABLET (< 1024px)
+   ============================================
+   MobileHeader height: 56px
+   Desired gap: 24px
+   Total offset: 80px
    ============================================ */
 
 @media (max-width: 1023px) {
-  /* Apply mobile header offset to first content section */
-  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-of-type {
-    padding-top: var(--header-offset-mobile, 80px);
+  .sticky-header-container [data-name="Home"] > [data-name="Main"] {
+    padding-top: 80px !important;
   }
   
-  /* Mobile-specific header adjustments */
+  /* Mobile-specific header adjustments for old Figma import */
   .sticky-header-container [data-name="Header navigation / Main"] {
     height: auto;
   }
@@ -64,12 +68,15 @@
 
 /* ============================================
    CONTENT OFFSET - DESKTOP (>= 1024px)
+   ============================================
+   DesktopHeader height: 118px (72px + 46px)
+   Desired gap: 24px
+   Total offset: 142px
    ============================================ */
 
 @media (min-width: 1024px) {
-  /* Apply desktop header offset to first content section */
-  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-of-type {
-    padding-top: var(--header-offset-desktop, 144px);
+  .sticky-header-container [data-name="Home"] > [data-name="Main"] {
+    padding-top: 142px !important;
   }
 }
 
@@ -136,14 +143,6 @@
    GLOBAL HEADER INTEGRATION
    ============================================
    The new GlobalHeader component uses position:
-   sticky and is managed by Header.css. No additional
-   padding needed on the container itself.
+   sticky and is managed by Header.css. Padding is
+   controlled by the media queries above.
    ============================================ */
-
-.sticky-header-container > div {
-  padding-top: 0;
-}
-
-.sticky-header-container.top-header-hidden > div {
-  padding-top: 0;
-}

@@ -1041,7 +1041,7 @@ function Container2() {
 
 function Main() {
   return (
-    <div className="bg-white box-border content-stretch flex flex-col gap-[24px] isolate items-center pb-0 pt-0 desktop:pt-[24px] px-0 relative shrink-0 w-full z-[4]" data-name="Main">
+    <div className="bg-white box-border content-stretch flex flex-col gap-[24px] isolate items-center pb-0 pt-[80px] desktop:pt-[142px] px-0 relative shrink-0 w-full z-[4]" data-name="Main">
       <Notifications />
       <HeaderSection />
       <Container2 />

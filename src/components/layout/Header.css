@@ -1,9 +1,20 @@
 /* ============================================
    HEADER COMPONENT STYLES
+   ============================================
+   
+   The header uses position: sticky to stay at the
+   top of the viewport on ALL breakpoints (mobile,
+   tablet, and desktop).
+   
+   STICKY BEHAVIOR:
+   - Mobile/Tablet (< 1024px): Uses MobileHeader
+   - Desktop (>= 1024px): Uses DesktopHeader
+   - Both maintain sticky positioning at all times
    ============================================ */
 
 .header {
   position: sticky;
+  position: -webkit-sticky; /* Safari support */
   top: 0;
   left: 0;
   right: 0;
