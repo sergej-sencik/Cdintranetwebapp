@@ -1,41 +1,57 @@
 /* ============================================
-   HEADER COMPONENT STYLES
-   ============================================
-   
-   The header uses position: sticky to stay at the
-   top of the viewport on ALL breakpoints (mobile,
-   tablet, and desktop).
-   
-   STICKY BEHAVIOR:
-   - Mobile/Tablet (< 1024px): Uses MobileHeader
-   - Desktop (>= 1024px): Uses DesktopHeader
-   - Both maintain sticky positioning at all times
+   HEADER COMPONENT - FIXED POSITIONING SYSTEM
    ============================================ */
 
-.header {
-  position: sticky;
-  position: -webkit-sticky; /* Safari support */
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: var(--z-sticky);
-  background: var(--background);
-  box-shadow: var(--elevation-sm);
-  margin: 0;
-  padding: 0;
+:root {
+  --header-height-mobile: 56px;
+  --nav-height-mobile: 24px;
+  --header-height-desktop: 72px;
+  --nav-height-desktop: 46px;
+  --content-gap: 24px;
+  --z-sticky: 1000;
 }
 
-/* Smooth fade transition when switching between mobile and desktop headers */
+/* MOBILE/TABLET: Convert sticky to fixed positioning */
+@media (max-width: 1023px) {
+  .header {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: var(--header-height-mobile);
+    z-index: var(--z-sticky);
+    background: var(--background);
+    box-shadow: var(--elevation-sm);
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* DESKTOP: Keep sticky for scroll behavior */
+@media (min-width: 1024px) {
+  .header {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: var(--header-height-desktop);
+    z-index: var(--z-sticky);
+    background: var(--background);
+    box-shadow: var(--elevation-sm);
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Smooth transitions */
 .header > * {
   animation: fadeIn 0.2s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

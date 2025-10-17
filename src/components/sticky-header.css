@@ -1,5 +1,5 @@
 /* ============================================
-   STICKY HEADER LAYOUT SYSTEM - TARGETED FIX
+   STICKY HEADER LAYOUT - CSS VARIABLE SYSTEM
    ============================================ */
 
 .home-wrapper {
@@ -18,61 +18,33 @@
 }
 
 /* ============================================
-   TARGET SPECIFIC MAIN WITH NOTIFICATIONS
-   ============================================
-   The Main component that contains Notifications
-   is the FIRST Main element in the DOM tree.
+   MOBILE/TABLET: Fixed header compensation
    ============================================ */
 
-/* MOBILE/TABLET: 56px + 24px = 80px */
 @media (max-width: 1023px) {
-  /* Target the FIRST Main element that contains Notifications */
-  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-child,
-  .sticky-header-container [data-name="Home"] > div:first-of-type[data-name="Main"] {
-    padding-top: 80px !important;
+  .sticky-header-container [data-section="notifications"] {
+    padding-top: calc(var(--header-height-mobile) + var(--nav-height-mobile) + var(--content-gap)) !important;
     margin-top: 0 !important;
   }
   
-  /* Alternative: Target Main with z-index 4 (from the component) */
-  .sticky-header-container [data-name="Main"][class*="z-[4]"] {
-    padding-top: 80px !important;
-  }
-  
-  /* Alternative: Target Main that directly contains Notifications */
-  .sticky-header-container [data-name="Main"]:has([data-name="Notifications"]) {
-    padding-top: 80px !important;
-  }
-
-  /* Disable legacy headers on mobile */
+  /* Disable internal header components that create duplicate headers */
   .sticky-header-container [data-name="Header navigation / Main"],
   .sticky-header-container [data-name="Header navigation"] {
-    position: static !important;
-    top: auto !important;
-    z-index: auto !important;
-    transform: none !important;
-    transition: none !important;
+    display: none !important;
   }
 }
 
-/* DESKTOP: 118px + 24px = 142px */
+/* ============================================
+   DESKTOP: Sticky header with scroll behavior
+   ============================================ */
+
 @media (min-width: 1024px) {
-  /* Target the FIRST Main element that contains Notifications */
-  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-child,
-  .sticky-header-container [data-name="Home"] > div:first-of-type[data-name="Main"] {
-    padding-top: 142px !important;
+  .sticky-header-container [data-section="notifications"] {
+    padding-top: calc(var(--header-height-desktop) + var(--nav-height-desktop) + var(--content-gap)) !important;
     margin-top: 0 !important;
   }
   
-  /* Alternative selectors */
-  .sticky-header-container [data-name="Main"][class*="z-[4]"] {
-    padding-top: 142px !important;
-  }
-  
-  .sticky-header-container [data-name="Main"]:has([data-name="Notifications"]) {
-    padding-top: 142px !important;
-  }
-
-  /* Desktop legacy header system */
+  /* Enable internal navigation for desktop scroll behavior */
   .sticky-header-container [data-name="Header navigation / Main"] {
     position: fixed;
     top: 0;
@@ -82,7 +54,7 @@
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: white;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-    height: 72px;
+    height: var(--header-height-desktop);
     width: 100% !important;
     max-width: 100vw !important;
   }
@@ -93,13 +65,13 @@
 
   .sticky-header-container [data-name="Header navigation"] {
     position: fixed;
-    top: 72px;
+    top: var(--header-height-desktop);
     left: 0;
     right: 0;
     z-index: 100;
     transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: #009fda;
-    height: 46px;
+    height: var(--nav-height-desktop);
     width: 100% !important;
     max-width: 100vw !important;
   }
@@ -110,15 +82,9 @@
 }
 
 /* ============================================
-   PREVENT SECOND MAIN FROM GETTING STYLES
+   UNIVERSAL CONTAINER FIXES
    ============================================ */
 
-/* Explicitly reset the second Main element */
-.sticky-header-container [data-name="Main"][class*="z-[2]"] {
-  padding-top: 80px !important; /* Keep original padding */
-}
-
-/* Universal container fixes */
 .sticky-header-container [data-name="Container"] {
   margin-left: auto !important;
   margin-right: auto !important;
@@ -127,26 +93,4 @@
 .sticky-header-container [data-name="Footer"] {
   width: 100% !important;
   max-width: 100vw !important;
-}
-
-/* ============================================
-   DEBUGGING - VISUAL INDICATORS
-   ============================================ */
-
-/* Target ONLY the first Main (notifications) */
-@media (max-width: 1023px) {
-  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-child {
-    border-top: 3px solid lime !important; /* Green = correct target */
-  }
-}
-
-@media (min-width: 1024px) {
-  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-child {
-    border-top: 3px solid lime !important; /* Green = correct target */
-  }
-}
-
-/* Visual indicator for wrong element (should stay red if still targeted) */
-.sticky-header-container [data-name="Main"][class*="z-[2]"] {
-  border-top: 3px solid orange !important; /* Orange = second main (ignore this) */
 }

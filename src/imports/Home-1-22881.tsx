@@ -1041,22 +1041,11 @@ function Container2() {
 }
 
 function Main() {
-  React.useEffect(() => {
-    const isDesktop = window.innerWidth >= 1024;
-    const padding = isDesktop ? '142px' : '80px';
-    
-    const element = document.querySelector('[data-section="notifications"]') as HTMLElement;
-    if (element) {
-      element.style.setProperty('padding-top', padding, 'important');
-    }
-  }, []);
-
   return (
     <div 
       className="bg-white box-border content-stretch flex flex-col gap-[24px] isolate items-center pb-0 pt-0 px-0 relative shrink-0 w-full z-[4]" 
       data-name="Main" 
       data-section="notifications"
-      style={{ paddingTop: window.innerWidth >= 1024 ? '142px' : '80px' }}
     >
       <Notifications />
       <HeaderSection />
