@@ -263,7 +263,7 @@ function Container({ notificationCount, userProfile }: { notificationCount?: num
 
 function HeaderNavigationMain({ notificationCount, userProfile }: { notificationCount?: number; userProfile?: UserProfileProps }) {
   return (
-    <div className="bg-white content-stretch flex flex-col items-center relative shrink-0 w-full z-[6]" data-name="Header navigation / Main">
+    <div className="bg-white content-stretch flex flex-col items-center relative shrink-0 w-full z-[10]" data-name="Header navigation / Main">
       <Container notificationCount={notificationCount} userProfile={userProfile} />
     </div>
   );
@@ -526,7 +526,7 @@ function Container1({ navItems }: HeaderNavigationProps) {
 
 function HeaderNavigation({ navItems }: HeaderNavigationProps) {
   return (
-    <div className="bg-[#002664] content-stretch flex flex-col items-center justify-center overflow-visible relative shrink-0 w-full z-[5]" data-name="Header navigation">
+    <div className="bg-[#009fda] content-stretch flex flex-col items-center justify-center overflow-visible relative shrink-0 w-full z-[9]" data-name="Header navigation">
       <Container1 navItems={navItems} />
     </div>
   );

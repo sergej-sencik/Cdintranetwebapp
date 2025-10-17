@@ -1,5 +1,5 @@
 /* ============================================
-   MOBILE HEADER COMPONENT STYLES
+   MOBILE HEADER COMPONENT STYLES - CORRECTED
    ============================================ */
 
 .mobile-header {
@@ -9,17 +9,18 @@
   overflow: visible;
   margin: 0;
   padding: 0;
+  min-height: 56px; /* Correct minimum height */
 }
 
 /* ============================================
-   TOP BAR
+   TOP BAR - CORRECTED HEIGHT
    ============================================ */
 
 .mobile-header__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--nav-height-mobile);
+  height: 56px; /* Changed from var(--nav-height-mobile) which was 24px */
   padding: 0 1rem;
   margin: 0;
   border-bottom: 1px solid var(--border);
@@ -28,302 +29,154 @@
 }
 
 /* ============================================
-   LOGO
+   LOGO SECTION
    ============================================ */
 
 .mobile-header__logo {
-  flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-decoration: none;
-  transition: opacity var(--transition-base) var(--ease-in-out);
-}
-
-.mobile-header__logo:hover {
-  opacity: 0.8;
-}
-
-.mobile-header__logo-mark {
-  display: flex;
-  align-items: center;
+  gap: 0.5rem;
   flex-shrink: 0;
 }
 
-.mobile-header__logo-svg {
-  height: 28px;
+.mobile-header__logo img,
+.mobile-header__logo svg {
+  height: 32px;
   width: auto;
-  display: block;
-}
-
-.mobile-header__logo-text {
-  font-family: var(--font-family-heading);
-  font-size: 18px;
-  font-weight: var(--font-weight-medium);
-  color: var(--color-blue-500);
-  line-height: 1;
-  white-space: nowrap;
 }
 
 /* ============================================
-   HAMBURGER MENU BUTTON
-   ============================================ */
-
-.mobile-header__menu-button {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  background: none;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-  min-width: var(--touch-target-min);
-  min-height: var(--touch-target-min);
-  align-items: center;
-  justify-content: center;
-  transition: opacity var(--transition-base) var(--ease-in-out);
-}
-
-.mobile-header__menu-button:hover {
-  opacity: 0.7;
-}
-
-.mobile-header__menu-button:active {
-  opacity: 0.5;
-}
-
-.hamburger-line {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: currentColor;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  border-radius: 2px;
-}
-
-.mobile-header__menu-button:hover .hamburger-line {
-  background-color: var(--color-primary, #0066cc);
-}
-
-/* ============================================
-   ACTIONS GROUP (Search, Notification, Avatar)
+   ACTIONS SECTION
    ============================================ */
 
 .mobile-header__actions {
   display: flex;
   align-items: center;
-  gap: 8px;
-  position: relative;
-  overflow: visible;
-}
-
-/* Search Toggle Button */
-.mobile-header__search-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: var(--touch-target-min);
-  min-height: var(--touch-target-min);
-  padding: 8px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--foreground-muted);
-  transition: color var(--transition-base) var(--ease-in-out), opacity var(--transition-base) var(--ease-in-out);
-}
-
-.mobile-header__search-toggle:hover {
-  color: var(--primary);
-  opacity: 0.8;
-}
-
-.mobile-header__search-toggle:active {
-  opacity: 0.6;
-}
-
-.mobile-header__icon {
-  width: 20px;
-  height: 20px;
-}
-
-/* Notification Badge */
-.mobile-header__notification {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: var(--touch-target-min);
-  min-height: var(--touch-target-min);
-}
-
-/* Avatar Button */
-.mobile-header__avatar-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: var(--touch-target-min);
-  min-height: var(--touch-target-min);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
-  transition: opacity var(--transition-base) var(--ease-in-out);
-  position: relative;
-}
-
-.mobile-header__avatar-button:hover {
-  opacity: 0.8;
-}
-
-.mobile-header__avatar-button:active {
-  opacity: 0.6;
-}
-
-.mobile-header__avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 0.5px solid rgba(0, 0, 0, 0.08);
-}
-
-.mobile-header__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Ensure dropdown appears above other elements */
-.mobile-header__avatar-button > div {
-  position: relative;
-  z-index: var(--z-dropdown);
+  gap: 0.5rem;
 }
 
 /* ============================================
-   SEARCH BAR (Collapsible)
+   NAVIGATION SECTION
    ============================================ */
 
-.mobile-header__search-bar {
-  position: relative;
-  padding: 8px 16px 12px;
+.mobile-header__nav {
+  display: none; /* Hidden by default, shown when menu is open */
+  flex-direction: column;
+  width: 100%;
   background: var(--background);
-  border-bottom: 1px solid var(--border);
-  animation: slideDown var(--transition-base) var(--ease-out);
+  border-top: 1px solid var(--border);
+  padding: 1rem;
+  gap: 0.5rem;
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.mobile-header__nav.is-open {
+  display: flex;
 }
 
-.mobile-header__search-input-wrapper {
-  position: relative;
-  width: 100%;
-}
+/* ============================================
+   MOBILE MENU BUTTON
+   ============================================ */
 
-/* Ensure consistent height with size="md" (40px) */
-.mobile-header__search-input-wrapper > div {
+.mobile-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
   height: 40px;
-}
-
-.mobile-header__search-input-wrapper input {
-  width: 100%;
-  height: 40px;
-  padding: 8px 12px;
-  border: 1px solid var(--border);
+  border: none;
+  background: transparent;
+  cursor: pointer;
   border-radius: var(--radius-sm);
-  font-size: 14px;
-  line-height: 1.5;
-  background: var(--input-background);
-  transition: border-color var(--transition-fast) var(--ease-in-out);
-  box-sizing: border-box;
+  transition: background-color var(--transition-base);
 }
 
-.mobile-header__search-input-wrapper input:focus {
-  outline: none;
-  border-color: var(--input-border-focus);
-  border-width: 2px;
-  padding: 7px 11px; /* Adjust padding to compensate for 2px border */
+.mobile-menu-button:hover {
+  background-color: var(--muted);
+}
+
+.mobile-menu-button:active {
+  background-color: var(--border);
 }
 
 /* ============================================
-   TOUCH TARGET OPTIMIZATION
+   ICON BUTTONS
    ============================================ */
 
-@media (hover: none) and (pointer: coarse) {
-  .mobile-header__menu-button,
-  .mobile-header__search-toggle,
-  .mobile-header__avatar-button {
-    min-height: var(--touch-target-min);
-  }
+.mobile-header__icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  color: var(--foreground);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.mobile-header__icon-button:hover {
+  background-color: var(--muted);
+}
+
+.mobile-header__icon-button:active {
+  background-color: var(--border);
+}
+
+/* Notification badge */
+.mobile-header__icon-button .notification-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--background);
 }
 
 /* ============================================
-   SMOOTH TRANSITIONS & TAP HIGHLIGHT
+   SEARCH BAR (if included in mobile header)
    ============================================ */
 
-.mobile-header * {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
-}
-
-/* Remove default button focus outline on mobile (replaced with visual feedback) */
-.mobile-header button:focus {
-  outline: none;
-}
-
-/* Add focus-visible for keyboard navigation */
-.mobile-header button:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
+.mobile-header__search {
+  padding: 0 1rem 1rem;
+  border-bottom: 1px solid var(--border);
 }
 
 /* ============================================
    RESPONSIVE ADJUSTMENTS
-   Mobile header is used for all screens < 1024px
-   (both phones and tablets)
    ============================================ */
 
-/* For very small screens (< 375px) */
-@media (max-width: 374px) {
+/* Extra small screens */
+@media (max-width: 375px) {
   .mobile-header__top {
     padding: 0 0.75rem;
   }
   
   .mobile-header__actions {
-    gap: 4px;
+    gap: 0.25rem;
   }
   
-  .mobile-header__logo-svg {
-    height: 24px;
-  }
-  
-  .mobile-header__logo-text {
-    font-size: 16px;
+  .mobile-header__icon-button,
+  .mobile-menu-button {
+    width: 36px;
+    height: 36px;
   }
 }
 
-/* For tablets (768px - 1023px) - slightly larger touch targets */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .mobile-header__top {
-    padding: 0 1.5rem;
-  }
-  
-  .mobile-header__actions {
-    gap: 12px;
-  }
-  
-  .mobile-header__logo-svg {
-    height: 32px;
-  }
-  
-  .mobile-header__logo-text {
-    font-size: 20px;
+/* Tablet - hide mobile header */
+@media (min-width: 1024px) {
+  .mobile-header {
+    display: none;
   }
 }

@@ -1,17 +1,22 @@
 /* ============================================
-   HEADER COMPONENT - FIXED POSITIONING SYSTEM
+   HEADER COMPONENT - CORRECTED VARIABLES
    ============================================ */
 
 :root {
-  --header-height-mobile: 56px;
-  --nav-height-mobile: 24px;
-  --header-height-desktop: 72px;
-  --nav-height-desktop: 46px;
-  --content-gap: 24px;
+  --header-height-mobile: 56px; /* Correct mobile header height */
+  --nav-height-mobile: 0px; /* No separate nav on mobile */
+  --header-height-desktop: 72px; /* Desktop top header */
+  --nav-height-desktop: 46px; /* Desktop navigation bar */
+  --content-gap: 24px; /* Gap between header and content */
   --z-sticky: 1000;
+  --background: white;
+  --elevation-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* MOBILE/TABLET: Convert sticky to fixed positioning */
+/* ============================================
+   MOBILE/TABLET: Fixed positioning
+   ============================================ */
+
 @media (max-width: 1023px) {
   .header {
     position: fixed !important;
@@ -28,7 +33,10 @@
   }
 }
 
-/* DESKTOP: Keep sticky for scroll behavior */
+/* ============================================
+   DESKTOP: Sticky positioning
+   ============================================ */
+
 @media (min-width: 1024px) {
   .header {
     position: sticky;
@@ -37,10 +45,9 @@
     left: 0;
     right: 0;
     width: 100%;
-    height: var(--header-height-desktop);
+    height: calc(var(--header-height-desktop) + var(--nav-height-desktop));
     z-index: var(--z-sticky);
     background: var(--background);
-    box-shadow: var(--elevation-sm);
     margin: 0;
     padding: 0;
   }

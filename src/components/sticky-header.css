@@ -1,5 +1,5 @@
 /* ============================================
-   STICKY HEADER LAYOUT - CSS VARIABLE SYSTEM
+   STICKY HEADER LAYOUT - SIMPLIFIED SYSTEM
    ============================================ */
 
 .home-wrapper {
@@ -18,71 +18,29 @@
 }
 
 /* ============================================
-   MOBILE/TABLET: Fixed header compensation
+   MOBILE/TABLET: Account for fixed header
    ============================================ */
 
 @media (max-width: 1023px) {
   .sticky-header-container [data-section="notifications"] {
-    padding-top: calc(var(--header-height-mobile) + var(--nav-height-mobile) + var(--content-gap)) !important;
-    margin-top: 0 !important;
-  }
-  
-  /* Disable internal header components that create duplicate headers */
-  .sticky-header-container [data-name="Header navigation / Main"],
-  .sticky-header-container [data-name="Header navigation"] {
-    display: none !important;
+    padding-top: calc(var(--header-height-mobile) + var(--content-gap)) !important;
+    /* = calc(56px + 24px) = 80px */
   }
 }
 
 /* ============================================
-   DESKTOP: Sticky header with scroll behavior
+   DESKTOP: Account for sticky header
    ============================================ */
 
 @media (min-width: 1024px) {
   .sticky-header-container [data-section="notifications"] {
     padding-top: calc(var(--header-height-desktop) + var(--nav-height-desktop) + var(--content-gap)) !important;
-    margin-top: 0 !important;
-  }
-  
-  /* Enable internal navigation for desktop scroll behavior */
-  .sticky-header-container [data-name="Header navigation / Main"] {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 101;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: white;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-    height: var(--header-height-desktop);
-    width: 100% !important;
-    max-width: 100vw !important;
-  }
-
-  .sticky-header-container.top-header-hidden [data-name="Header navigation / Main"] {
-    transform: translateY(-100%);
-  }
-
-  .sticky-header-container [data-name="Header navigation"] {
-    position: fixed;
-    top: var(--header-height-desktop);
-    left: 0;
-    right: 0;
-    z-index: 100;
-    transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: #009fda;
-    height: var(--nav-height-desktop);
-    width: 100% !important;
-    max-width: 100vw !important;
-  }
-
-  .sticky-header-container.top-header-hidden [data-name="Header navigation"] {
-    top: 0;
+    /* = calc(72px + 46px + 24px) = 142px */
   }
 }
 
 /* ============================================
-   UNIVERSAL CONTAINER FIXES
+   CONTAINER FIXES
    ============================================ */
 
 .sticky-header-container [data-name="Container"] {
@@ -90,7 +48,10 @@
   margin-right: auto !important;
 }
 
-.sticky-header-container [data-name="Footer"] {
-  width: 100% !important;
-  max-width: 100vw !important;
+/* ============================================
+   DEBUGGING - REMOVE AFTER TESTING
+   ============================================ */
+
+.sticky-header-container [data-section="notifications"] {
+  border-top: 3px solid lime !important;
 }
