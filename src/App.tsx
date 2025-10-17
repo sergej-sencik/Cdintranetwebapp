@@ -12,6 +12,21 @@ export default function App() {
   );
 
   useEffect(() => {
+    // Create aria-live region for header visibility announcements (accessibility)
+    const liveRegion = document.createElement('div');
+    liveRegion.id = 'cd-topbar-live';
+    liveRegion.setAttribute('aria-live', 'polite');
+    liveRegion.className = 'sr-only';
+    liveRegion.style.cssText = 'position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;';
+    document.body.appendChild(liveRegion);
+
+    return () => {
+      const existing = document.getElementById('cd-topbar-live');
+      if (existing) existing.remove();
+    };
+  }, []);
+
+  useEffect(() => {
     const handlePopState = () => {
       setCurrentPath(window.location.pathname);
     };

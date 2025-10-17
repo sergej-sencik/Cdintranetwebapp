@@ -1,4 +1,48 @@
 /* ============================================
+   DESKTOP HEADER - SCROLL BEHAVIOR
+   ============================================ */
+
+/* Top white bar behavior (HeaderNavigationMain) */
+.cd-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(0);
+  transition: transform 220ms cubic-bezier(0.2, 0, 0, 1);
+  will-change: transform;
+  /* preserves current z-index via class z-[10] */
+}
+
+/* State classes set on <html> by the hook */
+html.cd-topbar-hidden .cd-topbar {
+  transform: translateY(-100%);
+}
+
+html.cd-topbar-visible .cd-topbar {
+  transform: translateY(0);
+}
+
+/* Push the blue bar down so it sits under the white bar on desktop */
+@media (min-width: 1024px) {
+  /* White bar height is 72px per your layout */
+  .cd-bluebar-fixed {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    z-index: 9;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .cd-topbar {
+    transition: none;
+  }
+}
+
+/* ============================================
    DESKTOP HEADER COMPONENT STYLES
    ============================================ */
 
@@ -226,6 +270,23 @@
   max-width: var(--container-max-width);
   margin: 0 auto;
   width: 100%;
+}
+
+/* Desktop Header Styles */
+.desktop-header__container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Hide desktop header on mobile/tablet */
+@media (max-width: 1023px) {
+  .desktop-header,
+  .desktop-header__container,
+  .cd-topbar,
+  .cd-bluebar-fixed {
+    display: none;
+  }
 }
 
 /* ============================================

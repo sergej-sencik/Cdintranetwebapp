@@ -10,6 +10,44 @@ import { SearchSuggestionsDropdown } from '../ui/search-suggestions-dropdown';
 import imgAvatar from 'figma:asset/6bfd89ee2dda2c5201ce92bce759705f5ff2b894.png';
 import './DesktopHeader.css';
 
+/**
+ * Scroll behavior hook - shows header on scroll up, hides on scroll down
+ */
+function useShowOnScrollUp() {
+  const [show, setShow] = React.useState(true);
+  const lastScrollRef = React.useRef(0);
+  const tickingRef = React.useRef(false);
+
+  React.useEffect(() => {
+    const threshold = 8; // small jitter filter
+    const onScroll = () => {
+      if (tickingRef.current) return;
+      tickingRef.current = true;
+
+      requestAnimationFrame(() => {
+        const current = window.scrollY || 0;
+        const delta = current - lastScrollRef.current;
+
+        // Near top -> always show
+        if (current < 16) {
+          setShow(true);
+        } else if (Math.abs(delta) > threshold) {
+          // Down -> hide; Up -> show
+          setShow(delta < 0);
+        }
+
+        lastScrollRef.current = current;
+        tickingRef.current = false;
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return show;
+}
+
 // Logo Component
 function Logomark() {
   return (
@@ -263,7 +301,11 @@ function Container({ notificationCount, userProfile }: { notificationCount?: num
 
 function HeaderNavigationMain({ notificationCount, userProfile }: { notificationCount?: number; userProfile?: UserProfileProps }) {
   return (
-    <div className="bg-white content-stretch flex flex-col items-center relative shrink-0 w-full z-[10]" data-name="Header navigation / Main">
+    <div 
+      className="cd-topbar bg-white content-stretch flex flex-col items-center relative shrink-0 w-full z-[10]" 
+      data-name="Header navigation / Main"
+      aria-label="Primary header"
+    >
       <Container notificationCount={notificationCount} userProfile={userProfile} />
     </div>
   );
@@ -526,7 +568,10 @@ function Container1({ navItems }: HeaderNavigationProps) {
 
 function HeaderNavigation({ navItems }: HeaderNavigationProps) {
   return (
-    <div className="bg-[#009fda] content-stretch flex flex-col items-center justify-center overflow-visible relative shrink-0 w-full z-[9]" data-name="Header navigation">
+    <div 
+      className="cd-bluebar-fixed bg-[#009fda] content-stretch flex flex-col items-center justify-center overflow-visible relative shrink-0 w-full z-[9]" 
+      data-name="Header navigation"
+    >
       <Container1 navItems={navItems} />
     </div>
   );
@@ -553,6 +598,24 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({
   userProfile, 
   navItems 
 }) => {
+  const showTopBar = useShowOnScrollUp();
+
+  React.useEffect(() => {
+    // Toggle class on <html> for CSS-only animations and lower specificity
+    const root = document.documentElement;
+    if (showTopBar) {
+      root.classList.add('cd-topbar-visible');
+      root.classList.remove('cd-topbar-hidden');
+    } else {
+      root.classList.add('cd-topbar-hidden');
+      root.classList.remove('cd-topbar-visible');
+    }
+
+    // Announce visibility changes for screen readers
+    const live = document.getElementById('cd-topbar-live');
+    if (live) live.textContent = showTopBar ? 'Header shown' : 'Header hidden';
+  }, [showTopBar]);
+
   return (
     <>
       <HeaderNavigationMain notificationCount={notificationCount} userProfile={userProfile} />
