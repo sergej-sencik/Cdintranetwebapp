@@ -45,95 +45,45 @@
 
 /* ============================================
    CONTENT OFFSET - MOBILE/TABLET (< 1024px)
-   ============================================
-   MobileHeader height: 56px
-   Desired gap: 24px
-   Total offset: 80px
    ============================================ */
-
 @media (max-width: 1023px) {
-  .sticky-header-container [data-name="Home"] > [data-name="Main"] {
+  /* Use multiple selectors to ensure coverage */
+  .sticky-header-container [data-name="Main"]:first-child,
+  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-of-type {
     padding-top: 80px !important;
-  }
-  
-  /* Mobile-specific header adjustments for old Figma import */
-  .sticky-header-container [data-name="Header navigation / Main"] {
-    height: auto;
-  }
-  
-  .sticky-header-container [data-name="Header navigation"] {
-    top: auto;
   }
 }
 
 /* ============================================
    CONTENT OFFSET - DESKTOP (>= 1024px)
-   ============================================
-   DesktopHeader height: 118px (72px + 46px)
-   Desired gap: 24px
-   Total offset: 142px
    ============================================ */
-
 @media (min-width: 1024px) {
-  .sticky-header-container [data-name="Home"] > [data-name="Main"] {
+  /* Use multiple selectors to ensure coverage */
+  .sticky-header-container [data-name="Main"]:first-child,
+  .sticky-header-container [data-name="Home"] > [data-name="Main"]:first-of-type {
     padding-top: 142px !important;
   }
 }
 
 /* ============================================
-   LEGACY HEADER SECTIONS (OLD FIGMA IMPORT)
-   These rules support the old fixed header system
-   from the original Figma import. They do not
-   interfere with the new GlobalHeader component.
+   LEGACY HEADER CLEANUP - HIDE OLD HEADERS
+   ============================================
+   The old Figma import headers must be hidden
+   as they conflict with the new GlobalHeader
    ============================================ */
 
-/* Make header sections full width */
-.sticky-header-container [data-name="Header navigation / Main"],
-.sticky-header-container [data-name="Header navigation"] {
-  width: 100% !important;
-  max-width: 100vw !important;
+/* Hide ONLY standalone old headers, NOT those inside .header */
+.sticky-header-container > [data-name="Home"] > [data-name="Header navigation / Main"],
+.sticky-header-container > [data-name="Home"] > [data-name="Header navigation"] {
+  display: none !important;
 }
 
-/* Top header with logo - fixed, shows/hides on scroll */
-.sticky-header-container [data-name="Header navigation / Main"] {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 101;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: white;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-}
-
-/* Hide top header when scrolling down */
-.sticky-header-container.top-header-hidden [data-name="Header navigation / Main"] {
-  transform: translateY(-100%);
-}
-
-/* Bottom navigation - always visible, sticky */
-.sticky-header-container [data-name="Header navigation"] {
-  position: fixed;
-  top: 72px; /* Height of top header */
-  left: 0;
-  right: 0;
-  z-index: 100;
-  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: #009fda;
-}
-
-/* Move navigation to top when top header is hidden */
-.sticky-header-container.top-header-hidden [data-name="Header navigation"] {
-  top: 0;
-}
-
-/* Ensure container contents are centered */
+/* Keep footer and container rules */
 .sticky-header-container [data-name="Container"] {
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
-/* Make Footer full width */
 .sticky-header-container [data-name="Footer"] {
   width: 100% !important;
   max-width: 100vw !important;
