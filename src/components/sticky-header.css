@@ -1,22 +1,5 @@
 /* ============================================
-   STICKY HEADER LAYOUT SYSTEM - CORRECTED
-   ============================================
-   
-   This system manages BOTH the legacy Figma headers
-   AND the spacing for the GlobalHeader component.
-   
-   BREAKPOINT STRATEGY:
-   - Mobile/Tablet: < 1024px (MobileHeader: 56px)
-   - Desktop: >= 1024px (Legacy Figma system + DesktopHeader: 118px total)
-   
-   DESKTOP HEADER STRUCTURE:
-   - HeaderNavigationMain: 72px (show/hide on scroll)
-   - HeaderNavigation: 46px (always sticky)
-   - Total: 118px when both visible
-   ============================================ */
-
-/* ============================================
-   BASE CONTAINER STYLES
+   STICKY HEADER LAYOUT SYSTEM - HIGH SPECIFICITY
    ============================================ */
 
 .home-wrapper {
@@ -37,52 +20,99 @@
 /* ============================================
    CONTENT OFFSET - MOBILE/TABLET (< 1024px)
    ============================================
-   MobileHeader height: 56px
-   Desired gap: 24px
-   Total offset: 80px
+   CRITICAL: Multiple selectors with maximum specificity
+   MobileHeader height: 56px + 24px gap = 80px
    ============================================ */
 
 @media (max-width: 1023px) {
-  .sticky-header-container [data-name="Home"] > [data-name="Main"] {
+  /* Target all possible Main element variations */
+  .sticky-header-container [data-name="Home"] > [data-name="Main"],
+  .sticky-header-container [data-name="Main"],
+  .home-wrapper .sticky-header-container [data-name="Main"],
+  .home-wrapper .sticky-header-container [data-name="Home"] > [data-name="Main"] {
     padding-top: 80px !important;
+    margin-top: 0 !important;
   }
   
-  .sticky-header-container [data-name="Main"] {
+  /* Override any Tailwind classes */
+  .sticky-header-container [data-name="Main"][class*="pt-"],
+  .sticky-header-container [data-name="Home"] > [data-name="Main"][class*="pt-"] {
     padding-top: 80px !important;
   }
   
   /* Mobile header adjustments */
   .sticky-header-container [data-name="Header navigation / Main"] {
     height: auto;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: auto !important;
+    transform: none !important;
+    transition: none !important;
   }
   
   .sticky-header-container [data-name="Header navigation"] {
-    top: auto;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: auto !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 
 /* ============================================
    CONTENT OFFSET - DESKTOP (>= 1024px) 
    ============================================
-   DesktopHeader height: 118px (72px + 46px)
-   Desired gap: 24px
-   Total offset: 142px
+   DesktopHeader height: 118px + 24px gap = 142px
    ============================================ */
 
 @media (min-width: 1024px) {
-  .sticky-header-container [data-name="Home"] > [data-name="Main"] {
+  .sticky-header-container [data-name="Home"] > [data-name="Main"],
+  .sticky-header-container [data-name="Main"],
+  .home-wrapper .sticky-header-container [data-name="Main"],
+  .home-wrapper .sticky-header-container [data-name="Home"] > [data-name="Main"] {
     padding-top: 142px !important;
+    margin-top: 0 !important;
   }
-  
-  .sticky-header-container [data-name="Main"] {
-    padding-top: 142px !important;
+
+  /* Desktop legacy header system */
+  .sticky-header-container [data-name="Header navigation / Main"] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    height: 72px;
+  }
+
+  .sticky-header-container.top-header-hidden [data-name="Header navigation / Main"] {
+    transform: translateY(-100%);
+  }
+
+  .sticky-header-container [data-name="Header navigation"] {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #009fda;
+    height: 46px;
+  }
+
+  .sticky-header-container.top-header-hidden [data-name="Header navigation"] {
+    top: 0;
   }
 }
 
 /* ============================================
-   DESKTOP LEGACY HEADER SYSTEM (>= 1024px)
-   ============================================
-   Restore the scroll behavior for desktop headers
+   UNIVERSAL OVERRIDES
    ============================================ */
 
 /* Make header sections full width */
@@ -90,41 +120,6 @@
 .sticky-header-container [data-name="Header navigation"] {
   width: 100% !important;
   max-width: 100vw !important;
-}
-
-/* Top header with logo - fixed, shows/hides on scroll */
-.sticky-header-container [data-name="Header navigation / Main"] {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 101;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: white;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  height: 72px;
-}
-
-/* Hide top header when scrolling down */
-.sticky-header-container.top-header-hidden [data-name="Header navigation / Main"] {
-  transform: translateY(-100%);
-}
-
-/* Bottom navigation - always visible, sticky */
-.sticky-header-container [data-name="Header navigation"] {
-  position: fixed;
-  top: 72px; /* Height of top header */
-  left: 0;
-  right: 0;
-  z-index: 100;
-  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: #009fda;
-  height: 46px;
-}
-
-/* Move navigation to top when top header is hidden */
-.sticky-header-container.top-header-hidden [data-name="Header navigation"] {
-  top: 0;
 }
 
 /* Ensure container contents are centered */
@@ -140,28 +135,19 @@
 }
 
 /* ============================================
-   MOBILE LEGACY HEADER CLEANUP (< 1024px)
-   ============================================
-   On mobile, disable the legacy desktop headers
+   DEBUGGING - REMOVE AFTER FIXING
    ============================================ */
 
+/* Visual indicator for mobile/tablet */
 @media (max-width: 1023px) {
-  .sticky-header-container [data-name="Header navigation / Main"],
-  .sticky-header-container [data-name="Header navigation"] {
-    position: static !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    z-index: auto !important;
-    transform: none !important;
-    transition: none !important;
+  .sticky-header-container [data-name="Main"] {
+    border-top: 3px solid red !important; /* Temporary visual indicator */
   }
 }
 
-/* ============================================
-   GLOBAL HEADER INTEGRATION
-   ============================================
-   The new GlobalHeader component works alongside
-   the legacy system. On desktop, both systems
-   are active. On mobile, only GlobalHeader is used.
-   ============================================ */
+/* Visual indicator for desktop */
+@media (min-width: 1024px) {
+  .sticky-header-container [data-name="Main"] {
+    border-top: 3px solid blue !important; /* Temporary visual indicator */
+  }
+}

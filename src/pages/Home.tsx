@@ -8,6 +8,21 @@ export default function HomePage() {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
+    // Force correct padding on Main elements
+    const applyCorrectPadding = () => {
+      const mainElements = document.querySelectorAll('[data-name="Main"]');
+      const isDesktop = window.innerWidth >= 1024;
+      const correctPadding = isDesktop ? '142px' : '80px';
+      
+      mainElements.forEach(element => {
+        (element as HTMLElement).style.paddingTop = correctPadding;
+      });
+    };
+
+    // Apply on load and resize
+    applyCorrectPadding();
+    window.addEventListener('resize', applyCorrectPadding);
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
@@ -30,6 +45,7 @@ export default function HomePage() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('resize', applyCorrectPadding);
     };
   }, [lastScrollY]);
 
