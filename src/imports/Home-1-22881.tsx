@@ -1060,7 +1060,7 @@ function Main() {
         // Responsive padding
         isMobile ? "px-4 pt-6 pb-0" : 
         isTablet ? "px-6 pt-8 pb-0" :
-        "px-0 pt-0 pb-0",
+        "px-0 pt-6 pb-0",
         // Responsive gap
         isMobile ? "gap-[20px]" :
         isTablet ? "gap-[22px]" :
