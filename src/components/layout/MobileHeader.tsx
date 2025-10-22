@@ -11,7 +11,7 @@ import './MobileHeader.css';
 // Logo Component
 function Logo() {
   return (
-    <BrandLogo as="a" href="/" variant="full" height={28} className="mobile-header__logo" />
+    <BrandLogo as="a" href="/" height={28} className="mobile-header__logo" />
   );
 }
 

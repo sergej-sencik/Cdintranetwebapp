@@ -13,7 +13,6 @@ export const sidebarWidgets = {
   myDepartment: {
     title: "Muj odbor",
     banner: {
-      image: "figma:asset/ede06680139c4d3ba9eac84adb44e2a2c989b844.png",
       departmentName: "Odbor údržby a oprav",
       location: "Depo kolejových vozidel Plzeň",
       icon: "tool" as const

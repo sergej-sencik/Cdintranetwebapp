@@ -5,7 +5,7 @@ import { Logo as BrandLogo } from '../brand/Logo';
 // Logo Component
 function Logo2() {
   return (
-    <BrandLogo as="a" href="/" variant="full" height={29} className="relative shrink-0 w-full" />
+    <BrandLogo as="a" href="/" height={29} className="relative shrink-0 w-full" />
   );
 }
 

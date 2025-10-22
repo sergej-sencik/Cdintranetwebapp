@@ -35,14 +35,7 @@
 .mobile-header__logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   flex-shrink: 0;
-}
-
-.mobile-header__logo img,
-.mobile-header__logo svg {
-  height: 32px;
-  width: auto;
 }
 
 /* ============================================

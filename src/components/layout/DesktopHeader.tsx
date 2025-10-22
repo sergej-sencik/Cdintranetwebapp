@@ -58,7 +58,7 @@ function useShowOnScrollUp() {
 // Logo Component
 function Logo() {
   return (
-    <BrandLogo as="a" href="/" variant="full" height={32} className="relative shrink-0" />
+    <BrandLogo as="a" href="/" height={32} className="relative shrink-0" />
   );
 }
 

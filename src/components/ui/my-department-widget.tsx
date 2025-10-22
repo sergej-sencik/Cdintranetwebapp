@@ -31,7 +31,7 @@ import { cn } from './utils';
 export interface MyDepartmentWidgetProps {
   title: string;
   banner: {
-    image: string;
+    image?: string;
     departmentName: string;
     location: string;
     icon?: 'wrench' | 'tool';

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { MapPin, Wrench } from 'lucide-react';
 import { cn } from './utils';
+import defaultBannerImage from 'figma:asset/9215f134066b3de032bba87d884903c7367c0637.png';
 
 /**
  * Department Banner Component
@@ -21,8 +22,8 @@ import { cn } from './utils';
  */
 
 export interface DepartmentBannerProps {
-  /** Background image URL */
-  image: string;
+  /** Background image URL (optional - uses default train image if not provided) */
+  image?: string;
   /** Department name */
   departmentName: string;
   /** Location/workplace */
@@ -40,7 +41,7 @@ const iconComponents = {
 };
 
 export const DepartmentBanner = React.forwardRef<HTMLDivElement, DepartmentBannerProps>(
-  ({ image, departmentName, location, icon = 'tool', className }, ref) => {
+  ({ image = defaultBannerImage, departmentName, location, icon = 'tool', className }, ref) => {
     const IconComponent = iconComponents[icon];
 
     return (
