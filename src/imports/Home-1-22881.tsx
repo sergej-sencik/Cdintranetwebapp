@@ -657,10 +657,11 @@ function Notifications() {
   return (
     <div
       className={cn(
-        "content-stretch flex flex-col relative shrink-0 z-[3]",
-        isMobile ? "gap-4 items-stretch w-full" :
-        isTablet ? "gap-4 items-center" :
-        "gap-4 items-end"
+        "content-stretch flex flex-col relative shrink-0 z-[3] w-full",
+        // Remove extra spacing on desktop - let Main() padding control it
+        isMobile ? "gap-4 items-stretch px-4" :
+        isTablet ? "gap-4 items-center px-6" :
+        "gap-4 items-end px-8"
       )}
       data-name="Notifications"
     >
@@ -3916,7 +3917,7 @@ function TextAndSupportingText22() {
   return (
     <div className="content-stretch flex flex-col gap-[2px] items-start relative shrink-0 w-full" data-name="Text and supporting text">
       <p className="[white-space-collapse:collapse] font-['Roboto:Medium',_sans-serif] font-medium leading-[20px] overflow-ellipsis overflow-hidden relative shrink-0 text-[#252b37] text-[14px] text-nowrap w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        Rozpis směn a pohotovostí - Říjen 2025
+        Rozpis směn a pohotovost�� - Říjen 2025
       </p>
       <SupportingTextAndStatus4 />
     </div>
