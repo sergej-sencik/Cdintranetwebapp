@@ -657,27 +657,17 @@ function Notifications() {
   return (
     <div className="max-w-[1280px] relative shrink-0 w-full" data-name="NotificationsContainer">
       <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex flex-col gap-[24px] items-start max-w-inherit px-[32px] py-0 relative w-full">
-          <div
-            className={cn(
-              "content-stretch flex flex-col relative shrink-0 z-[3] w-full",
-              isMobile ? "gap-4 items-stretch" :
-              isTablet ? "gap-4 items-center" :
-              "gap-4 items-stretch" // Changed from "items-end" to "items-stretch" for proper alignment
-            )}
-            data-name="Notifications"
-          >
-            <Alert />
+        <div className="box-border content-stretch flex flex-col items-start max-w-inherit px-[32px] py-0 relative w-full gap-4">
+          <Alert />
 
-            <div className={isDesktop ? "flex justify-end" : "flex justify-center"}>
-              <CustomButton
-                variant="link-color"
-                size={isMobile ? "sm" : "md"}
-                rightIcon={<ChevronRight className={cn(isMobile ? "size-[16px]" : "size-[20px]")} />}
-              >
-                {isMobile ? "Všechna oznámení (4)" : "Zobrazit všechna oznámení (4)"}
-              </CustomButton>
-            </div>
+          <div className={isDesktop ? "flex justify-end w-full" : "flex justify-center w-full"}>
+            <CustomButton
+              variant="link-color"
+              size={isMobile ? "sm" : "md"}
+              rightIcon={<ChevronRight className={cn(isMobile ? "size-[16px]" : "size-[20px]")} />}
+            >
+              {isMobile ? "Všechna oznámení (4)" : "Zobrazit všechna oznámení (4)"}
+            </CustomButton>
           </div>
         </div>
       </div>
@@ -739,7 +729,7 @@ function Container1() {
 
 function HeaderSection() {
   return (
-    <div className="content-stretch flex flex-col gap-[24px] items-center relative shrink-0 w-full z-[2]" data-name="Header section">
+    <div className="content-stretch flex flex-col items-center relative shrink-0 w-full z-[2] mt-6" data-name="Header section">
       <Container1 />
     </div>
   );
@@ -1063,14 +1053,12 @@ function Main() {
     <div 
       className={cn(
         "bg-white box-border content-stretch flex flex-col isolate items-center relative shrink-0 w-full z-[4]",
-        // Reduce desktop top padding to get exactly 24px spacing
+        // Set exactly 24px top spacing for desktop
         isMobile ? "px-0 pt-6 pb-0" : 
         isTablet ? "px-0 pt-8 pb-0" :
-        "px-0 pt-3 pb-0", // Changed from pt-6 to pt-3 (12px) to account for container gaps
-        // Responsive gap
-        isMobile ? "gap-[20px]" :
-        isTablet ? "gap-[22px]" :
-        "gap-[12px]" // Reduced from 24px to 12px to achieve total 24px spacing
+        "px-0 pt-6 pb-0", // Back to pt-6 (24px)
+        // Remove gaps that cause accumulation
+        "gap-0" // NO GAP - let each component manage its own spacing
       )} 
       data-name="Main" 
       data-section="notifications"
