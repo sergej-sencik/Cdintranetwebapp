@@ -1,5 +1,6 @@
 import React from "react";
 import { X } from "lucide-react";
+import { cn } from "./utils";
 
 export interface NotificationCardProps {
   icon?: React.ReactNode;
@@ -10,6 +11,7 @@ export interface NotificationCardProps {
   href?: string;
   onClick?: () => void;
   className?: string;
+  mobileLayout?: boolean;
 }
 
 type CardWrapperProps = {
@@ -48,12 +50,18 @@ export function NotificationCard({
   href,
   onClick,
   className = "",
+  mobileLayout = false,
 }: NotificationCardProps) {
   return (
     <CardWrapper
       href={href}
       onClick={onClick}
-      className={`bg-card box-border content-stretch flex gap-[16px] items-start p-[16px] relative rounded-[4px] shrink-0 w-full group cursor-pointer transition-shadow duration-300 hover:elevation-hover ${className}`}
+      className={cn(
+        "bg-card box-border content-stretch relative rounded-[4px] shrink-0 w-full group transition-shadow duration-300",
+        mobileLayout ? "p-4" : "p-[16px]",
+        href || onClick ? "cursor-pointer hover:elevation-hover" : "",
+        className
+      )}
     >
       {/* Border and Shadow */}
       <div 
@@ -61,45 +69,47 @@ export function NotificationCard({
         className="absolute border border-border-muted border-solid inset-0 pointer-events-none rounded-[4px] elevation-sm" 
       />
       
-      {/* Icon */}
-      {icon && (
-        <div className="relative shrink-0 size-[20px] z-[1]">
-          {icon}
-        </div>
-      )}
-      
-      {/* Content */}
-      <div className="basis-0 content-stretch flex gap-[32px] grow items-start min-h-px min-w-px relative shrink-0 z-[1]">
-        {/* Text Content */}
-        <div className="basis-0 content-stretch flex flex-col gap-[4px] grow items-start min-h-px min-w-px relative shrink-0">
-          <div className="relative shrink-0 w-full">
-            <div className="size-full">
-              <div className="box-border content-stretch flex gap-[8px] items-start pl-0 pr-[32px] py-0 relative w-full">
-                <h5 
-                  className="basis-0 text-h5 grow min-h-px min-w-px relative shrink-0 text-card-foreground"
-                >
-                  {title}
-                </h5>
-              </div>
-            </div>
-          </div>
-          <p 
-            className="font-['Roboto:Regular',_sans-serif] font-normal leading-[22px] relative shrink-0 text-[color:var(--color-gray-600)] text-[16px] w-full" 
-            style={{ fontVariationSettings: "'wdth' 100" }}
-          >
-            {description}
-          </p>
-        </div>
-        
-        {/* Actions and Close Button */}
-        <div className="content-stretch flex gap-[8px] items-center relative shrink-0">
-          {actions && (
-            <div className="content-stretch flex gap-[12px] items-start relative shrink-0">
-              {actions}
+      <div className={cn(
+        "relative z-[1]",
+        mobileLayout ? "flex flex-col gap-4" : "flex gap-[16px] items-start"
+      )}>
+        {/* Icon and content wrapper */}
+        <div className={cn(
+          mobileLayout ? "flex gap-3 items-start w-full" : "contents"
+        )}>
+          {/* Icon */}
+          {icon && (
+            <div className="relative shrink-0 size-[20px]">
+              {icon}
             </div>
           )}
           
-          {onClose && (
+          {/* Text Content */}
+          <div className={cn(
+            "content-stretch flex flex-col gap-[4px] grow items-start relative shrink-0",
+            mobileLayout ? "flex-1 min-w-0" : "basis-0 min-h-px min-w-px"
+          )}>
+            <h5 
+              className={cn(
+                "grow relative shrink-0 text-card-foreground",
+                mobileLayout ? "text-[15px] leading-[21px] font-['Roboto:Medium',_sans-serif] font-medium" : "text-h5 basis-0 min-h-px min-w-px w-full"
+              )}
+            >
+              {title}
+            </h5>
+            <p 
+              className={cn(
+                "font-['Roboto:Regular',_sans-serif] font-normal relative shrink-0 text-[color:var(--color-gray-600)] w-full",
+                mobileLayout ? "text-[14px] leading-[20px]" : "text-[16px] leading-[22px]"
+              )}
+              style={{ fontVariationSettings: "'wdth' 100" }}
+            >
+              {description}
+            </p>
+          </div>
+          
+          {/* Close button for desktop */}
+          {!mobileLayout && onClose && (
             <button
               onClick={(e) => {
                 e.preventDefault();
@@ -110,6 +120,35 @@ export function NotificationCard({
               aria-label="Close notification"
             >
               <X className="size-[20px] text-muted-foreground" strokeWidth={1.66667} />
+            </button>
+          )}
+        </div>
+        
+        {/* Actions section */}
+        <div className={cn(
+          mobileLayout ? "flex justify-between items-center w-full" : "basis-0 content-stretch flex gap-[32px] grow items-start min-h-px min-w-px relative shrink-0"
+        )}>
+          {actions && (
+            <div className={cn(
+              "content-stretch flex gap-[12px] items-start relative shrink-0",
+              mobileLayout ? "flex-1" : ""
+            )}>
+              {actions}
+            </div>
+          )}
+          
+          {/* Close button for mobile */}
+          {mobileLayout && onClose && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onClose();
+              }}
+              className="box-border content-stretch flex items-center justify-center overflow-clip p-[8px] relative rounded-[4px] shrink-0 size-[36px] hover:bg-neutral-100 transition-colors duration-200 ml-3"
+              aria-label="Close notification"
+            >
+              <X className="size-[16px] text-muted-foreground" strokeWidth={1.66667} />
             </button>
           )}
         </div>

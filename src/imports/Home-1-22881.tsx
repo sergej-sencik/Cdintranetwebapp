@@ -1,7 +1,9 @@
 import React from "react";
 import svgPaths from "./svg-sjo69dtk3d";
 import { CustomButton } from "../components/ui/custom-button";
-import { ChevronRight as LucideChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { useBreakpoint } from "../hooks/useBreakpoint";
+import { cn } from "../components/ui/utils";
 import { MegaMenuContainer } from "../components/MegaMenu";
 import { HeaderNavButton } from "../components/ui/header-nav-button";
 import { ContentCard } from "../components/ui/content-card";
@@ -619,52 +621,69 @@ function Content5() {
 }
 
 function Alert() {
-  return (
-    <NotificationCard
-      icon={<FeaturedIconOutline />}
-      title="Nový bezpečnostní pokyn pro práci pod napětím"
-      description="Byl vydán nový předpis BP-04/25, který s platností od 1.10.2025 upravuje postupy při údržbě elektrických jednotek. Všichni technici jsou povinni potvrdit seznámení."
-      actions={
-        <CustomButton variant="primary" size="md">
-          Zobrazit předpis
-        </CustomButton>
-      }
-      onClose={() => console.log('Notification closed')}
-      className="max-w-[1216px]"
-    />
-  );
-}
+  const { isMobile, isTablet, isDesktop } = useBreakpoint();
 
-function ChevronRight() {
   return (
-    <div className="relative shrink-0 size-[20px]" data-name="chevron-right">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
-        <g id="chevron-right">
-          <path d="M7.5 15L12.5 10L7.5 5" id="Icon" stroke="var(--stroke-0, #009FDA)" strokeWidth="1.66667" />
-        </g>
-      </svg>
+    <div className={cn(
+      "relative w-full",
+      isMobile ? "max-w-full" :
+      isTablet ? "max-w-[calc(100vw-4rem)]" :
+      "max-w-[1216px]"
+    )}>
+      <NotificationCard
+        icon={<FeaturedIconOutline />}
+        title="Nový bezpečnostní pokyn pro práci pod napětím"
+        description="Byl vydán nový předpis BP-04/25, který s platností od 1.10.2025 upravuje postupy při údržbě elektrických jednotek. Všichni technici jsou povinni potvrdit seznámení."
+        actions={
+          <CustomButton 
+            variant="primary" 
+            size={isMobile ? "sm" : "md"}
+          >
+            {isMobile ? "Zobrazit" : "Zobrazit předpis"}
+          </CustomButton>
+        }
+        onClose={() => console.log('Notification closed')}
+        mobileLayout={isMobile}
+        className={cn(
+          "w-full",
+          isMobile ? "flex-col" : "flex-row"
+        )}
+      />
     </div>
   );
 }
 
-function ButtonsButton3() {
-  return (
-    <CustomButton 
-      variant="link-color" 
-      size="md"
-      rightIcon={<LucideChevronRight className="size-[20px]" />}
-      data-name="Buttons/Button"
-    >
-      Zobrazit všechna oznámení (4)
-    </CustomButton>
-  );
-}
+
 
 function Notifications() {
+  const { isMobile, isTablet, isDesktop } = useBreakpoint();
+
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-end relative shrink-0 z-[3]" data-name="Notifications">
+    <div className={cn(
+      "content-stretch flex flex-col relative shrink-0 z-[3]",
+      // Responsive gap
+      isMobile ? "gap-[16px]" : isTablet ? "gap-[18px]" : "gap-[16px]",
+      // Responsive alignment
+      isMobile ? "items-stretch" : isTablet ? "items-center" : "items-end",
+      // Responsive width
+      isMobile ? "w-full" : "w-auto"
+    )} data-name="Notifications">
       <Alert />
-      <ButtonsButton3 />
+      <div className={cn(
+        isMobile ? "flex justify-center w-full" : 
+        isTablet ? "flex justify-center" : 
+        "flex justify-end"
+      )}>
+        <CustomButton 
+          variant="link-color" 
+          size={isMobile ? "sm" : "md"}
+          rightIcon={<ChevronRight className={cn(
+            isMobile ? "size-[16px]" : "size-[20px]"
+          )} />}
+        >
+          {isMobile ? "Všechna oznámení (4)" : "Zobrazit všechna oznámení (4)"}
+        </CustomButton>
+      </div>
     </div>
   );
 }
@@ -1041,9 +1060,21 @@ function Container2() {
 }
 
 function Main() {
+  const { isMobile, isTablet, isDesktop } = useBreakpoint();
+
   return (
     <div 
-      className="bg-white box-border content-stretch flex flex-col gap-[24px] isolate items-center pb-0 pt-0 px-0 relative shrink-0 w-full z-[4]" 
+      className={cn(
+        "bg-white box-border content-stretch flex flex-col isolate items-center relative shrink-0 w-full z-[4]",
+        // Responsive padding
+        isMobile ? "px-4 pt-6 pb-0" : 
+        isTablet ? "px-6 pt-8 pb-0" :
+        "px-0 pt-0 pb-0",
+        // Responsive gap
+        isMobile ? "gap-[20px]" :
+        isTablet ? "gap-[22px]" :
+        "gap-[24px]"
+      )} 
       data-name="Main" 
       data-section="notifications"
     >
