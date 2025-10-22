@@ -128,6 +128,7 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --tracking-tight: -.025em;
+    --leading-tight: 1.25;
     --leading-relaxed: 1.625;
     --radius-xs: .125rem;
     --radius-sm: calc(var(--radius)  - 2px);
@@ -2805,7 +2806,7 @@
     vertical-align: middle;
   }
 
-  .font-\[\'CD_Fedra_Pro\'\,_sans-serif\] {
+  .font-\[\'CD_Fedra_Pro\'\,_sans-serif\], .font-\[\'CD_Fedra_Pro\'\,sans-serif\] {
     font-family: CD Fedra Pro, sans-serif;
   }
 
@@ -2817,7 +2818,7 @@
     font-family: Inter\:Bold, sans-serif;
   }
 
-  .font-\[\'Roboto\'\,_sans-serif\] {
+  .font-\[\'Roboto\'\,_sans-serif\], .font-\[\'Roboto\'\,sans-serif\] {
     font-family: Roboto, sans-serif;
   }
 
@@ -2972,6 +2973,11 @@
   .leading-none {
     --tw-leading: 1;
     line-height: 1;
+  }
+
+  .leading-tight {
+    --tw-leading: var(--leading-tight);
+    line-height: var(--leading-tight);
   }
 
   .font-bold {
@@ -4417,6 +4423,37 @@
     }
   }
 
+  @media (width >= 40rem) {
+    .sm\:gap-3 {
+      gap: calc(var(--spacing) * 3);
+    }
+  }
+
+  @media (width >= 40rem) {
+    .sm\:px-6 {
+      padding-inline: calc(var(--spacing) * 6);
+    }
+  }
+
+  @media (width >= 40rem) {
+    .sm\:text-\[15px\] {
+      font-size: 15px;
+    }
+  }
+
+  @media (width >= 40rem) {
+    .sm\:text-\[28px\] {
+      font-size: 28px;
+    }
+  }
+
+  @media (width >= 40rem) {
+    .sm\:leading-\[34px\] {
+      --tw-leading: 34px;
+      line-height: 34px;
+    }
+  }
+
   @media (width >= 48rem) {
     .md\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4445,6 +4482,31 @@
   @media (width >= 64rem) {
     .lg\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:px-8 {
+      padding-inline: calc(var(--spacing) * 8);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:text-\[16px\] {
+      font-size: 16px;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:text-\[30px\] {
+      font-size: 30px;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:leading-\[38px\] {
+      --tw-leading: 38px;
+      line-height: 38px;
     }
   }
 
