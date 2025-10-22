@@ -816,6 +816,10 @@
     margin-block: calc(var(--spacing) * 1);
   }
 
+  .-mt-\[22px\] {
+    margin-top: -22px;
+  }
+
   .mt-0\.5 {
     margin-top: calc(var(--spacing) * .5);
   }

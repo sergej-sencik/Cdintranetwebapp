@@ -1053,10 +1053,10 @@ function Main() {
     <div 
       className={cn(
         "bg-white box-border content-stretch flex flex-col isolate items-center relative shrink-0 w-full z-[4]",
-        // Set exact spacing for all breakpoints
+        // RADICAL FIX: Use negative margin to override all existing spacing
         isMobile ? "px-0 pt-6 pb-0" : 
         isTablet ? "px-0 pt-8 pb-0" :
-        "px-0 pt-[24px] pb-0", // FIXED: pt-[24px] for desktop
+        "px-0 pb-0 -mt-[22px]", // CHANGED: Force negative margin to get exact 24px result
         "gap-0"
       )} 
       data-name="Main" 
