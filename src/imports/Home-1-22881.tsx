@@ -623,33 +623,29 @@ function Content5() {
 function Alert() {
   const { isMobile, isTablet, isDesktop } = useBreakpoint();
 
+  const showPrimaryCta = isDesktop; // only show button on desktop
+
   return (
-    <div className={cn(
-      "relative w-full",
-      isMobile ? "max-w-full" :
-      isTablet ? "max-w-[calc(100vw-4rem)]" :
-      "max-w-[1216px]"
-    )}>
-      <NotificationCard
-        icon={<FeaturedIconOutline />}
-        title="Nový bezpečnostní pokyn pro práci pod napětím"
-        description="Byl vydán nový předpis BP-04/25, který s platností od 1.10.2025 upravuje postupy při údržbě elektrických jednotek. Všichni technici jsou povinni potvrdit seznámení."
-        actions={
-          <CustomButton 
-            variant="primary" 
-            size={isMobile ? "sm" : "md"}
-          >
-            {isMobile ? "Zobrazit" : "Zobrazit předpis"}
+    <NotificationCard
+      icon={<FeaturedIconOutline />}
+      title="Nový bezpečnostní pokyn pro práci pod napětím"
+      description="Byl vydán nový předpis BP-04/25, který s platností od 1.10.2025 upravuje postupy při údržbě elektrických jednotek. Všichni technici jsou povinni potvrdit seznámení."
+      actions={
+        showPrimaryCta ? (
+          <CustomButton variant="primary" size="md">
+            Zobrazit předpis
           </CustomButton>
-        }
-        onClose={() => console.log('Notification closed')}
-        mobileLayout={isMobile}
-        className={cn(
-          "w-full",
-          isMobile ? "flex-col" : "flex-row"
-        )}
-      />
-    </div>
+        ) : null
+      }
+      onClose={() => console.log("Notification closed")}
+      mobileLayout={isMobile || isTablet}
+      className={cn(
+        "w-full",
+        isMobile ? "max-w-full" :
+        isTablet ? "max-w-[calc(100vw-4rem)]" :
+        "max-w-[1216px]"
+      )}
+    />
   );
 }
 
@@ -659,27 +655,22 @@ function Notifications() {
   const { isMobile, isTablet, isDesktop } = useBreakpoint();
 
   return (
-    <div className={cn(
-      "content-stretch flex flex-col relative shrink-0 z-[3]",
-      // Responsive gap
-      isMobile ? "gap-[16px]" : isTablet ? "gap-[18px]" : "gap-[16px]",
-      // Responsive alignment
-      isMobile ? "items-stretch" : isTablet ? "items-center" : "items-end",
-      // Responsive width
-      isMobile ? "w-full" : "w-auto"
-    )} data-name="Notifications">
+    <div
+      className={cn(
+        "content-stretch flex flex-col relative shrink-0 z-[3]",
+        isMobile ? "gap-4 items-stretch w-full" :
+        isTablet ? "gap-4 items-center" :
+        "gap-4 items-end"
+      )}
+      data-name="Notifications"
+    >
       <Alert />
-      <div className={cn(
-        isMobile ? "flex justify-center w-full" : 
-        isTablet ? "flex justify-center" : 
-        "flex justify-end"
-      )}>
-        <CustomButton 
-          variant="link-color" 
+
+      <div className={isDesktop ? "flex justify-end" : "flex justify-center"}>
+        <CustomButton
+          variant="link-color"
           size={isMobile ? "sm" : "md"}
-          rightIcon={<ChevronRight className={cn(
-            isMobile ? "size-[16px]" : "size-[20px]"
-          )} />}
+          rightIcon={<ChevronRight className={cn(isMobile ? "size-[16px]" : "size-[20px]")} />}
         >
           {isMobile ? "Všechna oznámení (4)" : "Zobrazit všechna oznámení (4)"}
         </CustomButton>

@@ -864,10 +864,6 @@
     margin-bottom: 22px;
   }
 
-  .ml-3 {
-    margin-left: calc(var(--spacing) * 3);
-  }
-
   .box-border {
     box-sizing: border-box;
   }
@@ -888,10 +884,6 @@
 
   .block {
     display: block;
-  }
-
-  .contents {
-    display: contents;
   }
 
   .flex {
@@ -1746,10 +1738,6 @@
 
   .gap-\[17\.625px\] {
     gap: 17.625px;
-  }
-
-  .gap-\[18px\] {
-    gap: 18px;
   }
 
   .gap-\[20px\] {
