@@ -719,7 +719,7 @@ function Container1() {
   return (
     <div className="max-w-[1280px] relative shrink-0 w-full" data-name="Container">
       <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex flex-col gap-[20px] items-start max-w-inherit px-[32px] py-0 relative w-full">
+        <div className="box-border content-stretch flex flex-col gap-[20px] items-start max-w-inherit px-[32px] py-0 relative w-full mt-[0px] mr-[0px] mb-[24px] ml-[0px]">
           <PageHeader />
         </div>
       </div>
@@ -1053,10 +1053,10 @@ function Main() {
     <div 
       className={cn(
         "bg-white box-border content-stretch flex flex-col isolate items-center relative shrink-0 w-full z-[4]",
-        // Set exactly 24px top spacing for desktop
+        // Adjust top spacing for new header height (94px)
         isMobile ? "px-0 pt-6 pb-0" : 
         isTablet ? "px-0 pt-8 pb-0" :
-        "px-0 pt-6 pb-0", // Back to pt-6 (24px)
+        "px-0 pt-0 pb-0", // Remove desktop top padding - header height handles spacing
         // Remove gaps that cause accumulation
         "gap-0" // NO GAP - let each component manage its own spacing
       )} 

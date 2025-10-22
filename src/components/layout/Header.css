@@ -28,8 +28,8 @@
     left: 0;
     right: 0;
     z-index: var(--z-sticky);
-    /* Default height when both bars are visible (white 72px + blue 46px) */
-    height: 118px;
+    /* Reduced height: 48px (white bar) + 46px (blue bar) for better spacing */
+    height: 94px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     transition: height 260ms cubic-bezier(0.2, 0, 0, 1);
     will-change: height;
@@ -42,7 +42,7 @@
 
   /* When the white bar is visible, wrapper height expands back to full */
   html.cd-topbar-visible .header {
-    height: 118px;
+    height: 94px;
   }
 }
 
