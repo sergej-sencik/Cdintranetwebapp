@@ -880,6 +880,10 @@
     margin-bottom: 22px;
   }
 
+  .mb-\[24px\] {
+    margin-bottom: 24px;
+  }
+
   .ml-\[0px\] {
     margin-left: 0;
   }
@@ -6455,6 +6459,117 @@ html.cd-topbar-visible .cd-topbar {
 
 .animate-flicker {
   animation: 2s ease-in-out infinite flicker;
+}
+
+.section-spacing-y-sm {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (width >= 768px) {
+  .section-spacing-y-sm {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (width >= 1024px) {
+  .section-spacing-y-sm {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.section-spacing-y-md {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (width >= 768px) {
+  .section-spacing-y-md {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (width >= 1024px) {
+  .section-spacing-y-md {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.section-spacing-y-lg {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (width >= 768px) {
+  .section-spacing-y-lg {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media (width >= 1024px) {
+  .section-spacing-y-lg {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.section-spacing-y-xl {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (width >= 768px) {
+  .section-spacing-y-xl {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@media (width >= 1024px) {
+  .section-spacing-y-xl {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+.container-padding-responsive {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (width >= 768px) {
+  .container-padding-responsive {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (width >= 1024px) {
+  .container-padding-responsive {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.gap-responsive {
+  gap: 1rem;
+}
+
+@media (width >= 768px) {
+  .gap-responsive {
+    gap: 1.5rem;
+  }
+}
+
+@media (width >= 1024px) {
+  .gap-responsive {
+    gap: 2rem;
+  }
 }
 
 @property --tw-translate-x {

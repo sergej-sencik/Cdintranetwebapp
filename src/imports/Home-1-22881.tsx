@@ -19,6 +19,7 @@ import { BannerCarousel } from "../components/ui/banner-carousel";
 import { LinkCard, LinkCardIcon } from "../components/ui/link-card";
 import { Footer as GlobalFooter } from "../components/layout/Footer";
 import { Header as GlobalHeader } from "../components/layout/Header";
+import { PageContainer, ContentGrid, SectionHeader } from "../components/layout";
 import imgAvatar from "figma:asset/6bfd89ee2dda2c5201ce92bce759705f5ff2b894.png";
 import imgBanner from "figma:asset/ff9a737687b20c904b6f07bea2ba2278fb1a04dc.png";
 import imgImage from "figma:asset/90df4b7d02738ffcbc0f0ef17227253f8e8b7879.png";
@@ -727,9 +728,13 @@ function Container1() {
   );
 }
 
-function HeaderSection() {
+/**
+ * WelcomeHeader - Displays the welcome message with date
+ * Semantic replacement for HeaderSection() + Container1()
+ */
+function WelcomeHeader() {
   return (
-    <div className="content-stretch flex flex-col items-center relative shrink-0 w-full z-[2]" data-name="Header section">
+    <div className="content-stretch flex flex-col items-center relative shrink-0 w-full z-[2] mb-[24px]" data-name="Welcome Header">
       <Container1 />
     </div>
   );
@@ -1033,9 +1038,13 @@ function Metrics() {
   );
 }
 
-function Container2() {
+/**
+ * HeroBannerGrid - Grid layout for hero banner carousel and news preview
+ * Semantic replacement for Container2()
+ */
+function HeroBannerGrid() {
   return (
-    <div className="max-w-[1280px] relative shrink-0 w-full z-[1]" data-name="Container">
+    <div className="max-w-[1280px] relative shrink-0 w-full z-[1]" data-name="Hero Banner Grid">
       <div className="max-w-inherit size-full">
         <div className="box-border content-stretch flex gap-[32px] items-start max-w-inherit px-[32px] py-0 relative w-full">
           <Left />
@@ -1046,26 +1055,30 @@ function Container2() {
   );
 }
 
-function Main() {
+/**
+ * NotificationsSection - Top section containing notifications, welcome header, and hero banner
+ * Semantic replacement for Main() with improved naming
+ */
+function NotificationsSection() {
   const { isMobile, isTablet, isDesktop } = useBreakpoint();
 
   return (
-    <div 
+    <section 
       className={cn(
         "bg-white box-border content-stretch flex flex-col isolate items-center relative shrink-0 w-full z-[4]",
-        // RADICAL FIX: Use negative margin to override all existing spacing
+        // Responsive spacing with negative margin fix for desktop header alignment
         isMobile ? "px-0 pt-6 pb-0" : 
         isTablet ? "px-0 pt-8 pb-0" :
-        "px-0 pb-0 -mt-[22px]", // CHANGED: Force negative margin to get exact 24px result
+        "px-0 pb-0 -mt-[22px]",
         "gap-0"
       )} 
-      data-name="Main" 
       data-section="notifications"
+      aria-label="Notifications and welcome section"
     >
       <Notifications />
-      <HeaderSection />
-      <Container2 />
-    </div>
+      <WelcomeHeader />
+      <HeroBannerGrid />
+    </section>
   );
 }
 
@@ -1288,11 +1301,19 @@ function Container3() {
   );
 }
 
-function Section() {
+/**
+ * QuickLinksSection - Section displaying user's quick access links
+ * Semantic replacement for Section()
+ */
+function QuickLinksSection() {
   return (
-    <div className="bg-white box-border content-stretch flex flex-col gap-[24px] items-center px-0 py-[64px] relative shrink-0 w-full z-[3]" data-name="Section">
+    <section 
+      className="bg-white box-border content-stretch flex flex-col gap-[24px] items-center px-0 py-[64px] relative shrink-0 w-full z-[3]" 
+      data-section="quick-links"
+      aria-label="Quick links section"
+    >
       <Container3 />
-    </div>
+    </section>
   );
 }
 
@@ -4137,11 +4158,19 @@ function Section1() {
   );
 }
 
-function Main1() {
+/**
+ * MainContentSection - Main content area with news, events, and videos
+ * Semantic replacement for Main1()
+ */
+function MainContentSection() {
   return (
-    <div className="bg-[#f2fbff] box-border content-stretch flex flex-col gap-[32px] isolate items-start px-0 py-[80px] relative shrink-0 w-full z-[2]" data-name="Main">
+    <section 
+      className="bg-[#f2fbff] box-border content-stretch flex flex-col gap-[32px] isolate items-start px-0 py-[80px] relative shrink-0 w-full z-[2]" 
+      data-section="main-content"
+      aria-label="Main content section"
+    >
       <Section1 />
-    </div>
+    </section>
   );
 }
 
@@ -4910,14 +4939,24 @@ function Container6() {
   );
 }
 
+/**
+ * Home - Main homepage component with semantic section organization
+ * 
+ * Page structure:
+ * - NotificationsSection: Alerts, welcome message, hero banner
+ * - QuickLinksSection: User's personalized quick links
+ * - MainContentSection: Featured news, events, and videos
+ */
 export default function Home() {
   return (
-    <div className="bg-white content-stretch flex flex-col isolate items-start relative size-full" data-name="Home">
+    <main className="bg-white content-stretch flex flex-col isolate items-start relative size-full">
       <GlobalHeader notificationCount={4} />
-      <Main />
-      <Section />
-      <Main1 />
+      
+      <NotificationsSection />
+      <QuickLinksSection />
+      <MainContentSection />
+      
       <GlobalFooter />
-    </div>
+    </main>
   );
 }
