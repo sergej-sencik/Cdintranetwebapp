@@ -65,10 +65,11 @@ export function NotificationCard({
     >
       <div aria-hidden="true" className="absolute border border-border-muted inset-0 pointer-events-none rounded-[4px] elevation-sm" />
 
-      {/* Header row: icon + text + close (always top-right) */}
       <div className="relative z-[1] flex items-start gap-3">
+        {/* Icon */}
         {icon && <div className="relative shrink-0 size-[20px]">{icon}</div>}
-
+        
+        {/* Text Content */}
         <div className="flex-1 min-w-0">
           <h5
             className={cn(
@@ -91,6 +92,14 @@ export function NotificationCard({
           </p>
         </div>
 
+        {/* Desktop: Actions inline with text */}
+        {!mobileLayout && actions && (
+          <div className="flex items-center gap-2">
+            {actions}
+          </div>
+        )}
+
+        {/* Close button - always top-right */}
         {onClose && (
           <button
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); onClose(); }}
@@ -101,13 +110,6 @@ export function NotificationCard({
           </button>
         )}
       </div>
-
-      {/* Actions row — show only if actions passed (desktop only) */}
-      {actions && (
-        <div className="mt-4 flex items-center gap-3">
-          {actions}
-        </div>
-      )}
     </CardWrapper>
   );
 }
