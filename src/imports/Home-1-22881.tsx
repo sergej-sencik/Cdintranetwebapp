@@ -729,7 +729,7 @@ function Container1() {
 
 function HeaderSection() {
   return (
-    <div className="content-stretch flex flex-col items-center relative shrink-0 w-full z-[2] mt-6" data-name="Header section">
+    <div className="content-stretch flex flex-col items-center relative shrink-0 w-full z-[2]" data-name="Header section">
       <Container1 />
     </div>
   );
