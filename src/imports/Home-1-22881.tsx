@@ -731,42 +731,40 @@ function Container1() {
 /**
  * WelcomeHeader - Displays the welcome message with date
  * Semantic replacement for HeaderSection() + Container1()
- * Fully responsive with mobile/tablet/desktop breakpoints
+ * Matches HeroBannerGrid structure for consistent layout and spacing
  */
 function WelcomeHeader() {
   return (
-    <header 
-      className="w-full flex flex-col items-center mb-[24px] px-4 sm:px-6 lg:px-8 relative z-[2]"
-      role="banner" 
-      aria-label="Welcome header with date and greeting"
-    >
-      <div className="max-w-[1280px] w-full">
-        <div className="flex flex-col gap-2 sm:gap-3">
-          {/* Date section with calendar icon */}
-          <div className="flex items-center gap-[8px]">
-            <div className="relative shrink-0 size-[20px]" aria-hidden="true">
-              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
-                <g id="calendar-date">
-                  <path d={svgPaths.p76c4a00} id="Icon" stroke="var(--stroke-0, #009FDA)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.66667" />
-                </g>
-              </svg>
+    <div className="max-w-[1280px] relative shrink-0 w-full z-[2] mb-[24px]" data-name="Welcome Header" role="banner" aria-label="Welcome header with date and greeting">
+      <div className="max-w-inherit size-full">
+        <div className="box-border content-stretch flex flex-col gap-[20px] items-start max-w-inherit px-[32px] py-0 relative w-full">
+          <div className="content-stretch flex flex-col gap-[8px] items-start w-full">
+            {/* Date section with calendar icon */}
+            <div className="flex items-center gap-[8px]">
+              <div className="relative shrink-0 size-[20px]" aria-hidden="true">
+                <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
+                  <g id="calendar-date">
+                    <path d={svgPaths.p76c4a00} id="Icon" stroke="var(--stroke-0, #009FDA)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.66667" />
+                  </g>
+                </svg>
+              </div>
+              <time 
+                dateTime="2025-09-19" 
+                className="font-['Roboto',sans-serif] text-[#252b37] text-[16px] leading-[22px]"
+                style={{ fontVariationSettings: "'wdth' 100" }}
+              >
+                Pátek, 19. září 2025
+              </time>
             </div>
-            <time 
-              dateTime="2025-09-19" 
-              className="font-['Roboto',sans-serif] text-[#252b37] text-[14px] sm:text-[15px] lg:text-[16px] leading-[22px]"
-              style={{ fontVariationSettings: "'wdth' 100" }}
-            >
-              Pátek, 19. září 2025
-            </time>
+            
+            {/* Greeting heading */}
+            <h1 className="font-['CD_Fedra_Pro',sans-serif] font-medium text-card-foreground text-[30px] leading-[38px] w-full">
+              Dobrý den, Jan Novotný
+            </h1>
           </div>
-          
-          {/* Greeting heading */}
-          <h1 className="font-['CD_Fedra_Pro',sans-serif] font-medium text-card-foreground text-[24px] sm:text-[28px] lg:text-[30px] leading-tight sm:leading-[34px] lg:leading-[38px]">
-            Dobrý den, Jan Novotný
-          </h1>
         </div>
       </div>
-    </header>
+    </div>
   );
 }
 
