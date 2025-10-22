@@ -67,7 +67,7 @@ export function ContentCard({
     >
       {/* Image Container */}
       <div 
-        className="h-[130px] relative shrink-0 w-[196.364px] overflow-hidden" 
+        className="h-[130px] relative shrink-0 w-[140px] sm:w-[170px] lg:w-[196.364px] overflow-hidden" 
         data-name="Image"
         style={{ borderRadius: '4px' }}
       >

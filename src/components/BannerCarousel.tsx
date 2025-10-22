@@ -35,19 +35,19 @@ export function BannerCarousel({ images = [imgBanner], autoPlayInterval = 5000 }
   };
 
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full lg:w-[648px]">
-      <div className="h-[408px] relative rounded-[8px] shrink-0 w-full overflow-hidden">
+    <div className="w-full min-w-0 flex flex-col gap-[16px] items-start">
+      <div className="h-[280px] sm:h-[340px] lg:h-[408px] relative rounded-[8px] w-full overflow-hidden">
         <div className="absolute inset-0 pointer-events-none rounded-[8px]">
           <img
             alt="Banner"
-            className="absolute h-[107.19%] left-0 max-w-none top-[-0.41%] w-full object-cover"
+            className="absolute h-full w-full object-cover"
             src={images[0]}
           />
         </div>
         <div aria-hidden="true" className="absolute border border-[#e9eaeb] border-solid inset-0 pointer-events-none rounded-[8px]" />
       </div>
 
-      <div className="content-stretch flex gap-[16px] items-start justify-center relative shrink-0 w-full">
+      <div className="flex gap-[16px] items-center justify-center w-full">
         <button
           onClick={() => setIsPlaying(!isPlaying)}
           className="relative shrink-0 size-[20px] cursor-pointer hover:opacity-70 transition-opacity"
@@ -60,7 +60,7 @@ export function BannerCarousel({ images = [imgBanner], autoPlayInterval = 5000 }
           )}
         </button>
 
-        <div className="content-stretch flex gap-[16px] items-center relative shrink-0 w-[348px]">
+        <div className="flex gap-[16px] items-center max-w-[348px] w-full">
           <button
             onClick={prevSlide}
             className="relative shrink-0 size-[20px] cursor-pointer hover:opacity-70 transition-opacity"
@@ -69,12 +69,12 @@ export function BannerCarousel({ images = [imgBanner], autoPlayInterval = 5000 }
             <ChevronLeft className="size-full text-[#717680]" />
           </button>
 
-          <div className="basis-0 content-stretch flex gap-[12px] grow items-center min-h-px min-w-px relative shrink-0">
+          <div className="flex-1 min-w-0 flex gap-[12px] items-center">
             {Array.from({ length: totalSlides }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`basis-0 grow h-[4px] min-h-px min-w-px shrink-0 transition-colors cursor-pointer ${
+                className={`flex-1 min-w-0 h-[4px] transition-colors cursor-pointer ${
                   index === currentSlide ? "bg-[#009fda]" : "bg-[#e9eaeb] hover:bg-[#d5d7da]"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}

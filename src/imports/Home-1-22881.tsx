@@ -735,34 +735,30 @@ function Container1() {
  */
 function WelcomeHeader() {
   return (
-    <div className="max-w-[1280px] relative shrink-0 w-full z-[2] mb-[24px]" data-name="Welcome Header" role="banner" aria-label="Welcome header with date and greeting">
-      <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex flex-col gap-[20px] items-start max-w-inherit px-[32px] py-0 relative w-full">
-          <div className="content-stretch flex flex-col gap-[8px] items-start w-full">
-            {/* Date section with calendar icon */}
-            <div className="flex items-center gap-[8px]">
-              <div className="relative shrink-0 size-[20px]" aria-hidden="true">
-                <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
-                  <g id="calendar-date">
-                    <path d={svgPaths.p76c4a00} id="Icon" stroke="var(--stroke-0, #009FDA)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.66667" />
-                  </g>
-                </svg>
-              </div>
-              <time 
-                dateTime="2025-09-19" 
-                className="font-['Roboto',sans-serif] text-[#252b37] text-[16px] leading-[22px]"
-                style={{ fontVariationSettings: "'wdth' 100" }}
-              >
-                Pátek, 19. září 2025
-              </time>
-            </div>
-            
-            {/* Greeting heading */}
-            <h1 className="font-['CD_Fedra_Pro',sans-serif] font-medium text-card-foreground text-[30px] leading-[38px] w-full">
-              Dobrý den, Jan Novotný
-            </h1>
+    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 z-[2] mb-[24px]" data-name="Welcome Header" role="banner" aria-label="Welcome header with date and greeting">
+      <div className="flex flex-col gap-[8px] items-start w-full">
+        {/* Date section with calendar icon */}
+        <div className="flex items-center gap-[8px]">
+          <div className="relative shrink-0 size-[20px]" aria-hidden="true">
+            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
+              <g id="calendar-date">
+                <path d={svgPaths.p76c4a00} id="Icon" stroke="var(--stroke-0, #009FDA)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.66667" />
+              </g>
+            </svg>
           </div>
+          <time 
+            dateTime="2025-09-19" 
+            className="font-['Roboto',sans-serif] text-[#252b37] text-[16px] leading-[22px]"
+            style={{ fontVariationSettings: "'wdth' 100" }}
+          >
+            Pátek, 19. září 2025
+          </time>
         </div>
+        
+        {/* Greeting heading */}
+        <h1 className="font-['CD_Fedra_Pro',sans-serif] font-medium text-card-foreground text-[30px] leading-[38px] w-full">
+          Dobrý den, Jan Novotný
+        </h1>
       </div>
     </div>
   );
@@ -880,7 +876,7 @@ function Row() {
 
 function Left() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-[648px]" data-name="Left">
+    <div className="flex-1 min-w-0 w-full flex flex-col gap-[16px] items-start" data-name="Left">
       <BannerCarousel
         slides={[
           {
@@ -1058,7 +1054,7 @@ function NavMenuItemCard2() {
 
 function Metrics() {
   return (
-    <div className="content-stretch flex flex-col gap-[24px] items-start relative self-stretch shrink-0 w-[528px]" data-name="Metrics">
+    <div className="flex-1 min-w-0 w-full flex flex-col gap-[24px] items-start" data-name="Metrics">
       <NavMenuItemCard />
       <NavMenuItemCard1 />
       <NavMenuItemCard2 />
@@ -1070,15 +1066,14 @@ function Metrics() {
  * HeroBannerGrid - Grid layout for hero banner carousel and news preview
  * Semantic replacement for Container2()
  * Fully responsive: stacks on mobile/tablet, side-by-side on desktop
+ * Equal column widths on desktop using flex-1 min-w-0 pattern
  */
 function HeroBannerGrid() {
   return (
-    <div className="max-w-[1280px] relative shrink-0 w-full z-[1]" data-name="Hero Banner Grid">
-      <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch grid grid-cols-1 gap-y-8 md:gap-y-12 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-0 items-start max-w-inherit px-4 sm:px-6 lg:px-[32px] py-0 relative w-full">
-          <Left />
-          <Metrics />
-        </div>
+    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 z-[1]" data-name="Hero Banner Grid">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 w-full">
+        <Left />
+        <Metrics />
       </div>
     </div>
   );
