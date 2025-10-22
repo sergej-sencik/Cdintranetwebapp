@@ -1069,12 +1069,13 @@ function Metrics() {
 /**
  * HeroBannerGrid - Grid layout for hero banner carousel and news preview
  * Semantic replacement for Container2()
+ * Fully responsive: stacks on mobile/tablet, side-by-side on desktop
  */
 function HeroBannerGrid() {
   return (
     <div className="max-w-[1280px] relative shrink-0 w-full z-[1]" data-name="Hero Banner Grid">
       <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex gap-[32px] items-start max-w-inherit px-[32px] py-0 relative w-full">
+        <div className="box-border content-stretch grid grid-cols-1 gap-y-8 md:gap-y-12 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-0 items-start max-w-inherit px-4 sm:px-6 lg:px-[32px] py-0 relative w-full">
           <Left />
           <Metrics />
         </div>
