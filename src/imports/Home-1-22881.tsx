@@ -1053,12 +1053,11 @@ function Main() {
     <div 
       className={cn(
         "bg-white box-border content-stretch flex flex-col isolate items-center relative shrink-0 w-full z-[4]",
-        // Adjust top spacing for new header height (94px)
+        // Remove pt-6 for desktop to avoid conflict with header margin
         isMobile ? "px-0 pt-6 pb-0" : 
         isTablet ? "px-0 pt-8 pb-0" :
-        "px-0 pt-0 pb-0", // Remove desktop top padding - header height handles spacing
-        // Remove gaps that cause accumulation
-        "gap-0" // NO GAP - let each component manage its own spacing
+        "px-0 pt-0 pb-0", // CHANGED: pt-6 → pt-0 for desktop
+        "gap-0"
       )} 
       data-name="Main" 
       data-section="notifications"
