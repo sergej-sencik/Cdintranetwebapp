@@ -864,16 +864,16 @@
     margin-bottom: calc(var(--spacing) * 6);
   }
 
+  .mb-\[0px\] {
+    margin-bottom: 0;
+  }
+
   .mb-\[16px\] {
     margin-bottom: 16px;
   }
 
   .mb-\[22px\] {
     margin-bottom: 22px;
-  }
-
-  .mb-\[24px\] {
-    margin-bottom: 24px;
   }
 
   .ml-\[0px\] {

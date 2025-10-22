@@ -719,7 +719,7 @@ function Container1() {
   return (
     <div className="max-w-[1280px] relative shrink-0 w-full" data-name="Container">
       <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex flex-col gap-[20px] items-start max-w-inherit px-[32px] py-0 relative w-full mt-[0px] mr-[0px] mb-[24px] ml-[0px]">
+        <div className="box-border content-stretch flex flex-col gap-[20px] items-start max-w-inherit px-[32px] py-0 relative w-full mt-[0px] mr-[0px] mb-[0px] ml-[0px]">
           <PageHeader />
         </div>
       </div>
