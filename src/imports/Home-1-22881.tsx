@@ -655,26 +655,31 @@ function Notifications() {
   const { isMobile, isTablet, isDesktop } = useBreakpoint();
 
   return (
-    <div
-      className={cn(
-        "content-stretch flex flex-col relative shrink-0 z-[3] w-full",
-        // Remove extra spacing on desktop - let Main() padding control it
-        isMobile ? "gap-4 items-stretch px-4" :
-        isTablet ? "gap-4 items-center px-6" :
-        "gap-4 items-end px-8"
-      )}
-      data-name="Notifications"
-    >
-      <Alert />
+    <div className="max-w-[1280px] relative shrink-0 w-full" data-name="NotificationsContainer">
+      <div className="max-w-inherit size-full">
+        <div className="box-border content-stretch flex flex-col gap-[24px] items-start max-w-inherit px-[32px] py-0 relative w-full">
+          <div
+            className={cn(
+              "content-stretch flex flex-col relative shrink-0 z-[3] w-full",
+              isMobile ? "gap-4 items-stretch" :
+              isTablet ? "gap-4 items-center" :
+              "gap-4 items-stretch" // Changed from "items-end" to "items-stretch" for proper alignment
+            )}
+            data-name="Notifications"
+          >
+            <Alert />
 
-      <div className={isDesktop ? "flex justify-end" : "flex justify-center"}>
-        <CustomButton
-          variant="link-color"
-          size={isMobile ? "sm" : "md"}
-          rightIcon={<ChevronRight className={cn(isMobile ? "size-[16px]" : "size-[20px]")} />}
-        >
-          {isMobile ? "Všechna oznámení (4)" : "Zobrazit všechna oznámení (4)"}
-        </CustomButton>
+            <div className={isDesktop ? "flex justify-end" : "flex justify-center"}>
+              <CustomButton
+                variant="link-color"
+                size={isMobile ? "sm" : "md"}
+                rightIcon={<ChevronRight className={cn(isMobile ? "size-[16px]" : "size-[20px]")} />}
+              >
+                {isMobile ? "Všechna oznámení (4)" : "Zobrazit všechna oznámení (4)"}
+              </CustomButton>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -1058,14 +1063,14 @@ function Main() {
     <div 
       className={cn(
         "bg-white box-border content-stretch flex flex-col isolate items-center relative shrink-0 w-full z-[4]",
-        // Responsive padding
-        isMobile ? "px-4 pt-6 pb-0" : 
-        isTablet ? "px-6 pt-8 pb-0" :
-        "px-0 pt-6 pb-0",
+        // Reduce desktop top padding to get exactly 24px spacing
+        isMobile ? "px-0 pt-6 pb-0" : 
+        isTablet ? "px-0 pt-8 pb-0" :
+        "px-0 pt-3 pb-0", // Changed from pt-6 to pt-3 (12px) to account for container gaps
         // Responsive gap
         isMobile ? "gap-[20px]" :
         isTablet ? "gap-[22px]" :
-        "gap-[24px]"
+        "gap-[12px]" // Reduced from 24px to 12px to achieve total 24px spacing
       )} 
       data-name="Main" 
       data-section="notifications"
