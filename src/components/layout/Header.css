@@ -44,11 +44,6 @@
   html.cd-topbar-visible .header {
     height: 94px;
   }
-
-  /* Creates 24px spacing after header on desktop */
-  .header + * {
-    margin-top: 24px !important;
-  }
 }
 
 /* ============================================

@@ -1053,10 +1053,10 @@ function Main() {
     <div 
       className={cn(
         "bg-white box-border content-stretch flex flex-col isolate items-center relative shrink-0 w-full z-[4]",
-        // Remove pt-6 for desktop to avoid conflict with header margin
+        // Set exact spacing for all breakpoints
         isMobile ? "px-0 pt-6 pb-0" : 
         isTablet ? "px-0 pt-8 pb-0" :
-        "px-0 pt-0 pb-0", // CHANGED: pt-6 → pt-0 for desktop
+        "px-0 pt-[24px] pb-0", // FIXED: pt-[24px] for desktop
         "gap-0"
       )} 
       data-name="Main" 
