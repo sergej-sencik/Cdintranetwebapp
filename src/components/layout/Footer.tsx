@@ -690,11 +690,9 @@ function Content43() {
 
 function Container5() {
   return (
-    <div className="max-w-[1280px] relative shrink-0 w-full" data-name="Container">
-      <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex flex-col gap-[48px] items-start max-w-inherit px-[32px] py-0 relative w-full">
-          <Content43 />
-        </div>
+    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8" data-name="Container">
+      <div className="flex flex-col gap-[48px] items-start w-full">
+        <Content43 />
       </div>
     </div>
   );
@@ -806,11 +804,9 @@ function Content44() {
 
 function Container6() {
   return (
-    <div className="max-w-[1280px] relative shrink-0 w-full" data-name="Container">
-      <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex flex-col gap-[32px] items-start max-w-inherit px-[32px] py-0 relative w-full">
-          <Content44 />
-        </div>
+    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8" data-name="Container">
+      <div className="flex flex-col gap-[32px] items-start w-full">
+        <Content44 />
       </div>
     </div>
   );

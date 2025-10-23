@@ -263,13 +263,11 @@ function Content3({ notificationCount, userProfile }: { notificationCount?: numb
 // Top Header Container
 function Container({ notificationCount, userProfile }: { notificationCount?: number; userProfile?: UserProfileProps }) {
   return (
-    <div className="h-[72px] max-w-[1280px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-row items-center max-w-inherit size-full">
-        <div className="box-border content-stretch flex h-[72px] items-center justify-between max-w-inherit px-[32px] py-0 relative w-full">
-          <Content />
-          <Select />
-          <Content3 notificationCount={notificationCount} userProfile={userProfile} />
-        </div>
+    <div className="h-[72px] max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8" data-name="Container">
+      <div className="flex h-[72px] items-center justify-between w-full">
+        <Content />
+        <Select />
+        <Content3 notificationCount={notificationCount} userProfile={userProfile} />
       </div>
     </div>
   );

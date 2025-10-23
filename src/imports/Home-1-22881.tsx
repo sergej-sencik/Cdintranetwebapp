@@ -656,20 +656,18 @@ function Notifications() {
   const { isMobile, isTablet, isDesktop } = useBreakpoint();
 
   return (
-    <div className="max-w-[1280px] relative shrink-0 w-full" data-name="NotificationsContainer">
-      <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex flex-col items-start max-w-inherit px-[32px] py-0 relative w-full gap-4">
-          <Alert />
+    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8" data-name="NotificationsContainer">
+      <div className="flex flex-col items-start w-full gap-4">
+        <Alert />
 
-          <div className={isDesktop ? "flex justify-end w-full" : "flex justify-center w-full"}>
-            <CustomButton
-              variant="link-color"
-              size={isMobile ? "sm" : "md"}
-              rightIcon={<ChevronRight className={cn(isMobile ? "size-[16px]" : "size-[20px]")} />}
-            >
-              {isMobile ? "Všechna oznámení (4)" : "Zobrazit všechna oznámení (4)"}
-            </CustomButton>
-          </div>
+        <div className={isDesktop ? "flex justify-end w-full" : "flex justify-center w-full"}>
+          <CustomButton
+            variant="link-color"
+            size={isMobile ? "sm" : "md"}
+            rightIcon={<ChevronRight className={cn(isMobile ? "size-[16px]" : "size-[20px]")} />}
+          >
+            {isMobile ? "Všechna oznámení (4)" : "Zobrazit všechna oznámení (4)"}
+          </CustomButton>
         </div>
       </div>
     </div>
@@ -718,11 +716,9 @@ function PageHeader() {
 
 function Container1() {
   return (
-    <div className="max-w-[1280px] relative shrink-0 w-full" data-name="Container">
-      <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex flex-col gap-[20px] items-start max-w-inherit px-[32px] py-0 relative w-full mt-[0px] mr-[0px] mb-[0px] ml-[0px]">
-          <PageHeader />
-        </div>
+    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8" data-name="Container">
+      <div className="flex flex-col gap-[20px] items-start w-full">
+        <PageHeader />
       </div>
     </div>
   );
@@ -1067,11 +1063,12 @@ function Metrics() {
  * Semantic replacement for Container2()
  * Fully responsive: stacks on mobile/tablet, side-by-side on desktop
  * Equal column widths on desktop using flex-1 min-w-0 pattern
+ * Desktop column gap: exactly 32px (lg:gap-x-[32px])
  */
 function HeroBannerGrid() {
   return (
     <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 z-[1]" data-name="Hero Banner Grid">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-8 lg:gap-x-[32px] lg:gap-y-0 w-full">
         <Left />
         <Metrics />
       </div>
@@ -1315,11 +1312,9 @@ function Content8() {
 
 function Container3() {
   return (
-    <div className="max-w-[1280px] relative shrink-0 w-full" data-name="Container">
-      <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex gap-[32px] items-start max-w-inherit px-[32px] py-0 relative w-full">
-          <Content8 />
-        </div>
+    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8" data-name="Container">
+      <div className="flex gap-[32px] items-start w-full">
+        <Content8 />
       </div>
     </div>
   );
@@ -4164,11 +4159,9 @@ function Content42() {
 
 function Container4() {
   return (
-    <div className="max-w-[1280px] relative shrink-0 w-full" data-name="Container">
-      <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex flex-col gap-[24px] items-start max-w-inherit px-[32px] py-0 relative w-full">
-          <Content42 />
-        </div>
+    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8" data-name="Container">
+      <div className="flex flex-col gap-[24px] items-start w-full">
+        <Content42 />
       </div>
     </div>
   );
@@ -4834,11 +4827,9 @@ function Content43() {
 
 function Container5() {
   return (
-    <div className="max-w-[1280px] relative shrink-0 w-full" data-name="Container">
-      <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex flex-col gap-[48px] items-start max-w-inherit px-[32px] py-0 relative w-full">
-          <Content43 />
-        </div>
+    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8" data-name="Container">
+      <div className="flex flex-col gap-[48px] items-start w-full">
+        <Content43 />
       </div>
     </div>
   );
@@ -4953,11 +4944,9 @@ function Content44() {
 
 function Container6() {
   return (
-    <div className="max-w-[1280px] relative shrink-0 w-full" data-name="Container">
-      <div className="max-w-inherit size-full">
-        <div className="box-border content-stretch flex flex-col gap-[32px] items-start max-w-inherit px-[32px] py-0 relative w-full">
-          <Content44 />
-        </div>
+    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8" data-name="Container">
+      <div className="flex flex-col gap-[32px] items-start w-full">
+        <Content44 />
       </div>
     </div>
   );
