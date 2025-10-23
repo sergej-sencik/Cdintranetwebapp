@@ -17,6 +17,7 @@ import { PageBlockHeader, PAGE_BLOCK_HEADER_BUTTON_SIZE } from "../components/ui
 import { FeaturedNewsSection, UpcomingEventsSection, LatestVideosSection } from "../components/sections";
 import { BannerCarousel } from "../components/ui/banner-carousel";
 import { LinkCard, LinkCardIcon } from "../components/ui/link-card";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from "../components/ui/carousel";
 import { Footer as GlobalFooter } from "../components/layout/Footer";
 import { Header as GlobalHeader } from "../components/layout/Header";
 import { PageContainer, ContentGrid, SectionHeader } from "../components/layout";
@@ -1258,45 +1259,168 @@ function Gift01Icon() {
 
 
 
+/**
+ * Metrics1 - Responsive Quick Links Grid/Carousel
+ * 
+ * Desktop (≥1024px): Grid layout with flex-wrap
+ * Tablet (640px-1023px): Horizontal carousel showing ~2 cards with peek (basis-48%)
+ * Mobile (<640px): Horizontal carousel showing ~1 card with peek (basis-85%)
+ * 
+ * Features:
+ * - Touch/swipe support (via Embla Carousel)
+ * - Keyboard navigation (arrow keys)
+ * - Navigation arrows with proper accessibility (aria-labels)
+ * - Pagination dots (shown when >4 cards)
+ * - Maintains consistent spacing across breakpoints
+ */
 function Metrics1() {
+  const { isMobile, isTablet, isDesktop } = useBreakpoint();
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+  const [count, setCount] = React.useState(0);
+  
+  const quickLinks = [
+    {
+      id: 'tech-docs',
+      icon: <BookOpen01Icon />,
+      title: "Technická dokumentace a manualy",
+      rightIconType: "arrow" as const,
+      href: "#"
+    },
+    {
+      id: 'regulations',
+      icon: <PenTool02Icon />,
+      title: <>Provozní <br aria-hidden="true" />a bezpečnostní předpisy</>,
+      rightIconType: "arrow" as const,
+      href: "#"
+    },
+    {
+      id: 'employee-portal',
+      icon: <IconLayoutDashboard />,
+      title: "Portál zaměstnance",
+      rightIconType: "external-link" as const,
+      href: "#"
+    },
+    {
+      id: 'normis',
+      icon: <IconFolderOpen />,
+      title: <>{`Katalog norem `}<br aria-hidden="true" />(IS NORMIS)</>,
+      rightIconType: "external-link" as const,
+      href: "#"
+    },
+    {
+      id: 'security-report',
+      icon: <AlertTriangleIcon />,
+      title: <>{`Hlášení `}<br aria-hidden="true" />bezpečnostní události</>,
+      rightIconType: "arrow" as const,
+      href: "#"
+    },
+    {
+      id: 'benefits',
+      icon: <Gift01Icon />,
+      title: "Přehled benefitů",
+      rightIconType: "arrow" as const,
+      href: "#"
+    }
+  ];
+
+  // Update carousel state when API changes
+  React.useEffect(() => {
+    if (!api) return;
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  // Desktop: Grid layout
+  if (isDesktop) {
+    return (
+      <div className="content-start flex flex-wrap gap-[16px] items-start relative shrink-0 w-full" data-name="Metrics">
+        {quickLinks.map((link) => (
+          <LinkCard
+            key={link.id}
+            icon={link.icon}
+            title={link.title}
+            rightIconType={link.rightIconType}
+            href={link.href}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  // Mobile & Tablet: Carousel layout with peek of next card
   return (
-    <div className="content-start flex flex-wrap gap-[16px] items-start relative shrink-0 w-full" data-name="Metrics">
-      <LinkCard
-        icon={<BookOpen01Icon />}
-        title="Technická dokumentace a manualy"
-        rightIconType="arrow"
-        href="#"
-      />
-      <LinkCard
-        icon={<PenTool02Icon />}
-        title={<>Provozní <br aria-hidden="true" />a bezpečnostní předpisy</>}
-        rightIconType="arrow"
-        href="#"
-      />
-      <LinkCard
-        icon={<IconLayoutDashboard />}
-        title="Portál zaměstnance"
-        rightIconType="external-link"
-        href="#"
-      />
-      <LinkCard
-        icon={<IconFolderOpen />}
-        title={<>{`Katalog norem `}<br aria-hidden="true" />(IS NORMIS)</>}
-        rightIconType="external-link"
-        href="#"
-      />
-      <LinkCard
-        icon={<AlertTriangleIcon />}
-        title={<>{`Hlášení `}<br aria-hidden="true" />bezpečnostní události</>}
-        rightIconType="arrow"
-        href="#"
-      />
-      <LinkCard
-        icon={<Gift01Icon />}
-        title="Přehled benefitů"
-        rightIconType="arrow"
-        href="#"
-      />
+    <div className="relative w-full space-y-6" data-name="Metrics">
+      <Carousel
+        setApi={setApi}
+        opts={{
+          align: "start",
+          loop: false,
+          slidesToScroll: 1,
+        }}
+        className="w-full px-10"
+      >
+        <CarouselContent className="-ml-4">
+          {quickLinks.map((link) => (
+            <CarouselItem 
+              key={link.id} 
+              className={cn(
+                "pl-4",
+                isMobile ? "basis-[85%]" : "basis-[48%]"
+              )}
+            >
+              <LinkCard
+                icon={link.icon}
+                title={link.title}
+                rightIconType={link.rightIconType}
+                href={link.href}
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        
+        {/* Navigation arrows - positioned inside carousel with slight inset */}
+        <CarouselPrevious 
+          className={cn(
+            "absolute left-0 top-1/2 -translate-y-1/2 size-10 bg-white border-2 border-[#e9eaeb] shadow-md hover:bg-gray-50 z-10",
+            "disabled:opacity-50 disabled:cursor-not-allowed"
+          )}
+          aria-label="Previous quick links"
+        />
+        <CarouselNext 
+          className={cn(
+            "absolute right-0 top-1/2 -translate-y-1/2 size-10 bg-white border-2 border-[#e9eaeb] shadow-md hover:bg-gray-50 z-10",
+            "disabled:opacity-50 disabled:cursor-not-allowed"
+          )}
+          aria-label="Next quick links"
+        />
+      </Carousel>
+      
+      {/* Pagination dots - only show if more than 4 cards */}
+      {quickLinks.length > 4 && count > 0 && (
+        <div className="flex justify-center gap-2" role="tablist" aria-label="Carousel pagination">
+          {Array.from({ length: count }).map((_, index) => (
+            <button
+              key={index}
+              role="tab"
+              aria-selected={current === index}
+              aria-label={`Go to slide ${index + 1}`}
+              onClick={() => api?.scrollTo(index)}
+              className={cn(
+                "size-2 rounded-full transition-all duration-200",
+                current === index 
+                  ? "bg-primary w-6" 
+                  : "bg-[#d0d5dd] hover:bg-[#98a2b3]"
+              )}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
