@@ -1269,9 +1269,15 @@ function Gift01Icon() {
  * Features:
  * - Touch/swipe support (via Embla Carousel)
  * - Keyboard navigation (arrow keys)
- * - Navigation arrows with proper accessibility (aria-labels)
+ * - Navigation arrows with proper accessibility (aria-labels, clean transparent design)
+ * - Smooth horizontal gradient masks at left/right edges (white to transparent)
  * - Pagination dots (shown when >4 cards)
  * - Maintains consistent spacing across breakpoints
+ * 
+ * Visual Design:
+ * - Gradient masks create polished fade-out effect at carousel edges
+ * - Arrows positioned above masks with no background/borders for minimal visual clutter
+ * - Cards slide smoothly under gradient masks without abrupt cutoff
  */
 function Metrics1() {
   const { isMobile, isTablet, isDesktop } = useBreakpoint();
@@ -1384,18 +1390,38 @@ function Metrics1() {
           ))}
         </CarouselContent>
         
-        {/* Navigation arrows - positioned inside carousel with slight inset */}
+        {/* Left edge gradient mask - fades from white to transparent */}
+        <div 
+          className="absolute left-0 top-0 bottom-0 w-12 pointer-events-none z-20"
+          style={{ background: "linear-gradient(to right, #ffffff 60%, transparent 100%)" }}
+          aria-hidden="true"
+        />
+        
+        {/* Right edge gradient mask - fades from white to transparent */}
+        <div 
+          className="absolute right-0 top-0 bottom-0 w-12 pointer-events-none z-20"
+          style={{ background: "linear-gradient(to left, #ffffff 60%, transparent 100%)" }}
+          aria-hidden="true"
+        />
+        
+        {/* Navigation arrows - positioned above gradient masks with subtle background for visibility */}
         <CarouselPrevious 
           className={cn(
-            "absolute left-0 top-1/2 -translate-y-1/2 size-10 bg-white border-2 border-[#e9eaeb] shadow-md hover:bg-gray-50 z-10",
-            "disabled:opacity-50 disabled:cursor-not-allowed"
+            "absolute left-1 top-1/2 -translate-y-1/2 size-10 rounded-full z-30",
+            "bg-white/90 backdrop-blur-sm border-0 shadow-sm",
+            "hover:bg-white hover:shadow-md",
+            "disabled:opacity-30 disabled:cursor-not-allowed",
+            "text-[#535862] hover:text-[#252b37] transition-all duration-200"
           )}
           aria-label="Previous quick links"
         />
         <CarouselNext 
           className={cn(
-            "absolute right-0 top-1/2 -translate-y-1/2 size-10 bg-white border-2 border-[#e9eaeb] shadow-md hover:bg-gray-50 z-10",
-            "disabled:opacity-50 disabled:cursor-not-allowed"
+            "absolute right-1 top-1/2 -translate-y-1/2 size-10 rounded-full z-30",
+            "bg-white/90 backdrop-blur-sm border-0 shadow-sm",
+            "hover:bg-white hover:shadow-md",
+            "disabled:opacity-30 disabled:cursor-not-allowed",
+            "text-[#535862] hover:text-[#252b37] transition-all duration-200"
           )}
           aria-label="Next quick links"
         />
