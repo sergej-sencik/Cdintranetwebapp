@@ -54,13 +54,12 @@ export function LinkCard({
 
 function RightIcon({ type }: { type: 'arrow' | 'share' | 'external-link' }) {
   const iconProps = {
-    className: "text-[#717680]",
     size: 20,
     strokeWidth: 1.67
   };
 
   return (
-    <div className="relative shrink-0 size-[20px]">
+    <div className="relative shrink-0 size-[20px] text-[#717680]">
       {type === 'arrow' && <ArrowRight {...iconProps} />}
       {type === 'share' && <Share2 {...iconProps} />}
       {type === 'external-link' && <ExternalLink {...iconProps} />}

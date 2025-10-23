@@ -1048,7 +1048,7 @@ function Edit01() {
     <div className="relative shrink-0 size-[20px]" data-name="edit-01">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
         <g id="edit-01">
-          <path d={svgPaths.p9f65e00} id="Icon" stroke="var(--stroke-0, #535862)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.66667" />
+          <path d={svgPaths.p9f65e00} id="Icon" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.66667" />
         </g>
       </svg>
     </div>

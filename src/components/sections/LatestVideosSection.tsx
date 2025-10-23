@@ -48,7 +48,7 @@ export const LatestVideosSection: React.FC<LatestVideosSectionProps> = ({
               <div className="relative shrink-0 size-[20px]">
                 <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
                   <g>
-                    <path d="M7.5 15L12.5 10L7.5 5" stroke="#009FDA" strokeWidth="1.66667" />
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.66667" />
                   </g>
                 </svg>
               </div>
