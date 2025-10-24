@@ -59,7 +59,7 @@ export function EventCard({
     <CardWrapper
       href={href}
       onClick={onClick}
-      className="group basis-0 bg-card grow h-[288px] min-h-px min-w-px relative rounded-[4px] shrink-0 cursor-pointer transition-shadow duration-300 hover:shadow-[0px_4px_12px_0px_rgba(10,13,18,0.1),0px_2px_4px_-1px_rgba(10,13,18,0.08)]"
+      className="group w-full sm:basis-0 bg-card sm:grow h-[288px] sm:min-h-px sm:min-w-px relative rounded-[4px] shrink-0 cursor-pointer transition-shadow duration-300 hover:shadow-[0px_4px_12px_0px_rgba(10,13,18,0.1),0px_2px_4px_-1px_rgba(10,13,18,0.08)]"
     >
       <div className="overflow-clip rounded-[inherit] size-full">
         <div className="box-border content-stretch flex flex-col gap-[16px] h-[288px] items-start p-[16px] relative w-full">

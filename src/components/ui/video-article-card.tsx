@@ -51,7 +51,7 @@ export function VideoArticleCard({
     <CardWrapper
       href={href}
       onClick={onClick}
-      className="basis-0 bg-white grow min-h-[435px] min-w-px relative rounded-[4px] shrink-0 group cursor-pointer transition-shadow duration-300 hover:shadow-[0px_4px_12px_0px_rgba(10,13,18,0.1),0px_2px_4px_-1px_rgba(10,13,18,0.08)]"
+      className="w-full sm:basis-0 bg-white sm:grow min-h-[435px] sm:min-w-px relative rounded-[4px] shrink-0 group cursor-pointer transition-shadow duration-300 hover:shadow-[0px_4px_12px_0px_rgba(10,13,18,0.1),0px_2px_4px_-1px_rgba(10,13,18,0.08)]"
     >
       <div className="content-stretch flex flex-col min-h-[435px] items-start overflow-clip relative rounded-[inherit] w-full">
         {/* Image Container with Play Button */}

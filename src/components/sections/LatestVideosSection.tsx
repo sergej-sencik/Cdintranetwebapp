@@ -60,7 +60,7 @@ export const LatestVideosSection: React.FC<LatestVideosSectionProps> = ({
       />
       <div className="bg-white relative shrink-0 w-full" data-name="Content">
         <div className="size-full">
-          <div className="box-border content-start flex flex-wrap gap-[16px] sm:gap-[24px] items-stretch p-[16px] sm:p-[24px] relative w-full">
+          <div className="box-border content-start flex flex-col sm:flex-row sm:flex-wrap gap-[16px] sm:gap-[24px] items-stretch p-[16px] sm:p-[24px] relative w-full">
             {videos.map((video, index) => (
               <VideoArticleCard
                 key={index}

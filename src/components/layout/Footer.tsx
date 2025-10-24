@@ -11,7 +11,7 @@ function Logo2() {
 
 function LogoAndSupportingText() {
   return (
-    <div className="basis-0 content-stretch flex flex-col gap-[24px] grow items-start min-h-px min-w-px relative shrink-0" data-name="Logo and supporting text">
+    <div className="content-stretch flex flex-col gap-[16px] md:gap-[20px] lg:gap-[24px] items-start relative shrink-0 w-full" data-name="Logo and supporting text">
       <Logo2 />
     </div>
   );
@@ -21,7 +21,7 @@ function LogoAndSupportingText() {
 function ButtonsButton14() {
   return (
     <div className="content-stretch flex gap-[6px] items-center justify-center overflow-clip relative shrink-0" data-name="Buttons/Button">
-      <p className="font-['Roboto:Regular',_sans-serif] font-normal leading-[22px] relative shrink-0 text-[#535862] text-[16px] text-nowrap whitespace-pre" style={{ fontVariationSettings: "'wdth' 100" }}>{`Pravidla používání `}</p>
+      <p className="font-['Roboto:Regular',_sans-serif] font-normal leading-[20px] md:leading-[21px] lg:leading-[22px] relative shrink-0 text-[#535862] text-[14px] md:text-[15px] lg:text-[16px] text-nowrap whitespace-pre" style={{ fontVariationSettings: "'wdth' 100" }}>{`Pravidla používání `}</p>
     </div>
   );
 }
@@ -162,7 +162,7 @@ function FooterLink3d() {
 
 function FooterLinks() {
   return (
-    <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-name="Footer links">
+    <div className="content-stretch flex flex-col gap-[8px] md:gap-[10px] lg:gap-[12px] items-start relative shrink-0 w-full" data-name="Footer links">
       <FooterLink />
       <FooterLink1 />
       <FooterLink2 />
@@ -177,8 +177,8 @@ function FooterLinks() {
 
 function FooterLinksColumn() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start min-w-[96px] relative shrink-0 w-full" data-name="_Footer links column">
-      <p className="font-['Roboto:Medium',_sans-serif] font-medium leading-[22px] relative shrink-0 text-[#002664] text-[16px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
+    <div className="content-stretch flex flex-col gap-[12px] md:gap-[14px] lg:gap-[16px] items-start relative shrink-0 w-full" data-name="_Footer links column">
+      <p className="font-['Roboto:Medium',_sans-serif] font-medium leading-[20px] md:leading-[21px] lg:leading-[22px] relative shrink-0 text-[#002664] text-[14px] md:text-[15px] lg:text-[16px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
         O intranetu
       </p>
       <FooterLinks />
@@ -279,7 +279,7 @@ function FooterLink8() {
 
 function FooterLinks1() {
   return (
-    <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-name="Footer links">
+    <div className="content-stretch flex flex-col gap-[8px] md:gap-[10px] lg:gap-[12px] items-start relative shrink-0 w-full" data-name="Footer links">
       <FooterLink4 />
       <FooterLink5 />
       <FooterLink6 />
@@ -291,8 +291,8 @@ function FooterLinks1() {
 
 function FooterLinksColumn1() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start min-w-[96px] relative shrink-0 w-full" data-name="_Footer links column">
-      <p className="font-['Roboto:Medium',_sans-serif] font-medium leading-[22px] relative shrink-0 text-[#002664] text-[16px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
+    <div className="content-stretch flex flex-col gap-[12px] md:gap-[14px] lg:gap-[16px] items-start relative shrink-0 w-full" data-name="_Footer links column">
+      <p className="font-['Roboto:Medium',_sans-serif] font-medium leading-[20px] md:leading-[21px] lg:leading-[22px] relative shrink-0 text-[#002664] text-[14px] md:text-[15px] lg:text-[16px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
         Další zdroje a weby
       </p>
       <FooterLinks1 />
@@ -303,7 +303,7 @@ function FooterLinksColumn1() {
 // Frame13 - Groups first two columns
 function Frame13() {
   return (
-    <div className="basis-0 content-stretch flex flex-col gap-[32px] grow items-start justify-center min-h-px min-w-px relative shrink-0">
+    <div className="content-stretch flex flex-col gap-[24px] md:gap-[28px] lg:gap-[32px] items-start relative shrink-0 w-full">
       <FooterLinksColumn />
       <FooterLinksColumn1 />
     </div>
@@ -439,7 +439,7 @@ function FooterLink15() {
 
 function FooterLinks2() {
   return (
-    <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-name="Footer links">
+    <div className="content-stretch flex flex-col gap-[8px] md:gap-[10px] lg:gap-[12px] items-start relative shrink-0 w-full" data-name="Footer links">
       <FooterLink9 />
       <FooterLink10 />
       <FooterLink11 />
@@ -453,8 +453,8 @@ function FooterLinks2() {
 
 function FooterLinksColumn2() {
   return (
-    <div className="basis-0 content-stretch flex flex-col gap-[16px] grow items-start min-h-px min-w-[96px] relative shrink-0" data-name="_Footer links column">
-      <p className="font-['Roboto:Medium',_sans-serif] font-medium leading-[22px] relative shrink-0 text-[#002664] text-[16px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
+    <div className="content-stretch flex flex-col gap-[12px] md:gap-[14px] lg:gap-[16px] items-start relative shrink-0 w-full" data-name="_Footer links column">
+      <p className="font-['Roboto:Medium',_sans-serif] font-medium leading-[20px] md:leading-[21px] lg:leading-[22px] relative shrink-0 text-[#002664] text-[14px] md:text-[15px] lg:text-[16px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
         Rychlé odkazy
       </p>
       <FooterLinks2 />
@@ -559,7 +559,7 @@ function Frame15() {
 
 function TextAndSupportingText24() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Text and supporting text">
+    <div className="content-stretch flex flex-col gap-[12px] md:gap-[14px] lg:gap-[16px] items-start relative shrink-0 w-full" data-name="Text and supporting text">
       <Frame12 />
       <Frame15 />
     </div>
@@ -609,7 +609,7 @@ function Details8() {
 
 function TextAndSupportingText25() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Text and supporting text">
+    <div className="content-stretch flex flex-col gap-[12px] md:gap-[14px] lg:gap-[16px] items-start relative shrink-0 w-full" data-name="Text and supporting text">
       <Frame22 />
       <Details8 />
     </div>
@@ -659,7 +659,7 @@ function Details9() {
 
 function TextAndSupportingText26() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Text and supporting text">
+    <div className="content-stretch flex flex-col gap-[12px] md:gap-[14px] lg:gap-[16px] items-start relative shrink-0 w-full" data-name="Text and supporting text">
       <Frame23 />
       <Details9 />
     </div>
@@ -668,7 +668,7 @@ function TextAndSupportingText26() {
 
 function FooterLinksColumn3() {
   return (
-    <div className="basis-0 content-stretch flex flex-col gap-[32px] grow items-start justify-center min-h-px min-w-px relative shrink-0" data-name="_Footer links column">
+    <div className="content-stretch flex flex-col gap-[24px] md:gap-[28px] lg:gap-[32px] items-start relative shrink-0 w-full" data-name="_Footer links column">
       <TextAndSupportingText24 />
       <TextAndSupportingText25 />
       <TextAndSupportingText26 />
@@ -679,19 +679,27 @@ function FooterLinksColumn3() {
 // Main Content Section
 function Content43() {
   return (
-    <div className="content-start flex flex-wrap gap-[40px] items-start relative shrink-0 w-full" data-name="Content">
-      <LogoAndSupportingText />
-      <Frame13 />
-      <FooterLinksColumn2 />
-      <FooterLinksColumn3 />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px] md:gap-[32px] lg:gap-[40px] items-start relative shrink-0 w-full" data-name="Content">
+      <div className="md:col-span-2 lg:col-span-1">
+        <LogoAndSupportingText />
+      </div>
+      <div className="md:col-span-1 lg:col-span-1">
+        <Frame13 />
+      </div>
+      <div className="md:col-span-1 lg:col-span-1">
+        <FooterLinksColumn2 />
+      </div>
+      <div className="md:col-span-2 lg:col-span-1">
+        <FooterLinksColumn3 />
+      </div>
     </div>
   );
 }
 
 function Container5() {
   return (
-    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8" data-name="Container">
-      <div className="flex flex-col gap-[48px] items-start w-full">
+    <div className="max-w-[1280px] w-full mx-auto px-4 md:px-6 lg:px-8" data-name="Container">
+      <div className="flex flex-col gap-[32px] md:gap-[40px] lg:gap-[48px] items-start w-full">
         <Content43 />
       </div>
     </div>
@@ -769,7 +777,7 @@ function SocialIcon3() {
 
 function SocialIcons() {
   return (
-    <div className="content-stretch flex gap-[24px] items-center relative shrink-0" data-name="Social icons">
+    <div className="content-stretch flex gap-[16px] md:gap-[20px] lg:gap-[24px] items-center relative shrink-0" data-name="Social icons">
       <SocialIcon />
       <SocialIcon1 />
       <SocialIcon2 />
@@ -781,11 +789,11 @@ function SocialIcons() {
 // Copyright Section with Social Icons
 function Frame14() {
   return (
-    <div className="content-stretch flex font-['Roboto:Regular',_sans-serif] font-normal gap-[16px] items-center leading-[22px] relative shrink-0 text-[16px] text-nowrap whitespace-pre">
-      <p className="relative shrink-0 text-[#717680]" style={{ fontVariationSettings: "'wdth' 100" }}>
+    <div className="content-stretch flex flex-col md:flex-row font-['Roboto:Regular',_sans-serif] font-normal gap-[8px] md:gap-[12px] lg:gap-[16px] items-center leading-[20px] md:leading-[21px] lg:leading-[22px] relative shrink-0 text-[14px] md:text-[15px] lg:text-[16px]">
+      <p className="relative shrink-0 text-[#717680] text-center md:text-left" style={{ fontVariationSettings: "'wdth' 100" }}>
         © 2025 České dráhy, a.s. Všechna práva vyhrazena.
       </p>
-      <p className="relative shrink-0 text-[#535862]" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <p className="relative shrink-0 text-[#535862] text-center md:text-left" style={{ fontVariationSettings: "'wdth' 100" }}>
         Ochrana osobních údajů
       </p>
     </div>
@@ -794,7 +802,7 @@ function Frame14() {
 
 function Content44() {
   return (
-    <div className="box-border content-center flex flex-wrap gap-[24px] items-center justify-between pb-0 pt-[32px] px-0 relative shrink-0 w-full" data-name="Content">
+    <div className="box-border content-center flex flex-col md:flex-row gap-[16px] md:gap-[20px] lg:gap-[24px] items-center md:justify-between pb-0 pt-[24px] md:pt-[28px] lg:pt-[32px] px-0 relative shrink-0 w-full" data-name="Content">
       <div aria-hidden="true" className="absolute border-[#d5d7da] border-[1px_0px_0px] border-solid inset-0 pointer-events-none" />
       <Frame14 />
       <SocialIcons />
@@ -804,8 +812,8 @@ function Content44() {
 
 function Container6() {
   return (
-    <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8" data-name="Container">
-      <div className="flex flex-col gap-[32px] items-start w-full">
+    <div className="max-w-[1280px] w-full mx-auto px-4 md:px-6 lg:px-8" data-name="Container">
+      <div className="flex flex-col gap-[24px] md:gap-[28px] lg:gap-[32px] items-start w-full">
         <Content44 />
       </div>
     </div>
@@ -815,7 +823,7 @@ function Container6() {
 // Main Footer Export
 export function Footer() {
   return (
-    <div className="full-width-section bg-white box-border content-stretch flex flex-col gap-[64px] items-center overflow-clip px-0 py-[64px] relative shrink-0 z-[1]" data-name="Footer">
+    <div className="full-width-section bg-white box-border content-stretch flex flex-col gap-[32px] md:gap-[48px] lg:gap-[64px] items-center overflow-clip px-0 py-[32px] md:py-[48px] lg:py-[64px] relative shrink-0 z-[1]" data-name="Footer">
       <Container5 />
       <Container6 />
     </div>
