@@ -17,7 +17,7 @@ import { PageBlockHeader, PAGE_BLOCK_HEADER_BUTTON_SIZE } from "../components/ui
 import { FeaturedNewsSection, UpcomingEventsSection, LatestVideosSection } from "../components/sections";
 import { BannerCarousel } from "../components/ui/banner-carousel";
 import { LinkCard, LinkCardIcon } from "../components/ui/link-card";
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from "../components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "../components/ui/carousel";
 import { Footer as GlobalFooter } from "../components/layout/Footer";
 import { Header as GlobalHeader } from "../components/layout/Header";
 import { PageContainer, ContentGrid, SectionHeader } from "../components/layout";
@@ -1267,17 +1267,17 @@ function Gift01Icon() {
  * Mobile (<640px): Horizontal carousel showing ~1 card with peek (basis-85%)
  * 
  * Features:
- * - Touch/swipe support (via Embla Carousel)
+ * - Touch/swipe support for natural gesture navigation (via Embla Carousel)
  * - Keyboard navigation (arrow keys)
- * - Navigation arrows with proper accessibility (aria-labels, clean transparent design)
- * - Smooth horizontal gradient masks at left/right edges (white to transparent)
+ * - Mouse/touchpad horizontal scroll support
  * - Pagination dots (shown when >4 cards)
  * - Maintains consistent spacing across breakpoints
  * 
- * Visual Design:
- * - Gradient masks create polished fade-out effect at carousel edges
- * - Arrows positioned above masks with no background/borders for minimal visual clutter
- * - Cards slide smoothly under gradient masks without abrupt cutoff
+ * Navigation:
+ * - No visible arrow buttons - users navigate via swipe/scroll
+ * - Clean, uncluttered interface
+ * - Cards slide flush to edges for maximum visibility
+ * - Peek of next card indicates more content available
  */
 function Metrics1() {
   const { isMobile, isTablet, isDesktop } = useBreakpoint();
@@ -1369,7 +1369,7 @@ function Metrics1() {
           loop: false,
           slidesToScroll: 1,
         }}
-        className="w-full px-10"
+        className="w-full"
       >
         <CarouselContent className="-ml-4">
           {quickLinks.map((link) => (
@@ -1389,42 +1389,6 @@ function Metrics1() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        
-        {/* Left edge gradient mask - fades from white to transparent */}
-        <div 
-          className="absolute left-0 top-0 bottom-0 w-12 pointer-events-none z-20"
-          style={{ background: "linear-gradient(to right, #ffffff 60%, transparent 100%)" }}
-          aria-hidden="true"
-        />
-        
-        {/* Right edge gradient mask - fades from white to transparent */}
-        <div 
-          className="absolute right-0 top-0 bottom-0 w-12 pointer-events-none z-20"
-          style={{ background: "linear-gradient(to left, #ffffff 60%, transparent 100%)" }}
-          aria-hidden="true"
-        />
-        
-        {/* Navigation arrows - positioned above gradient masks with subtle background for visibility */}
-        <CarouselPrevious 
-          className={cn(
-            "absolute left-1 top-1/2 -translate-y-1/2 size-10 rounded-full z-30",
-            "bg-white/90 backdrop-blur-sm border-0 shadow-sm",
-            "hover:bg-white hover:shadow-md",
-            "disabled:opacity-30 disabled:cursor-not-allowed",
-            "text-[#535862] hover:text-[#252b37] transition-all duration-200"
-          )}
-          aria-label="Previous quick links"
-        />
-        <CarouselNext 
-          className={cn(
-            "absolute right-1 top-1/2 -translate-y-1/2 size-10 rounded-full z-30",
-            "bg-white/90 backdrop-blur-sm border-0 shadow-sm",
-            "hover:bg-white hover:shadow-md",
-            "disabled:opacity-30 disabled:cursor-not-allowed",
-            "text-[#535862] hover:text-[#252b37] transition-all duration-200"
-          )}
-          aria-label="Next quick links"
-        />
       </Carousel>
       
       {/* Pagination dots - only show if more than 4 cards */}
