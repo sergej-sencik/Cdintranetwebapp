@@ -10,37 +10,57 @@ interface BannerCarouselProps {
 export function BannerCarousel({ images = [imgBanner], autoPlayInterval = 5000 }: BannerCarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
   const totalSlides = 5; // As shown in the design
 
+  // Auto-play with progress tracking
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying) {
+      setProgress(0);
+      return;
+    }
+
+    const progressInterval = 50;
+    const progressStep = (progressInterval / autoPlayInterval) * 100;
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }, autoPlayInterval);
+      setProgress((prev) => {
+        const newProgress = prev + progressStep;
+        
+        if (newProgress >= 100) {
+          setCurrentSlide((current) => (current + 1) % totalSlides);
+          return 0;
+        }
+        
+        return newProgress;
+      });
+    }, progressInterval);
 
     return () => clearInterval(interval);
   }, [isPlaying, autoPlayInterval, totalSlides]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
+    setProgress(0); // Reset progress when manually changing slides
   };
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
+    setProgress(0);
   };
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+    setProgress(0);
   };
 
   return (
     <div className="w-full min-w-0 flex flex-col gap-[16px] items-start">
-      <div className="h-[280px] sm:h-[340px] lg:h-[408px] relative rounded-[8px] w-full overflow-hidden">
+      <div className="aspect-[16/10] sm:aspect-[20/10] lg:aspect-[24/10] relative rounded-[8px] w-full overflow-hidden">
         <div className="absolute inset-0 pointer-events-none rounded-[8px]">
           <img
             alt="Banner"
-            className="absolute h-full w-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
             src={images[0]}
           />
         </div>
@@ -69,17 +89,40 @@ export function BannerCarousel({ images = [imgBanner], autoPlayInterval = 5000 }
             <ChevronLeft className="size-full text-[#717680]" />
           </button>
 
-          <div className="flex-1 min-w-0 flex gap-[12px] items-center">
-            {Array.from({ length: totalSlides }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`flex-1 min-w-0 h-[4px] transition-colors cursor-pointer ${
-                  index === currentSlide ? "bg-[#009fda]" : "bg-[#e9eaeb] hover:bg-[#d5d7da]"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+          <div className="flex-1 min-w-0 flex gap-[8px] items-center justify-center">
+            {Array.from({ length: totalSlides }).map((_, index) => {
+              const isActive = index === currentSlide;
+              
+              return (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`relative cursor-pointer transition-all duration-300 ${
+                    isActive 
+                      ? 'w-[32px] h-[8px]' // Blue oval for active
+                      : 'w-[8px] h-[8px]'   // Gray dot for inactive
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                >
+                  {isActive ? (
+                    // Active: Blue oval with animated loader
+                    <div className="relative w-full h-full bg-[#009fda] rounded-[4px] overflow-hidden">
+                      <div className="absolute inset-0 bg-[#009fda] opacity-30 rounded-[4px]" />
+                      <div 
+                        className="absolute left-0 top-0 h-full bg-[#009fda] rounded-[4px] transition-all duration-75 ease-linear"
+                        style={{ 
+                          width: `${progress}%`,
+                          minWidth: '2px'
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    // Inactive: Gray dot
+                    <div className="w-full h-full bg-[#d1d5db] rounded-full hover:bg-[#9ca3af] transition-colors duration-200" />
+                  )}
+                </button>
+              );
+            })}
           </div>
 
           <button

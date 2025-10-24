@@ -81,15 +81,15 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({
       className={`content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full ${className}`}
       data-name="BannerCarousel"
     >
-      {/* Banner Image */}
-      <div className="h-[408px] relative rounded-[8px] shrink-0 w-full overflow-hidden" data-name="Banner">
+      {/* Banner Image with Preserved Aspect Ratio */}
+      <div className="aspect-[16/10] md:aspect-[20/10] lg:aspect-[24/10] relative rounded-[8px] shrink-0 w-full overflow-hidden" data-name="Banner">
         {/* Image Container with Slide Transition */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[8px]">
           {slides.map((slide, index) => (
             <img
               key={index}
               alt={slide.title || `Banner ${index + 1}`}
-              className="absolute h-[107.19%] left-0 max-w-none top-[-0.41%] w-full object-cover transition-opacity duration-700"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
               src={slide.image}
               style={{
                 opacity: index === currentSlide ? 1 : 0,
@@ -101,7 +101,7 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({
 
         {/* Content Overlay (if needed) */}
         <div className="flex flex-col items-center justify-end overflow-clip rounded-[inherit] size-full">
-          <div className="box-border content-stretch flex flex-col gap-[16px] h-[408px] items-center justify-end p-[16px] w-full" />
+          <div className="box-border content-stretch flex flex-col gap-[16px] h-full items-center justify-end p-[12px] md:p-[16px] w-full" />
         </div>
 
         {/* Border */}
@@ -134,9 +134,9 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({
           )}
         </button>
 
-        {/* Banner Pagination */}
+        {/* Banner Pagination - New Design */}
         <div 
-          className="content-stretch flex gap-[16px] items-center relative shrink-0 w-[348px]" 
+          className="content-stretch flex gap-[16px] items-center relative shrink-0 w-full max-w-[348px]" 
           data-name="BannerPagination"
         >
           {/* Previous Button */}
@@ -149,29 +149,57 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({
             <ChevronLeft className="size-full text-[#717680]" strokeWidth={1.66667} />
           </button>
 
-          {/* Progress Indicators */}
+          {/* New Pagination Style - Blue Oval with Loader + Gray Dots */}
           <div 
-            className="basis-0 content-stretch flex gap-[12px] grow items-center min-h-px min-w-px relative shrink-0" 
-            data-name="Items"
+            className="flex-1 flex gap-[8px] items-center justify-center relative shrink-0" 
+            data-name="PaginationDots"
           >
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className="basis-0 bg-[#e9eaeb] content-stretch flex flex-col gap-[8px] grow h-[4px] items-start min-h-px min-w-px relative shrink-0 cursor-pointer hover:bg-[#d5d7da] transition-colors overflow-hidden"
-                aria-label={`Go to slide ${index + 1}`}
-                type="button"
-              >
-                {/* Progress Bar */}
-                <div 
-                  className="bg-[#009fda] h-[4px] shrink-0 transition-all duration-75 ease-linear"
-                  style={{ 
-                    width: index === currentSlide ? `${progress}%` : index < currentSlide ? '100%' : '0%'
-                  }}
-                  data-name="bg"
-                />
-              </button>
-            ))}
+            {slides.map((_, index) => {
+              const isActive = index === currentSlide;
+              
+              return (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`relative cursor-pointer transition-all duration-300 ${
+                    isActive 
+                      ? 'w-[32px] h-[8px]' // Blue oval for active slide
+                      : 'w-[8px] h-[8px]'   // Gray dot for inactive slides
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                  type="button"
+                >
+                  {isActive ? (
+                    // Active Slide: Blue Oval with Progress Loader
+                    <div className="relative w-full h-full bg-[#009fda] rounded-[4px] overflow-hidden">
+                      {/* Progress Loader Background */}
+                      <div className="absolute inset-0 bg-[#009fda] opacity-30 rounded-[4px]" />
+                      
+                      {/* Animated Progress Bar */}
+                      <div 
+                        className="absolute left-0 top-0 h-full bg-[#009fda] rounded-[4px] transition-all duration-75 ease-linear"
+                        style={{ 
+                          width: `${progress}%`,
+                          minWidth: '2px' // Ensure visibility at 0%
+                        }}
+                      />
+                      
+                      {/* Subtle shine effect */}
+                      <div 
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-[4px]"
+                        style={{
+                          transform: `translateX(${(progress - 50) * 2}%)`,
+                          transition: 'transform 75ms ease-linear'
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    // Inactive Slide: Gray Dot
+                    <div className="w-full h-full bg-[#d1d5db] rounded-full hover:bg-[#9ca3af] transition-colors duration-200" />
+                  )}
+                </button>
+              );
+            })}
           </div>
 
           {/* Next Button */}

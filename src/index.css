@@ -974,6 +974,10 @@
     aspect-ratio: 4 / 3;
   }
 
+  .aspect-\[16\/10\] {
+    aspect-ratio: 16 / 10;
+  }
+
   .aspect-\[21\/9\] {
     aspect-ratio: 21 / 9;
   }
@@ -1145,6 +1149,10 @@
 
   .h-\[4px\] {
     height: 4px;
+  }
+
+  .h-\[8px\] {
+    height: 8px;
   }
 
   .h-\[9\.6px\] {
@@ -1351,6 +1359,10 @@
     width: calc(var(--spacing) * 64);
   }
 
+  .w-\[8px\] {
+    width: 8px;
+  }
+
   .w-\[14\.4px\] {
     width: 14.4px;
   }
@@ -1365,6 +1377,10 @@
 
   .w-\[24px\] {
     width: 24px;
+  }
+
+  .w-\[32px\] {
+    width: 32px;
   }
 
   .w-\[40px\] {
@@ -1461,6 +1477,10 @@
 
   .max-w-\[90vw\] {
     max-width: 90vw;
+  }
+
+  .max-w-\[348px\] {
+    max-width: 348px;
   }
 
   .max-w-\[1216px\] {
@@ -2236,6 +2256,10 @@
     background-color: #d0d5dd;
   }
 
+  .bg-\[\#d1d5db\] {
+    background-color: #d1d5db;
+  }
+
   .bg-\[\#e0e0e0\] {
     background-color: #e0e0e0;
   }
@@ -2494,8 +2518,25 @@
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 
+  .from-transparent {
+    --tw-gradient-from: transparent;
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+
   .from-\[45\.833\%\] {
     --tw-gradient-from-position: 45.833%;
+  }
+
+  .via-white\/20 {
+    --tw-gradient-via: #fff3;
+    --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-via-stops);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .via-white\/20 {
+      --tw-gradient-via: color-mix(in oklab, var(--color-white) 20%, transparent);
+    }
   }
 
   .to-\[\#0097cf\] {
@@ -2530,6 +2571,11 @@
 
   .to-\[var\(--accent-hover\)\] {
     --tw-gradient-to: var(--accent-hover);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+
+  .to-transparent {
+    --tw-gradient-to: transparent;
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 
@@ -3769,14 +3815,14 @@
   }
 
   @media (hover: hover) {
-    .hover\:bg-\[\#98a2b3\]:hover {
-      background-color: #98a2b3;
+    .hover\:bg-\[\#9ca3af\]:hover {
+      background-color: #9ca3af;
     }
   }
 
   @media (hover: hover) {
-    .hover\:bg-\[\#d5d7da\]:hover {
-      background-color: #d5d7da;
+    .hover\:bg-\[\#98a2b3\]:hover {
+      background-color: #98a2b3;
     }
   }
 
@@ -4626,6 +4672,12 @@
   }
 
   @media (width >= 48rem) {
+    .md\:aspect-\[20\/10\] {
+      aspect-ratio: 20 / 10;
+    }
+  }
+
+  @media (width >= 48rem) {
     .md\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -4698,6 +4750,12 @@
   }
 
   @media (width >= 48rem) {
+    .md\:p-\[16px\] {
+      padding: 16px;
+    }
+  }
+
+  @media (width >= 48rem) {
     .md\:px-6 {
       padding-inline: calc(var(--spacing) * 6);
     }
@@ -4750,6 +4808,12 @@
   @media (width >= 64rem) {
     .lg\:block {
       display: block;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:aspect-\[24\/10\] {
+      aspect-ratio: 24 / 10;
     }
   }
 
