@@ -4922,9 +4922,22 @@
   }
 
   @media (width >= 64rem) {
+    .lg\:text-\[length\:inherit\] {
+      font-size: inherit;
+    }
+  }
+
+  @media (width >= 64rem) {
     .lg\:leading-\[22px\] {
       --tw-leading: 22px;
       line-height: 22px;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:leading-\[inherit\] {
+      --tw-leading: inherit;
+      line-height: inherit;
     }
   }
 

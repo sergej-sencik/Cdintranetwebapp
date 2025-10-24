@@ -118,7 +118,7 @@ export function NewsArticleCard({
 
                 {/* Title and Description */}
                 <div className="content-stretch flex flex-col gap-[6px] items-start relative shrink-0 w-full" data-name="Heading and text">
-                  <h4 className="line-clamp-2 text-card-title-sm not-italic overflow-ellipsis overflow-hidden relative shrink-0 text-foreground w-full transition-colors duration-200 group-hover:text-[color:var(--color-blue-500)]">
+                  <h4 className="line-clamp-2 text-card-title-sm lg:text-[length:inherit] lg:leading-[inherit] not-italic overflow-ellipsis overflow-hidden relative shrink-0 text-foreground w-full transition-colors duration-200 group-hover:text-[color:var(--color-blue-500)]">
                     {title}
                   </h4>
                   {description && (
