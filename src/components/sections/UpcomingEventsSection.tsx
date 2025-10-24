@@ -67,7 +67,7 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
       />
       <div className="bg-white relative shrink-0 w-full" data-name="Content">
         <div className="size-full">
-          <div className="box-border content-stretch flex gap-[24px] items-start p-[24px] relative w-full">
+          <div className="box-border content-stretch flex flex-col sm:flex-row gap-[24px] items-start p-[16px] sm:p-[24px] relative w-full">
             {events.map((event, index) => (
               <EventCard
                 key={index}

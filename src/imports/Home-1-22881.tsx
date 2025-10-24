@@ -2613,7 +2613,7 @@ function News2() {
 
 function Left1() {
   return (
-    <div className="basis-0 content-stretch flex flex-col gap-[40px] grow items-start min-h-px min-w-px relative shrink-0" data-name="Left">
+    <div className="w-full lg:flex-1 content-stretch flex flex-col gap-[40px] items-start min-w-0 relative" data-name="Left">
       <FeaturedNewsSection
         allArticles={[
           {
@@ -4259,12 +4259,16 @@ function Contacts1() {
 import { RightSidebar } from "../components/ui/sidebar-right";
 
 function Ritgh() {
-  return <RightSidebar />;
+  return (
+    <div className="hidden lg:block w-full lg:w-auto">
+      <RightSidebar />
+    </div>
+  );
 }
 
 function Content42() {
   return (
-    <div className="content-stretch flex gap-[32px] items-start relative shrink-0 w-full" data-name="Content">
+    <div className="content-stretch flex flex-col lg:flex-row gap-[24px] lg:gap-[32px] items-start relative shrink-0 w-full" data-name="Content">
       <Left1 />
       <Ritgh />
     </div>
@@ -4292,11 +4296,16 @@ function Section1() {
 /**
  * MainContentSection - Main content area with news, events, and videos
  * Semantic replacement for Main1()
+ * 
+ * Responsive Layout:
+ * - Mobile (<640px): Single column, sidebar hidden, reduced padding
+ * - Tablet (≥640px, <1024px): Single column, sidebar hidden
+ * - Desktop (≥1024px): Two columns (main content + sidebar), full padding
  */
 function MainContentSection() {
   return (
     <section 
-      className="bg-[#f2fbff] box-border content-stretch flex flex-col gap-[32px] isolate items-start px-0 py-[80px] relative shrink-0 w-full z-[2]" 
+      className="bg-[#f2fbff] box-border content-stretch flex flex-col gap-[24px] lg:gap-[32px] isolate items-start px-0 py-[40px] sm:py-[60px] lg:py-[80px] relative shrink-0 w-full z-[2]" 
       data-section="main-content"
       aria-label="Main content section"
     >
