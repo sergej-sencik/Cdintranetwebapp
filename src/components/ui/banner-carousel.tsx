@@ -82,7 +82,7 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({
       data-name="BannerCarousel"
     >
       {/* Banner Image with Preserved Aspect Ratio */}
-      <div className="aspect-[16/10] md:aspect-[20/10] lg:aspect-[24/10] relative rounded-[8px] shrink-0 w-full overflow-hidden" data-name="Banner">
+      <div className="aspect-[3/2] relative rounded-[8px] shrink-0 w-full overflow-hidden" data-name="Banner">
         {/* Image Container with Slide Transition */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[8px]">
           {slides.map((slide, index) => (
@@ -136,7 +136,7 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({
 
         {/* Banner Pagination - New Design */}
         <div 
-          className="content-stretch flex gap-[16px] items-center relative shrink-0 w-full max-w-[348px]" 
+          className="content-stretch flex gap-[16px] items-center relative shrink-0 w-auto" 
           data-name="BannerPagination"
         >
           {/* Previous Button */}
@@ -149,9 +149,9 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({
             <ChevronLeft className="size-full text-[#717680]" strokeWidth={1.66667} />
           </button>
 
-          {/* New Pagination Style - Blue Oval with Loader + Gray Dots */}
+          {/* Inner pagination: inline-flex so width equals items width */}
           <div 
-            className="flex-1 flex gap-[8px] items-center justify-center relative shrink-0" 
+            className="inline-flex items-center justify-center gap-[8px]" 
             data-name="PaginationDots"
           >
             {slides.map((_, index) => {
@@ -170,26 +170,17 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({
                   type="button"
                 >
                   {isActive ? (
-                    // Active Slide: Blue Oval with Progress Loader
-                    <div className="relative w-full h-full bg-[#009fda] rounded-[4px] overflow-hidden">
-                      {/* Progress Loader Background */}
-                      <div className="absolute inset-0 bg-[#009fda] opacity-30 rounded-[4px]" />
+                    // Active: Flat loader animation - no gradients or shadows
+                    <div className="relative w-full h-full bg-[#b3d9f2] rounded-[4px] overflow-hidden">
+                      {/* Loader track: lighter blue background */}
+                      <div className="absolute inset-0 bg-[#b3d9f2] rounded-[4px]" />
                       
-                      {/* Animated Progress Bar */}
+                      {/* Animated progress fill: darker blue, flat color */}
                       <div 
                         className="absolute left-0 top-0 h-full bg-[#009fda] rounded-[4px] transition-all duration-75 ease-linear"
                         style={{ 
                           width: `${progress}%`,
-                          minWidth: '2px' // Ensure visibility at 0%
-                        }}
-                      />
-                      
-                      {/* Subtle shine effect */}
-                      <div 
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-[4px]"
-                        style={{
-                          transform: `translateX(${(progress - 50) * 2}%)`,
-                          transition: 'transform 75ms ease-linear'
+                          minWidth: '2px'
                         }}
                       />
                     </div>

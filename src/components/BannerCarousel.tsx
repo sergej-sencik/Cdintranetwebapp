@@ -56,7 +56,7 @@ export function BannerCarousel({ images = [imgBanner], autoPlayInterval = 5000 }
 
   return (
     <div className="w-full min-w-0 flex flex-col gap-[16px] items-start">
-      <div className="aspect-[16/10] sm:aspect-[20/10] lg:aspect-[24/10] relative rounded-[8px] w-full overflow-hidden">
+      <div className="aspect-[3/2] relative rounded-[8px] w-full overflow-hidden">
         <div className="absolute inset-0 pointer-events-none rounded-[8px]">
           <img
             alt="Banner"
@@ -80,7 +80,7 @@ export function BannerCarousel({ images = [imgBanner], autoPlayInterval = 5000 }
           )}
         </button>
 
-        <div className="flex gap-[16px] items-center max-w-[348px] w-full">
+        <div className="flex gap-[16px] items-center w-auto">
           <button
             onClick={prevSlide}
             className="relative shrink-0 size-[20px] cursor-pointer hover:opacity-70 transition-opacity"
@@ -89,7 +89,7 @@ export function BannerCarousel({ images = [imgBanner], autoPlayInterval = 5000 }
             <ChevronLeft className="size-full text-[#717680]" />
           </button>
 
-          <div className="flex-1 min-w-0 flex gap-[8px] items-center justify-center">
+          <div className="inline-flex items-center justify-center gap-[8px]">
             {Array.from({ length: totalSlides }).map((_, index) => {
               const isActive = index === currentSlide;
               
@@ -105,9 +105,9 @@ export function BannerCarousel({ images = [imgBanner], autoPlayInterval = 5000 }
                   aria-label={`Go to slide ${index + 1}`}
                 >
                   {isActive ? (
-                    // Active: Blue oval with animated loader
-                    <div className="relative w-full h-full bg-[#009fda] rounded-[4px] overflow-hidden">
-                      <div className="absolute inset-0 bg-[#009fda] opacity-30 rounded-[4px]" />
+                    // Active: Flat loader - no gradients or shadows
+                    <div className="relative w-full h-full bg-[#b3d9f2] rounded-[4px] overflow-hidden">
+                      <div className="absolute inset-0 bg-[#b3d9f2] rounded-[4px]" />
                       <div 
                         className="absolute left-0 top-0 h-full bg-[#009fda] rounded-[4px] transition-all duration-75 ease-linear"
                         style={{ 
