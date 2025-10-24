@@ -28,7 +28,7 @@ export const RightSidebar = React.forwardRef<HTMLDivElement, RightSidebarProps>(
       <div
         ref={ref}
         className={cn(
-          'content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-[384px]',
+          'content-stretch flex flex-col gap-[24px] lg:gap-[32px] items-start relative shrink-0 w-full lg:w-[384px]',
           className
         )}
         data-name="Right Sidebar"

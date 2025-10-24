@@ -76,9 +76,9 @@ export function NewsArticleCard({
       onClick={onClick}
       className="bg-card relative rounded-[4px] shrink-0 w-full group cursor-pointer transition-shadow duration-300 hover:shadow-[0px_4px_12px_0px_rgba(10,13,18,0.1),0px_2px_4px_-1px_rgba(10,13,18,0.08)]"
     >
-      <div className="content-stretch flex gap-[24px] items-stretch overflow-clip relative rounded-[inherit] w-full min-h-[210px]" data-name="Blog post card">
-        {/* Image Container */}
-        <div className="relative shrink-0 w-[312px] overflow-hidden self-stretch flex" data-name="Image">
+      <div className="content-stretch flex flex-col sm:flex-row gap-[16px] sm:gap-[24px] items-stretch overflow-clip relative rounded-[inherit] w-full min-h-[180px] sm:min-h-[210px]" data-name="Blog post card">
+        {/* Image Container - Responsive */}
+        <div className="relative shrink-0 w-full sm:w-[280px] lg:w-[312px] overflow-hidden self-stretch flex aspect-[16/10] sm:aspect-auto" data-name="Image">
           {image ? (
             <img 
               alt={title}
@@ -98,10 +98,10 @@ export function NewsArticleCard({
           <div aria-hidden="true" className="absolute border border-border-muted border-solid inset-0 pointer-events-none" />
         </div>
 
-        {/* Content Container */}
-        <div className="basis-0 grow min-h-px min-w-[200px] relative self-stretch shrink-0" data-name="Content">
-          <div className="flex flex-col justify-center min-w-inherit size-full">
-            <div className="box-border content-stretch flex flex-col gap-[24px] items-start justify-center min-w-inherit pl-0 pr-[24px] py-[16px] relative size-full">
+        {/* Content Container - Responsive Padding */}
+        <div className="basis-0 grow min-h-px min-w-0 relative self-stretch shrink-0" data-name="Content">
+          <div className="flex flex-col justify-center min-w-0 size-full">
+            <div className="box-border content-stretch flex flex-col gap-[16px] sm:gap-[24px] items-start justify-center min-w-0 px-[16px] sm:px-0 sm:pr-[24px] py-[12px] sm:py-[16px] relative size-full">
               <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-name="Heading and text">
                 {/* Date and Category Row */}
                 <div className="content-stretch flex gap-[6px] items-start leading-[20px] relative shrink-0 text-[14px] text-nowrap w-full whitespace-pre" data-name="Info row">

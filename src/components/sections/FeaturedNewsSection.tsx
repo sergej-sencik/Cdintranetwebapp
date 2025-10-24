@@ -237,7 +237,7 @@ export const FeaturedNewsSection: React.FC<FeaturedNewsSectionProps> = ({
       />
       <div className="bg-white relative shrink-0 w-full" data-name="Content">
         <div className="size-full">
-          <div className="box-border content-stretch flex flex-col gap-[24px] items-start p-[24px] relative w-full">
+          <div className="box-border content-stretch flex flex-col gap-[16px] sm:gap-[24px] items-start p-[16px] sm:p-[24px] relative w-full">
             {displayedArticles.map((article, index) => (
               <NewsArticleCard
                 key={`${activeTab}-${index}`}

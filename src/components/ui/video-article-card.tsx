@@ -84,10 +84,10 @@ export function VideoArticleCard({
           <div aria-hidden="true" className="absolute border border-[#e9eaeb] border-solid inset-0 pointer-events-none" />
         </div>
 
-        {/* Content Container */}
+        {/* Content Container - Responsive Padding */}
         <div className="relative shrink-0 w-full" data-name="Content">
           <div className="size-full">
-            <div className="box-border content-stretch flex flex-col gap-[20px] items-start pb-[32px] pt-[24px] px-[24px] relative w-full">
+            <div className="box-border content-stretch flex flex-col gap-[16px] sm:gap-[20px] items-start pb-[24px] sm:pb-[32px] pt-[16px] sm:pt-[24px] px-[16px] sm:px-[24px] relative w-full">
               <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Heading and text">
                 <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                   <p className="font-['Roboto:Medium',_sans-serif] font-medium leading-[20px] relative shrink-0 text-[#008bbe] text-[14px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>

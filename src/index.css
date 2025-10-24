@@ -974,6 +974,10 @@
     aspect-ratio: 4 / 3;
   }
 
+  .aspect-\[16\/10\] {
+    aspect-ratio: 16 / 10;
+  }
+
   .aspect-\[21\/9\] {
     aspect-ratio: 21 / 9;
   }
@@ -1291,8 +1295,8 @@
     min-height: 80px;
   }
 
-  .min-h-\[210px\] {
-    min-height: 210px;
+  .min-h-\[180px\] {
+    min-height: 180px;
   }
 
   .min-h-\[435px\] {
@@ -1409,10 +1413,6 @@
 
   .w-\[360px\] {
     width: 360px;
-  }
-
-  .w-\[384px\] {
-    width: 384px;
   }
 
   .w-\[400px\] {
@@ -2793,6 +2793,10 @@
     padding-top: 12px;
   }
 
+  .pt-\[16px\] {
+    padding-top: 16px;
+  }
+
   .pt-\[24px\] {
     padding-top: 24px;
   }
@@ -2843,6 +2847,10 @@
 
   .pb-\[16px\] {
     padding-bottom: 16px;
+  }
+
+  .pb-\[24px\] {
+    padding-bottom: 24px;
   }
 
   .pb-\[32px\] {
@@ -4486,8 +4494,26 @@
   }
 
   @media (width >= 40rem) {
+    .sm\:aspect-auto {
+      aspect-ratio: auto;
+    }
+  }
+
+  @media (width >= 40rem) {
+    .sm\:min-h-\[210px\] {
+      min-height: 210px;
+    }
+  }
+
+  @media (width >= 40rem) {
     .sm\:w-\[170px\] {
       width: 170px;
+    }
+  }
+
+  @media (width >= 40rem) {
+    .sm\:w-\[280px\] {
+      width: 280px;
     }
   }
 
@@ -4504,6 +4530,12 @@
   }
 
   @media (width >= 40rem) {
+    .sm\:gap-\[20px\] {
+      gap: 20px;
+    }
+  }
+
+  @media (width >= 40rem) {
     .sm\:gap-\[24px\] {
       gap: 24px;
     }
@@ -4516,14 +4548,50 @@
   }
 
   @media (width >= 40rem) {
+    .sm\:px-0 {
+      padding-inline: calc(var(--spacing) * 0);
+    }
+  }
+
+  @media (width >= 40rem) {
     .sm\:px-6 {
       padding-inline: calc(var(--spacing) * 6);
     }
   }
 
   @media (width >= 40rem) {
+    .sm\:px-\[24px\] {
+      padding-inline: 24px;
+    }
+  }
+
+  @media (width >= 40rem) {
+    .sm\:py-\[16px\] {
+      padding-block: 16px;
+    }
+  }
+
+  @media (width >= 40rem) {
     .sm\:py-\[60px\] {
       padding-block: 60px;
+    }
+  }
+
+  @media (width >= 40rem) {
+    .sm\:pt-\[24px\] {
+      padding-top: 24px;
+    }
+  }
+
+  @media (width >= 40rem) {
+    .sm\:pr-\[24px\] {
+      padding-right: 24px;
+    }
+  }
+
+  @media (width >= 40rem) {
+    .sm\:pb-\[32px\] {
+      padding-bottom: 32px;
     }
   }
 
@@ -4555,6 +4623,18 @@
   @media (width >= 64rem) {
     .lg\:w-\[196\.364px\] {
       width: 196.364px;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:w-\[312px\] {
+      width: 312px;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:w-\[384px\] {
+      width: 384px;
     }
   }
 
